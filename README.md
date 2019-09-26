@@ -15,11 +15,15 @@ text from its very original text:
     cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
     est laborum.
 
+## Installation
+
+## Usage
+
 Usage of the `lorem` module is rather simple. Depending on your needs, the
 `lorem` module provides generation of **word**s, **sentence**s, and
 **paragraph**s.
 
-## Get random words
+### Get random words
 
 The `lorem` module provides two different ways for getting random words.
 
@@ -119,7 +123,7 @@ The `lorem` module provides two different ways for getting random words.
 
      * `str` -- random words
 
-## Get random sentences
+### Get random sentences
 
 The `lorem` module provides two different ways for getting random sentences.
 
@@ -203,7 +207,7 @@ The `lorem` module provides two different ways for getting random sentences.
      * `str` -- random sentences
 
 
-## Get random paragraphs
+### Get random paragraphs
 
 The `lorem` module provides two different ways for getting random paragraphs.
 
@@ -315,8 +319,9 @@ The `lorem` module provides two different ways for getting random paragraphs.
 
      * `str` -- random paragraphs
 
+### Internal APIs
 
-## Internal APIs
+Following are internal APIs for the `lorem` module.
 
 1. `_TEXT: Tuple[str]`
 
