@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""lorem ipsum generator.
+"""lorem ipsum generator
 
 In publishing and graphic design, lorem ipsum is a placeholder text commonly
 used to demonstrate the visual form of a document or a typeface without
@@ -28,13 +28,13 @@ The `lorem` module provides two different ways for getting random words.
 1. `word` -- generate a list of random words
 
    ```python
-   word(count=1, func=None, args=[], kwargs={}) -> Iterable[str]
+   word(count=1, func=None, args=(), kwargs={}) -> Iterator[str]
    ```
 
 2. `get_word` -- return random words
 
    ```python
-   get_word(count=1, sep=' ', func=None, args=[], kwargs={}) -> str
+   get_word(count=1, sep=' ', func=None, args=(), kwargs={}) -> str
    ```
 
 Get Random Sentences
@@ -45,13 +45,13 @@ The `lorem` module provides two different ways for getting random sentences.
 1. `sentence` -- generate a list of random sentences
 
    ```python
-   sentence(count=1, comma=(0, 2), word_range=(4, 8)) -> Iterable[str]
+   sentence(count=1, comma=(0, 2), word_range=(4, 8)) -> Iterator[str]
    ```
 
 2. `get_sentence` -- return random sentences
 
    ```python
-   get_sentence(count=1, comma=(0, 2), word_range=(4, 8), sep=' ') -> Union[str]
+   get_sentence(count=1, sep=' ', comma=(0, 2), word_range=(4, 8)) -> Union[str]
    ```
 
 Get Random Paragraphs
@@ -62,18 +62,19 @@ The `lorem` module provides two different ways for getting random paragraphs.
 1. `paragraph` -- generate a list of random paragraphs
 
    ```python
-   paragraph(count=1, comma=(0, 2), word_range=(4, 8), sentence_range=(5, 10)) -> Iterable[str]
+   paragraph(count=1, comma=(0, 2), word_range=(4, 8), sentence_range=(5, 10)) -> Iterator[str]
    ```
 
 2. `get_paragraph` -- return random paragraphs
 
    ```python
-   get_paragraph(count=1, comma=(0, 2), word_range=(4, 8), sentence_range=(5, 10), sep=os.linesep) -> Union[str]
+   get_paragraph(count=1, sep=os.linesep, comma=(0, 2), word_range=(4, 8), sentence_range=(5, 10)) -> Union[str]
    ```
 
 """
 import os
 import random
+import typing
 
 __all__ = [
     'word', 'sentence', 'paragraph',
@@ -90,7 +91,7 @@ _TEXT = ('ad', 'adipiscing', 'aliqua', 'aliquip', 'amet', 'anim', 'aute', 'cillu
          'sint', 'sit', 'sunt', 'tempor', 'ullamco', 'ut', 'velit', 'veniam', 'voluptate')
 
 
-def _gen_pool(dupe=1):
+def _gen_pool(dupe: int = 1) -> typing.Iterator[str]:
     """Generate word pool.
 
     - Args:
@@ -103,7 +104,7 @@ def _gen_pool(dupe=1):
 
     - Returns
 
-      * `Iterable[str]` -- an infinite loop word pool
+      * `Iterator[str]` -- an infinite loop word pool
 
     """
     pool = list()
@@ -117,12 +118,14 @@ def _gen_pool(dupe=1):
         random.shuffle(pool)
 
 
-def _gen_word(pool, func, args=[], kwargs={}):  # pylint: disable=dangerous-default-value
+def _gen_word(pool: typing.Iterator[str],  # pylint: disable=dangerous-default-value
+              func: typing.Optional[typing.Union[str, typing.Callable[[str], str]]],
+              args: typing.Tuple[str] = (), kwargs: typing.Dict[str, str] = {}) -> str:
     """Generate random word.
 
     - Args:
 
-      * `pool` -- `Iterable[str]`
+      * `pool` -- `Iterator[str]`
 
         Word pool, returned by `_gen_pool`.
 
@@ -131,11 +134,11 @@ def _gen_word(pool, func, args=[], kwargs={}):  # pylint: disable=dangerous-defa
         Filter function. It can be an attribute name of `str`, or a customised
         function that takes the original `str` and returns the modified `str`.
 
-      * `args` -- `List[str]`
+      * `args` -- `Tuple[str]`
 
         Additional positional arguments for `func`.
 
-        *default*: `[]`
+        *default*: `()`
 
       * `kwargs` -- `Dict[str, Any]`
 
@@ -157,12 +160,14 @@ def _gen_word(pool, func, args=[], kwargs={}):  # pylint: disable=dangerous-defa
     return text
 
 
-def _gen_sentence(pool, comma, word_range):
+def _gen_sentence(pool: typing.Iterator[str],
+                  comma: typing.Tuple[int],
+                  word_range: typing.Tuple[int]) -> str:
     """Generate random sentence.
 
     - Args:
 
-      * `pool` -- `Iterable[str]`
+      * `pool` -- `Iterator[str]`
 
         Word pool, returned by `_gen_pool`.
 
@@ -200,12 +205,15 @@ def _gen_sentence(pool, comma, word_range):
     return text + '.'
 
 
-def _gen_paragraph(pool, comma, word_range, sentence_range):
+def _gen_paragraph(pool: typing.Iterator[str],
+                   comma: typing.Tuple[int],
+                   word_range: typing.Tuple[int],
+                   sentence_range: typing.Tuple[int]) -> str:
     """Generate random paragraph.
 
     - Args:
 
-      * `pool` -- `Iterable[str]`
+      * `pool` -- `Iterator[str]`
 
         Word pool, returned by `_gen_pool`.
 
@@ -242,7 +250,9 @@ def _gen_paragraph(pool, comma, word_range, sentence_range):
     return text
 
 
-def word(count=1, func=None, args=[], kwargs={}):  # pylint: disable=dangerous-default-value
+def word(count: int = 1,  # pylint: disable=dangerous-default-value
+         func: typing.Optional[typing.Union[str, typing.Callable[[str], str]]] = None,
+         args: typing.Tuple[str] = (), kwargs: typing.Dict[str, str] = {}) -> typing.Iterator[str]:
     """Generate a list of random words.
 
     ```python
@@ -269,11 +279,11 @@ def word(count=1, func=None, args=[], kwargs={}):  # pylint: disable=dangerous-d
 
         *default*: `None`
 
-      * `args` -- `List[str]`
+      * `args` -- `Tuple[str]`
 
         Additional positional arguments for `func`.
 
-        *default*: `[]`
+        *default*: `()`
 
       * `kwargs` -- `Dict[str, Any]`
 
@@ -283,7 +293,7 @@ def word(count=1, func=None, args=[], kwargs={}):  # pylint: disable=dangerous-d
 
     - Returns:
 
-      * `Iterable[str]` -- random words generator
+      * `Iterator[str]` -- random words generator
 
     """
     pool = _gen_pool(count)
@@ -293,7 +303,9 @@ def word(count=1, func=None, args=[], kwargs={}):  # pylint: disable=dangerous-d
                           kwargs=kwargs) for _ in range(count))
 
 
-def sentence(count=1, comma=(0, 2), word_range=(4, 8)):
+def sentence(count: int = 1,
+             comma: typing.Tuple[int] = (0, 2),
+             word_range: typing.Tuple[int] = (4, 8)) -> typing.Iterator[str]:
     """Generate a list of random sentences.
 
     ```python
@@ -325,7 +337,7 @@ def sentence(count=1, comma=(0, 2), word_range=(4, 8)):
 
     - Returns:
 
-      * `Iterable[str]` -- random sentence generator
+      * `Iterator[str]` -- random sentence generator
 
     """
     pool = _gen_pool(count * random.randint(*word_range))
@@ -334,7 +346,10 @@ def sentence(count=1, comma=(0, 2), word_range=(4, 8)):
                               word_range=word_range) for _ in range(count))
 
 
-def paragraph(count=1, comma=(0, 2), word_range=(4, 8), sentence_range=(5, 10)):
+def paragraph(count: int = 1,
+              comma: typing.Tuple[int] = (0, 2),
+              word_range: typing.Tuple[int] = (4, 8),
+              sentence_range: typing.Tuple[int] = (5, 10)) -> typing.Iterator[str]:
     """Generate a list of random paragraphs.
 
     ```python
@@ -380,7 +395,7 @@ def paragraph(count=1, comma=(0, 2), word_range=(4, 8), sentence_range=(5, 10)):
 
     - Returns:
 
-      * `Iterable[str]` -- random paragraph generator
+      * `Iterator[str]` -- random paragraph generator
 
     """
     pool = _gen_pool(count * random.randint(*word_range) * random.randint(*sentence_range))
@@ -390,7 +405,10 @@ def paragraph(count=1, comma=(0, 2), word_range=(4, 8), sentence_range=(5, 10)):
                                sentence_range=sentence_range) for _ in range(count))
 
 
-def get_word(count=1, sep=' ', func=None, args=[], kwargs={}):  # pylint: disable=dangerous-default-value
+def get_word(count: int = 1,  # pylint: disable=dangerous-default-value
+             sep: str = ' ',
+             func: typing.Optional[typing.Union[str, typing.Callable[[str], str]]] = None,
+             args: typing.Tuple[str] = (), kwargs: typing.Dict[str, str] = {}) -> str:
     """Return random words.
 
     ```python
@@ -425,11 +443,11 @@ def get_word(count=1, sep=' ', func=None, args=[], kwargs={}):  # pylint: disabl
 
         *default*: `None`
 
-      * `args` -- `List[str]`
+      * `args` -- `Tuple[str]`
 
         Additional positional arguments for `func`.
 
-        *default*: `[]`
+        *default*: `()`
 
       * `kwargs` -- `Dict[str, Any]`
 
@@ -447,7 +465,10 @@ def get_word(count=1, sep=' ', func=None, args=[], kwargs={}):  # pylint: disabl
     return sep.join(word(count, func, args, kwargs))
 
 
-def get_sentence(count=1, comma=(0, 2), word_range=(4, 8), sep=' '):
+def get_sentence(count: int = 1,
+                 sep: str = ' ',
+                 comma: typing.Tuple[int] = (0, 2),
+                 word_range: typing.Tuple[int] = (4, 8)) -> str:
     """Return random sentences.
 
     ```python
@@ -466,6 +487,12 @@ def get_sentence(count=1, comma=(0, 2), word_range=(4, 8), sep=' '):
 
         *default*: `1`
 
+      * `sep` -- `str`
+
+        Seperator between each sentence.
+
+        *default*: `' '`
+
       * `comma` -- `Tuple[int]`
 
         Random range for number of commas. The function will use
@@ -480,12 +507,6 @@ def get_sentence(count=1, comma=(0, 2), word_range=(4, 8), sep=' '):
 
         *default*: `(4, 8)`
 
-      * `sep` -- `str`
-
-        Seperator between each sentence.
-
-        *default*: `' '`
-
     - Returns:
 
       * `str` -- random sentences
@@ -496,7 +517,11 @@ def get_sentence(count=1, comma=(0, 2), word_range=(4, 8), sep=' '):
     return sep.join(sentence(count, comma, word_range))
 
 
-def get_paragraph(count=1, comma=(0, 2), word_range=(4, 8), sentence_range=(5, 10), sep=os.linesep):
+def get_paragraph(count: int = 1,
+                  sep: str = os.linesep,
+                  comma: typing.Tuple[int] = (0, 2),
+                  word_range: typing.Tuple[int] = (4, 8),
+                  sentence_range: typing.Tuple[int] = (5, 10)) -> str:
     """Return random paragraphs.
 
     ```python
@@ -522,6 +547,12 @@ def get_paragraph(count=1, comma=(0, 2), word_range=(4, 8), sentence_range=(5, 1
 
         *default*: `1`
 
+      * `sep` -- `str`
+
+        Seperator between each paragraph.
+
+        *default*: `os.linsep` (`\\r\\n` on Windows, `\\n` on POSIX)
+
       * `comma` -- `Tuple[int]`
 
         Random range for number of commas. The function will use
@@ -543,12 +574,6 @@ def get_paragraph(count=1, comma=(0, 2), word_range=(4, 8), sentence_range=(5, 1
         sentences.
 
         *default*: `(5, 10)`
-
-      * `sep` -- `str`
-
-        Seperator between each paragraph.
-
-        *default*: `' '`
 
     - Returns:
 

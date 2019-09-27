@@ -1,44 +1,50 @@
 # -*- coding: utf-8 -*-
-# pylint: disable=protected-access
+# pylint: disable=protected-access, unused-argument
+"""Test suite for `lorem` module."""
 
 import itertools
+import typing
 import unittest
 import unittest.mock as mock
 
 import lorem
 
+# type variable
+_T = typing.TypeVar('_T')
 
-def islice(iterable, stop):
+
+def islice(iterable: typing.Iterator[_T], stop: int) -> typing.List[_T]:
     """Wrapper function for `itertools.islice`."""
     return list(itertools.islice(iterable, stop))
 
 
-def shuffle(x, random=None):  # pylint: disable=unused-argument
+def shuffle(x: typing.List[typing.Any],
+            random: typing.Optional[typing.Callable[[], float]] = None):
     """Mock `random.shuffle`, but actually do nothing."""
 
 
-def randint(a, b):  # pylint: disable=unused-argument
+def randint(a: int, b: int) -> int:
     """Mock `random.randint`, but return the lower boundary."""
     return a
 
 
-def choice_first(seq):
+def choice_first(seq: typing.Sequence[_T]) -> _T:
     """Mock `random.choice`, but return the first element."""
     return seq[0]
 
 
-def choice_last(seq):
+def choice_last(seq: typing.Sequence[_T]) -> _T:
     """Mock `random.choice`, but return the last element."""
     return seq[-1]
 
 
-def pool(dupe=1):  # pylint: disable=unused-argument
+def pool(dupe: int = 1) -> typing.Iterator[str]:
     """Mock `lorem._gen_pool`, but return a minimised pool."""
-    return itertools.cycle(['lorem', 'ipsum'])
+    yield from itertools.cycle(['lorem', 'ipsum'])
 
 
 class TestLorem(unittest.TestCase):
-    """Unittest suite for `lorem`."""
+    """Unittest case for `lorem` module."""
 
     # mock `random` module functions
     mock_shuffle = mock.patch('random.shuffle', shuffle)

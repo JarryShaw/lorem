@@ -10,6 +10,26 @@
 [![License](https://img.shields.io/github/license/jarryshaw/lorem.svg)](https://opensource.org/licenses/BSD-3-Clause)
 [![LICENSE](https://img.shields.io/badge/license-Anti%20996-blue.svg)](https://github.com/996icu/996.ICU/blob/master/LICENSE)
 
+* [Installation](#installation)
+* [Usage](#usage)
+  * [Get random words](#get-random-words)
+    * [`word` -- renerate a list of random words](#word)
+    * [`get_word`-- return random words](#get_word)
+  * [Get random sentences](#get-random-sentences)
+    * [`sentence` -- renerate a list of random sentences](#sentence)
+    * [`get_sentence`-- return random sentences](#get_sentence)
+  * [Get random paragraphs](#get-random-paragraphs)
+    * [`paragraph` -- renerate a list of random paragraphs](#paragraph)
+    * [`get_paragraph`-- return random paragraphs](#get_paragraph)
+  * [Internal APIs](#internal-apis)
+    * [`_TEXT` -- original *lorem ipsum* text pool](#_text)
+    * [`_gen_word` -- generate random word](#_gen_word)
+    * [`_gen_sentence` -- generate random sentence](#_gen_sentence)
+    * [`_gen_paragraph` -- generate random paragraph](#_gen_paragraph)
+* [Testing](#testing)
+
+-------------------------------------------------------------------------------
+
 In publishing and graphic design, *lorem ipsum* is a placeholder text commonly
 used to demonstrate the visual form of a document or a typeface without
 relying on meaningful content.
@@ -17,13 +37,13 @@ relying on meaningful content.
 The `lorem` module provides a generic access to generating the *lorem ipsum*
 text from its very original text:
 
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-    veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-    commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit
-    esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
-    cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
-    est laborum.
+> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+> tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+> veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
+> commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit
+> esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+> cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
+> est laborum.
 
 ## Installation
 
@@ -55,7 +75,11 @@ Usage of the `lorem` module is rather simple. Depending on your needs, the
 
 The `lorem` module provides two different ways for getting random words.
 
-1. `word(count=1, func=None, args=[], kwargs={}) -> Iterable[str]`
+<a name="word"></a>
+
+1. ```python
+   def word(count=1, func=None, args=(), kwargs={}) -> Iterator[str]: ...
+   ```
 
    Generate a list of random words.
 
@@ -83,11 +107,11 @@ The `lorem` module provides two different ways for getting random words.
 
        *default*: `None`
 
-     * `args` -- `List[str]`
+     * `args` -- `Tuple[str]`
 
        Additional positional arguments for `func`.
 
-       *default*: `[]`
+       *default*: `()`
 
      * `kwargs` -- `Dict[str, Any]`
 
@@ -97,9 +121,13 @@ The `lorem` module provides two different ways for getting random words.
 
    - Returns:
 
-     * `Iterable[str]` -- random words generator
+     * `Iterator[str]` -- random words generator
 
-2. `get_word(count=1, sep=' ', func=None, args=[], kwargs={}) -> str`
+<a name="get_word"></a>
+
+2. ```python
+   def get_word(count=1, sep=' ', func=None, args=(), kwargs={}) -> str: ...
+   ```
 
    Return random words.
 
@@ -135,11 +163,11 @@ The `lorem` module provides two different ways for getting random words.
 
        *default*: `None`
 
-     * `args` -- `List[str]`
+     * `args` -- `Tuple[str]`
 
        Additional positional arguments for `func`.
 
-       *default*: `[]`
+       *default*: `()`
 
      * `kwargs` -- `Dict[str, Any]`
 
@@ -155,7 +183,11 @@ The `lorem` module provides two different ways for getting random words.
 
 The `lorem` module provides two different ways for getting random sentences.
 
-1. `sentence(count=1, comma=(0, 2), word_range=(4, 8)) -> Iterable[str]`
+<a name="sentence"></a>
+
+1. ```python
+   def sentence(count=1, comma=(0, 2), word_range=(4, 8)) -> Iterator[str]: ...
+   ```
 
    Generate a list of random sentences.
 
@@ -188,9 +220,13 @@ The `lorem` module provides two different ways for getting random sentences.
 
    - Returns:
 
-     * `Iterable[str]` -- random sentence generator
+     * `Iterator[str]` -- random sentence generator
 
-2. `get_sentence(count=1, comma=(0, 2), word_range=(4, 8), sep=' ') -> Union[str]`
+<a name="get_sentence"></a>
+
+2. ```python
+   def get_sentence(count=1, sep=' ', comma=(0, 2), word_range=(4, 8)) -> Union[str]: ...
+   ```
 
    Return random sentences.
 
@@ -210,6 +246,12 @@ The `lorem` module provides two different ways for getting random sentences.
 
        *default*: `1`
 
+     * `sep` -- `str`
+
+       Seperator between each sentence.
+
+       *default*: `' '`
+
      * `comma` -- `Tuple[int]`
 
        Random range for number of commas. The function will use
@@ -224,12 +266,6 @@ The `lorem` module provides two different ways for getting random sentences.
 
        *default*: `(4, 8)`
 
-     * `sep` -- `str`
-
-       Seperator between each sentence.
-
-       *default*: `' '`
-
    - Returns:
 
      * `str` -- random sentences
@@ -239,7 +275,11 @@ The `lorem` module provides two different ways for getting random sentences.
 
 The `lorem` module provides two different ways for getting random paragraphs.
 
-1. `paragraph(count=1, comma=(0, 2), word_range=(4, 8), sentence_range=(5, 10)) -> Iterable[str]`
+<a name="paragraph"></a>
+
+1. ```python
+   def paragraph(count=1, comma=(0, 2), word_range=(4, 8), sentence_range=(5, 10)) -> Iterator[str]: ...
+   ```
 
    Generate a list of random paragraphs.
 
@@ -286,9 +326,13 @@ The `lorem` module provides two different ways for getting random paragraphs.
 
    - Returns:
 
-     * `Iterable[str]` -- random paragraph generator
+     * `Iterator[str]` -- random paragraph generator
 
-2. `get_paragraph(count=1, comma=(0, 2), word_range=(4, 8), sentence_range=(5, 10)) -> Union[str]`
+<a name="get_paragraph"></a>
+
+2. ```python
+   def get_paragraph(count=1, sep=os.linesep, comma=(0, 2), word_range=(4, 8), sentence_range=(5, 10)) -> Union[str]: ...
+   ```
 
    Return random paragraphs.
 
@@ -315,6 +359,12 @@ The `lorem` module provides two different ways for getting random paragraphs.
 
        *default*: `1`
 
+     * `sep` -- `str`
+
+       Seperator between each paragraph.
+
+       *default*: `os.linesep` (`\r\n` on Windows, `\n` on POSIX)
+
      * `comma` -- `Tuple[int]`
 
        Random range for number of commas. The function will use
@@ -337,12 +387,6 @@ The `lorem` module provides two different ways for getting random paragraphs.
 
        *default*: `(5, 10)`
 
-     * `sep` -- `str`
-
-       Seperator between each paragraph.
-
-       *default*: `' '`
-
    - Returns:
 
      * `str` -- random paragraphs
@@ -351,11 +395,25 @@ The `lorem` module provides two different ways for getting random paragraphs.
 
 Following are internal APIs for the `lorem` module.
 
-1. `_TEXT: Tuple[str]`
+<a name="_text"></a>
+
+1. ```python
+   _TEXT: Tuple[str] = ('ad', 'adipiscing', 'aliqua', 'aliquip', 'amet', 'anim', 'aute', 'cillum', 'commodo',
+                        'consectetur', 'consequat', 'culpa', 'cupidatat', 'deserunt', 'do', 'dolor', 'dolore',
+                        'duis', 'ea', 'eiusmod', 'elit', 'enim', 'esse', 'est', 'et', 'eu', 'ex', 'excepteur',
+                        'exercitation', 'fugiat', 'id', 'in', 'incididunt', 'ipsum', 'irure', 'labore', 'laboris',
+                        'laborum', 'lorem', 'magna', 'minim', 'mollit', 'nisi', 'non', 'nostrud', 'nulla',
+                        'occaecat', 'officia', 'pariatur', 'proident', 'qui', 'quis', 'reprehenderit', 'sed',
+                        'sint', 'sit', 'sunt', 'tempor', 'ullamco', 'ut', 'velit', 'veniam', 'voluptate')
+   ```
 
    Original *lorem ipsum* text pool.
 
-2. `_gen_pool(dupe=1) -> Iterable[str]`
+<a name="_gen_pool"></a>
+
+2. ```python
+   def _gen_pool(dupe=1) -> Iterator[str]: ...
+   ```
 
    Generate word pool.
 
@@ -369,15 +427,19 @@ Following are internal APIs for the `lorem` module.
 
    - Returns
 
-     * `Iterable[str]` -- an infinite loop word pool
+     * `Iterator[str]` -- an infinite loop word pool
 
-3. `_gen_word(pool, func, args=[], kwargs={}) -> str`
+<a name="_gen_word"></a>
+
+3. ```python
+   def _gen_word(pool, func, args=(), kwargs={}) -> str: ...
+   ```
 
    Generate random word.
 
    - Args:
 
-     * `pool` -- `Iterable[str]`
+     * `pool` -- `Iterator[str]`
 
        Word pool, returned by `_gen_pool`.
 
@@ -386,11 +448,11 @@ Following are internal APIs for the `lorem` module.
        Filter function. It can be an attribute name of `str`, or a customised
        function that takes the original `str` and returns the modified `str`.
 
-     * `args` -- `List[str]`
+     * `args` -- `Tuple[str]`
 
        Additional positional arguments for `func`.
 
-       *default*: `[]`
+       *default*: `()`
 
      * `kwargs` -- `Dict[str, Any]`
 
@@ -402,13 +464,17 @@ Following are internal APIs for the `lorem` module.
 
      * `str` -- random word
 
-4. `_gen_sentence(pool, comma, word_range) -> str`
+<a name="_gen_sentence"></a>
+
+4. ```python
+   def _gen_sentence(pool, comma, word_range) -> str: ...
+   ```
 
    Generate random sentence.
 
    - Args:
 
-     * `pool` -- `Iterable[str]`
+     * `pool` -- `Iterator[str]`
 
        Word pool, returned by `_gen_pool`.
 
@@ -430,13 +496,17 @@ Following are internal APIs for the `lorem` module.
 
      * `str` -- random sentence
 
-5. `_gen_paragraph(pool, comma, word_range, sentence_range) -> str`
+<a name="_gen_paragraph"></a>
+
+5. ```python
+   def _gen_paragraph(pool, comma, word_range, sentence_range) -> str: ...
+   ```
 
    Generate random paragraph.
 
    - Args:
 
-     * `pool` -- `Iterable[str]`
+     * `pool` -- `Iterator[str]`
 
        Word pool, returned by `_gen_pool`.
 
