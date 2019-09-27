@@ -5,7 +5,7 @@
 [![PyPI - Format](https://img.shields.io/pypi/format/python-lorem.svg)](https://pypi.org/project/python-lorem)
 [![PyPI - Python Version](https://img.shields.io/pypi/pyversions/python-lorem.svg)](https://pypi.org/project/python-lorem)
 
-[![Travis CI - Status](https://travis-ci.com/JarryShaw/lorem.svg)](https://travis-ci.org/JarryShaw/lorem)
+[![Travis CI - Status](https://travis-ci.com/JarryShaw/lorem.svg)](https://travis-ci.com/JarryShaw/lorem)
 [![Codecov - Coverage](https://codecov.io/gh/JarryShaw/lorem/branch/master/graph/badge.svg)](https://codecov.io/gh/JarryShaw/lorem)
 [![License](https://img.shields.io/github/license/jarryshaw/lorem.svg)](https://opensource.org/licenses/BSD-3-Clause)
 [![LICENSE](https://img.shields.io/badge/license-Anti%20996-blue.svg)](https://github.com/996icu/996.ICU/blob/master/LICENSE)
@@ -30,6 +30,8 @@
 
 -------------------------------------------------------------------------------
 
+> NB: uses [semantic versioning](https://semver.org).
+
 In publishing and graphic design, *lorem ipsum* is a placeholder text commonly
 used to demonstrate the visual form of a document or a typeface without
 relying on meaningful content.
@@ -47,7 +49,7 @@ text from its very original text:
 
 ## Installation
 
-> Note that the `lorem` module only supports Python versions __since 3.3__ 🐍
+> Note that the `lorem` module only supports Python versions __since 3.5__ 🐍
 
 Simply run the following to install the current version from PyPI:
 
