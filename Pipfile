@@ -19,8 +19,10 @@ url = "https://pypi.org/simple"
 verify_ssl = true
 
 [dev-packages]
-lorem = {editable = true,path = "."}
+python-lorem = {editable = true,path = "."}
 autopep8 = "*"
+coverage = "*"
+codecov = "*"
 pylint = "*"
 
 [packages]

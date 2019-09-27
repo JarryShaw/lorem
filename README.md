@@ -1,5 +1,15 @@
 # Lorem ipsum generator
 
+[![PyPI - Downloads](https://pepy.tech/badge/python-lorem)](https://pepy.tech/count/python-lorem)
+[![PyPI - Version](https://img.shields.io/pypi/v/python-lorem.svg)](https://pypi.org/project/python-lorem)
+[![PyPI - Format](https://img.shields.io/pypi/format/python-lorem.svg)](https://pypi.org/project/python-lorem)
+[![PyPI - Python Version](https://img.shields.io/pypi/pyversions/python-lorem.svg)](https://pypi.org/project/python-lorem)
+
+[![Travis CI - Status](https://img.shields.io/travis/JarryShaw/lorem.svg)](https://travis-ci.org/JarryShaw/lorem)
+[![Codecov - Coverage](https://codecov.io/gh/JarryShaw/lorem/branch/master/graph/badge.svg)](https://codecov.io/gh/JarryShaw/lorem)
+[![License](https://img.shields.io/github/license/jarryshaw/lorem.svg)](https://opensource.org/licenses/BSD-3-Clause)
+[![LICENSE](https://img.shields.io/badge/license-Anti%20996-blue.svg)](https://github.com/996icu/996.ICU/blob/master/LICENSE)
+
 In publishing and graphic design, *lorem ipsum* is a placeholder text commonly
 used to demonstrate the visual form of a document or a typeface without
 relying on meaningful content.
@@ -16,6 +26,24 @@ text from its very original text:
     est laborum.
 
 ## Installation
+
+> Note that the `lorem` module only supports Python versions __since 3.3__ 🐍
+
+Simply run the following to install the current version from PyPI:
+
+```sh
+pip install python-lorem
+```
+
+Or install the latest version from the git repository:
+
+```sh
+git clone https://github.com/JarryShaw/lorem.git
+cd lorem
+pip install -e .
+# and to update at any time
+git pull
+```
 
 ## Usage
 
@@ -167,7 +195,7 @@ The `lorem` module provides two different ways for getting random sentences.
    Return random sentences.
 
    ```python
-   >>> sentence()
+   >>> get_sentence()
    'Nostrud laboris lorem minim sit culpa, aliqua nostrud in amet, sint pariatur eiusmod esse.'
    ```
 
@@ -218,12 +246,12 @@ The `lorem` module provides two different ways for getting random paragraphs.
    ```python
    >>> list(paragraph())
    ['Aute sint et cupidatat aliquip. Non exercitation est aliquip voluptate '
-       'fugiat, reprehenderit ad occaecat laboris velit consequat. Magna enim '
-       'deserunt aute laborum fugiat exercitation. Aliqua ex sunt fugiat in '
-       'magna voluptate. Elit nisi exercitation nostrud. Magna proident et '
-       'fugiat eiusmod cupidatat fugiat, sit culpa fugiat non ea eu '
-       'reprehenderit elit. Proident mollit mollit ut cillum. Nostrud voluptate '
-       'aliquip cupidatat anim.']
+    'fugiat, reprehenderit ad occaecat laboris velit consequat. Magna enim '
+    'deserunt aute laborum fugiat exercitation. Aliqua ex sunt fugiat in '
+    'magna voluptate. Elit nisi exercitation nostrud. Magna proident et '
+    'fugiat eiusmod cupidatat fugiat, sit culpa fugiat non ea eu '
+    'reprehenderit elit. Proident mollit mollit ut cillum. Nostrud voluptate '
+    'aliquip cupidatat anim.']
    ```
 
    - Args:
@@ -437,3 +465,9 @@ Following are internal APIs for the `lorem` module.
    - Returns:
 
      * `str` -- random paragraph
+
+## Testing
+
+The `lorem` module utilised `unittest.mock` to *patch* the builtin functions
+from `random` module. Test cases can be found in [`test.py`](test.py).
+**Contributions are welcome.**

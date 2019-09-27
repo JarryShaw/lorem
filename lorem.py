@@ -68,7 +68,7 @@ The `lorem` module provides two different ways for getting random paragraphs.
 2. `get_paragraph` -- return random paragraphs
 
    ```python
-   get_paragraph(count=1, comma=(0, 2), word_range=(4, 8), sentence_range=(5, 10)) -> Union[str]
+   get_paragraph(count=1, comma=(0, 2), word_range=(4, 8), sentence_range=(5, 10), sep=os.linesep) -> Union[str]
    ```
 
 """
@@ -111,7 +111,7 @@ def _gen_pool(dupe=1):
         pool.extend(_TEXT)
     random.shuffle(pool)
 
-    while pool:
+    while pool:  # pragma: no cover
         for text in pool:
             yield text
         random.shuffle(pool)
@@ -150,7 +150,7 @@ def _gen_word(pool, func, args=[], kwargs={}):  # pylint: disable=dangerous-defa
     """
     text = next(pool)
     if func is not None:
-        if hasattr(text, func):
+        if isinstance(func, str) and hasattr(text, func):
             text = getattr(text, func)(*args, **kwargs)
         else:
             text = func(text, *args, **kwargs)
@@ -451,7 +451,7 @@ def get_sentence(count=1, comma=(0, 2), word_range=(4, 8), sep=' '):
     """Return random sentences.
 
     ```python
-    >>> sentence()
+    >>> get_sentence()
     'Nostrud laboris lorem minim sit culpa, aliqua nostrud in amet, sint pariatur eiusmod esse.'
     ```
 

@@ -7,4 +7,4 @@ prune __pycache__
 include README.md
 include LICENSE
 
-exclude test.py
+# exclude test.py

@@ -1,14 +1,26 @@
 include .env
 
 export CODECOV_TOKEN
+export PIPENV_VENV_IN_PROJECT=1
 
 init:
 	pipenv install --dev
 
+test:
+	pipenv run python test.py
+
+coverage:
+	pipenv run coverage run test.py
+	pipenv run coverage html
+	open htmlcov/index.html
+	read
+	rm -rf htmlcov
+	rm .coverage
+
 dist: clean-pypi pypi-setup pypi-upload
 
 pypi-setup:
-	pipenv run python setup.py sdist bdist_wheel
+	pipenv run python setup.py test sdist bdist_wheel
 
 pypi-upload:
 	twine check dist/* || true
