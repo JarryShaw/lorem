@@ -17,6 +17,12 @@ coverage:
 	rm -rf htmlcov
 	rm .coverage
 
+update:
+	pipenv run pip install -U pip setuptools wheel
+	pipenv update
+	pipenv install --dev
+	pipenv clean
+
 dist: clean-pypi pypi-setup pypi-upload
 
 pypi-setup:
@@ -43,9 +49,3 @@ clean-pypi:
 	find dist -iname '*.whl' -exec mv {} wheels \;
 	find dist -iname '*.tar.gz' -exec mv {} sdist \;
 	rm -rf build dist *.egg-info
-
-update-pipenv:
-	pipenv run pip install -U pip setuptools wheel
-	pipenv update
-	pipenv install --dev
-	pipenv clean
