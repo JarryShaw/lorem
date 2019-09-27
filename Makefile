@@ -7,10 +7,10 @@ init:
 	pipenv install --dev
 
 test:
-	pipenv run python test.py
+	pipenv run python test_lorem.py
 
 coverage:
-	pipenv run coverage run test.py
+	pipenv run coverage run test_lorem.py
 	pipenv run coverage html
 	open htmlcov/index.html
 	read

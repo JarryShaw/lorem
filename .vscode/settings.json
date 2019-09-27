@@ -31,7 +31,8 @@
         "ullamco",
         "velit",
         "veniam",
-        "voluptate"
+        "voluptate",
+        "xenial"
     ],
     "python.pythonPath": ".venv/bin/python"
 }
