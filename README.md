@@ -562,5 +562,5 @@ Following are internal APIs for the `lorem` module.
 ## Testing
 
 The `lorem` module utilised `unittest.mock` to *patch* the builtin functions
-from `random` module. Test cases can be found in [`test.py`](test.py).
+from `random` module. Test cases can be found in [`test_lorem.py`](test_lorem.py).
 **Contributions are welcome.**
