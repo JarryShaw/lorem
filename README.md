@@ -354,7 +354,7 @@ The `lorem` module provides two different ways for getting random paragraphs.
 
    - Args:
 
-     * `count` -- `int`
+     * `count` -- `Union[int, Tuple[int]]`
 
        Number of random paragraphs. To generate random number of paragraphs,
        supply a 2-element tuple of `int`, the function will use

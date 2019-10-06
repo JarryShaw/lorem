@@ -85,7 +85,7 @@ pool as you wish.
 
 """
 # version string
-__version__ = '1.1.0'
+__version__ = '1.1.1'
 
 # setup attributes
 attrs = dict(

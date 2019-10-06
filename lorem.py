@@ -421,7 +421,7 @@ def paragraph(count: int = 1,
                                               sentence_range=sentence_range) for _ in range(count))
 
 
-def get_word(count: int = 1,  # pylint: disable=dangerous-default-value
+def get_word(count: typing.Union[int, typing.Tuple[int]] = 1,  # pylint: disable=dangerous-default-value
              sep: str = ' ',
              func: typing.Optional[typing.Union[str, typing.Callable[[str], str]]] = None,
              args: typing.Tuple[str] = (), kwargs: typing.Dict[str, str] = {}) -> str:
@@ -481,7 +481,7 @@ def get_word(count: int = 1,  # pylint: disable=dangerous-default-value
     return sep.join(itertools.islice(word(count, func, args, kwargs), count))
 
 
-def get_sentence(count: int = 1,
+def get_sentence(count: typing.Union[int, typing.Tuple[int]] = 1,
                  sep: str = ' ',
                  comma: typing.Tuple[int] = (0, 2),
                  word_range: typing.Tuple[int] = (4, 8)) -> str:
@@ -533,7 +533,7 @@ def get_sentence(count: int = 1,
     return sep.join(itertools.islice(sentence(count, comma, word_range), count))
 
 
-def get_paragraph(count: int = 1,
+def get_paragraph(count: typing.Union[int, typing.Tuple[int]] = 1,
                   sep: str = os.linesep,
                   comma: typing.Tuple[int] = (0, 2),
                   word_range: typing.Tuple[int] = (4, 8),
@@ -554,7 +554,7 @@ def get_paragraph(count: int = 1,
 
     - Args:
 
-      * `count` -- `int`
+      * `count` -- `Union[int, Tuple[int]]`
 
         Number of random paragraphs. To generate random number of paragraphs,
         supply a 2-element tuple of `int`, the function will use
