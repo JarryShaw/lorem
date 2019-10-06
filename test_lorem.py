@@ -56,6 +56,11 @@ class TestLorem(unittest.TestCase):
     mock_text = mock.patch('lorem._TEXT', ['lorem', 'ipsum'])
     mock_pool = mock.patch('lorem._gen_pool', pool)
 
+    def test_set_pool(self):
+        """Test `lorem.set_pool`."""
+        lorem.set_pool(['lorem', 'ipsum'])
+        self.assertEqual(lorem._TEXT, ['lorem', 'ipsum'])
+
     def test_gen_pool(self):
         """Test `lorem._gen_pool`."""
         with self.mock_text:
@@ -127,17 +132,17 @@ class TestLorem(unittest.TestCase):
         """Test `lorem.word`."""
         with self.mock_pool:
             iter_word = lorem.word(count=3)
-            list_word = list(iter_word)
+            list_word = islice(iter_word, 3)
         self.assertEqual(list_word, ['lorem', 'ipsum', 'lorem'])
 
         with self.mock_pool:
             iter_word = lorem.word(count=3, func='capitalize')
-            list_word = list(iter_word)
+            list_word = islice(iter_word, 3)
         self.assertEqual(list_word, ['Lorem', 'Ipsum', 'Lorem'])
 
         with self.mock_pool:
             iter_word = lorem.word(count=3, func=lambda s: s.upper())
-            list_word = list(iter_word)
+            list_word = islice(iter_word, 3)
         self.assertEqual(list_word, ['LOREM', 'IPSUM', 'LOREM'])
 
     def test_sentence(self):
@@ -145,7 +150,7 @@ class TestLorem(unittest.TestCase):
         with self.mock_pool:
             with self.mock_randint:
                 iter_sentence = lorem.sentence()
-                list_sentence = list(iter_sentence)
+                list_sentence = islice(iter_sentence, 1)
         self.assertEqual(list_sentence, ['Lorem ipsum lorem ipsum.'])
 
     def test_paragraph(self):
@@ -153,7 +158,7 @@ class TestLorem(unittest.TestCase):
         with self.mock_pool:
             with self.mock_randint:
                 iter_paragraph = lorem.paragraph()
-                list_paragraph = list(iter_paragraph)
+                list_paragraph = islice(iter_paragraph, 1)
         self.assertEqual(list_paragraph, ['Lorem ipsum lorem ipsum. Lorem ipsum lorem ipsum. '
                                           'Lorem ipsum lorem ipsum. Lorem ipsum lorem ipsum. '
                                           'Lorem ipsum lorem ipsum.'])

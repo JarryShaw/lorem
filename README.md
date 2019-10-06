@@ -21,6 +21,8 @@
   * [Get random paragraphs](#get-random-paragraphs)
     * [`paragraph` -- renerate a list of random paragraphs](#paragraph)
     * [`get_paragraph`-- return random paragraphs](#get_paragraph)
+  * [Customise word pool](#customise-word-pool)
+    * [`set_pool` -- customise random word pool](#set_pool)
   * [Internal APIs](#internal-apis)
     * [`_TEXT` -- original *lorem ipsum* text pool](#_text)
     * [`_gen_word` -- generate random word](#_gen_word)
@@ -86,11 +88,11 @@ The `lorem` module provides two different ways for getting random words.
    Generate a list of random words.
 
    ```python
-   >>> list(word(count=3))
+   >>> list(itertools.islice(word(count=3), 3))
    ['labore', 'tempor', 'commodo']
-   >>> list(word(count=3, func='capitalize'))
+   >>> list(itertools.islice(word(count=3, func='capitalize'), 3))
    ['Ea', 'Lorem', 'Do']
-   >>> list(word(count=3, func=lambda s: s.upper()))
+   >>> list(itertools.islice(word(count=3, func=lambda s: s.upper()), 3))
    ['UT', 'AMET', 'EXCEPTEUR']
    ```
 
@@ -98,7 +100,7 @@ The `lorem` module provides two different ways for getting random words.
 
      * `count` -- `int`
 
-       Number of random words.
+       Number of non-repeated random words.
 
        *default*: `1`
 
@@ -123,7 +125,7 @@ The `lorem` module provides two different ways for getting random words.
 
    - Returns:
 
-     * `Iterator[str]` -- random words generator
+     * `Iterator[str]` -- indefinite random words generator
 
 <a name="get_word"></a>
 
@@ -194,7 +196,7 @@ The `lorem` module provides two different ways for getting random sentences.
    Generate a list of random sentences.
 
    ```python
-   >>> list(sentence())
+   >>> list(itertools.islice(sentence(), 1))
    ['Aute irure et commodo sunt do duis dolor.']
    ```
 
@@ -202,7 +204,7 @@ The `lorem` module provides two different ways for getting random sentences.
 
      * `count` -- `int`
 
-       Number of random sentences.
+       Number of non-repeated random sentences.
 
        *default*: `1`
 
@@ -222,7 +224,7 @@ The `lorem` module provides two different ways for getting random sentences.
 
    - Returns:
 
-     * `Iterator[str]` -- random sentence generator
+     * `Iterator[str]` -- indefinite random sentence generator
 
 <a name="get_sentence"></a>
 
@@ -286,7 +288,7 @@ The `lorem` module provides two different ways for getting random paragraphs.
    Generate a list of random paragraphs.
 
    ```python
-   >>> list(paragraph())
+   >>> list(itertools.islice(paragraph(), 1))
    ['Aute sint et cupidatat aliquip. Non exercitation est aliquip voluptate '
     'fugiat, reprehenderit ad occaecat laboris velit consequat. Magna enim '
     'deserunt aute laborum fugiat exercitation. Aliqua ex sunt fugiat in '
@@ -300,7 +302,7 @@ The `lorem` module provides two different ways for getting random paragraphs.
 
      * `count` -- `int`
 
-       Number of random paragraphs.
+       Number of non-repeated random paragraphs.
 
        *default*: `1`
 
@@ -328,7 +330,7 @@ The `lorem` module provides two different ways for getting random paragraphs.
 
    - Returns:
 
-     * `Iterator[str]` -- random paragraph generator
+     * `Iterator[str]` -- indefinite random paragraph generator
 
 <a name="get_paragraph"></a>
 
@@ -392,6 +394,25 @@ The `lorem` module provides two different ways for getting random paragraphs.
    - Returns:
 
      * `str` -- random paragraphs
+
+### Customise word pool
+
+If wanted, the `lorem` module also provides an interface to customise the word
+pool as you wish.
+
+<a name="set_pool"></a>
+
+1. ```python
+   def set_pool(pool): ...
+   ```
+
+   Customise random word pool.
+
+   - Args:
+
+     * `pool` -- `Iterable[str]`
+
+       List of words to be used as random word pool.
 
 ### Internal APIs
 
