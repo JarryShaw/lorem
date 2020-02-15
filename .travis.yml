@@ -7,6 +7,9 @@ python:
   - "3.7"
   - "3.8"
 
+env:
+  - PIPENV_SKIP_LOCK=1
+
 # command to install dependencies
 install:
   - pip install pipenv
