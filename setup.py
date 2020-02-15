@@ -8,7 +8,7 @@ In publishing and graphic design, lorem ipsum is a placeholder text commonly
 used to demonstrate the visual form of a document or a typeface without
 relying on meaningful content.
 
-The :mod:`lorem` module provides a generic access to generating the lorem ipsum
+The ``lorem`` module provides a generic access to generating the lorem ipsum
 text from its very original text::
 
     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
@@ -19,14 +19,14 @@ text from its very original text::
     cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
     est laborum.
 
-Usage of the :mod:`lorem` module is rather simple. Depending on your needs, the
-:mod:`lorem` module provides generation of *words*, *sentences*, and
+Usage of the ``lorem`` module is rather simple. Depending on your needs, the
+``lorem`` module provides generation of *words*, *sentences*, and
 *paragraphs*.
 
 Get Random Words
 ----------------
 
-The :mod:`lorem` module provides two different ways for getting random words.
+The ``lorem`` module provides two different ways for getting random words.
 
 1. :func:`word` -- generate a list of random words
 
@@ -43,7 +43,7 @@ The :mod:`lorem` module provides two different ways for getting random words.
 Get Random Sentences
 --------------------
 
-The :mod:`lorem` module provides two different ways for getting random sentences.
+The ``lorem`` module provides two different ways for getting random sentences.
 
 1. :func:`sentence` -- generate a list of random sentences
 
@@ -60,7 +60,7 @@ The :mod:`lorem` module provides two different ways for getting random sentences
 Get Random Paragraphs
 ---------------------
 
-The :mod:`lorem` module provides two different ways for getting random paragraphs.
+The ``lorem`` module provides two different ways for getting random paragraphs.
 
 1. :func:`paragraph` -- generate a list of random paragraphs
 
@@ -77,7 +77,7 @@ The :mod:`lorem` module provides two different ways for getting random paragraph
 Customise Word Pool
 -------------------
 
-If wanted, the :mod:`lorem` module also provides an interface to customise the word
+If wanted, the ``lorem`` module also provides an interface to customise the word
 pool as you wish.
 
 1. :func:`set_pool` -- customise random word pool
