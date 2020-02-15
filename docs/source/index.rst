@@ -8,7 +8,6 @@ Pythonic Lorem Ipsum Generator
 
 .. toctree::
    :maxdepth: 4
-   :caption: Contents:
 
    lorem
    test_lorem
