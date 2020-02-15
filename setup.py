@@ -100,7 +100,7 @@ attrs = dict(
     url='https://github.com/JarryShaw/lorem',
     download_url='https://github.com/JarryShaw/lorem/archive/v%s.tar.gz' % __version__,
     # packages
-    py_modules=['lorem'],
+    py_modules=['lorem', 'test_lorem'],
     # scripts
     # ext_modules
     classifiers=[
