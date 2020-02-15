@@ -5,8 +5,8 @@ In publishing and graphic design, lorem ipsum is a placeholder text commonly
 used to demonstrate the visual form of a document or a typeface without
 relying on meaningful content.
 
-The `lorem` module provides a generic access to generating the lorem ipsum text
-from its very original text:
+The :mod:`lorem` module provides a generic access to generating the lorem ipsum
+text from its very original text::
 
     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
     tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
@@ -16,72 +16,72 @@ from its very original text:
     cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
     est laborum.
 
-Usage of the `lorem` module is rather simple. Depending on your needs, the
-`lorem` module provides generation of **word**s, **sentence**s, and
-**paragraph**s.
+Usage of the :mod:`lorem` module is rather simple. Depending on your needs, the
+:mod:`lorem` module provides generation of *words*, *sentences*, and
+*paragraphs*.
 
 Get Random Words
 ----------------
 
-The `lorem` module provides two different ways for getting random words.
+The :mod:`lorem` module provides two different ways for getting random words.
 
-1. `word` -- generate a list of random words
+1. :func:`word` -- generate a list of random words
 
-   ```python
-   word(count=1, func=None, args=(), kwargs={}) -> Iterator[str]
-   ```
+   .. code:: python
 
-2. `get_word` -- return random words
+      word(count=1, func=None, args=(), kwargs={}) -> Iterator[str]
 
-   ```python
-   get_word(count=1, sep=' ', func=None, args=(), kwargs={}) -> str
-   ```
+2. :func:`get_word` -- return random words
+
+   .. code:: python
+
+      get_word(count=1, sep=' ', func=None, args=(), kwargs={}) -> str
 
 Get Random Sentences
 --------------------
 
-The `lorem` module provides two different ways for getting random sentences.
+The :mod:`lorem` module provides two different ways for getting random sentences.
 
-1. `sentence` -- generate a list of random sentences
+1. :func:`sentence` -- generate a list of random sentences
 
-   ```python
-   sentence(count=1, comma=(0, 2), word_range=(4, 8)) -> Iterator[str]
-   ```
+   .. code:: python
 
-2. `get_sentence` -- return random sentences
+      sentence(count=1, comma=(0, 2), word_range=(4, 8)) -> Iterator[str]
 
-   ```python
-   get_sentence(count=1, sep=' ', comma=(0, 2), word_range=(4, 8)) -> Union[str]
-   ```
+2. :func:`get_sentence` -- return random sentences
+
+   .. code :: python
+
+      get_sentence(count=1, sep=' ', comma=(0, 2), word_range=(4, 8)) -> Union[str]
 
 Get Random Paragraphs
 ---------------------
 
-The `lorem` module provides two different ways for getting random paragraphs.
+The :mod:`lorem` module provides two different ways for getting random paragraphs.
 
-1. `paragraph` -- generate a list of random paragraphs
+1. :func:`paragraph` -- generate a list of random paragraphs
 
-   ```python
-   paragraph(count=1, comma=(0, 2), word_range=(4, 8), sentence_range=(5, 10)) -> Iterator[str]
-   ```
+   .. code:: python
 
-2. `get_paragraph` -- return random paragraphs
+      paragraph(count=1, comma=(0, 2), word_range=(4, 8), sentence_range=(5, 10)) -> Iterator[str]
 
-   ```python
-   get_paragraph(count=1, sep=os.linesep, comma=(0, 2), word_range=(4, 8), sentence_range=(5, 10)) -> Union[str]
-   ```
+2. :func:`get_paragraph` -- return random paragraphs
+
+   .. code:: python
+
+      get_paragraph(count=1, sep=os.linesep, comma=(0, 2), word_range=(4, 8), sentence_range=(5, 10)) -> Union[str]
 
 Customise Word Pool
 -------------------
 
-If wanted, the `lorem` module also provides an interface to customise the word
+If wanted, the :mod:`lorem` module also provides an interface to customise the word
 pool as you wish.
 
-1. `set_pool` -- customise random word pool
+1. :func:`set_pool` -- customise random word pool
 
-   ```python
-   set_pool(pool)
-   ```
+   .. code:: python
+
+      set_pool(pool)
 
 """
 import itertools
@@ -95,7 +95,7 @@ __all__ = [
     'get_word', 'get_sentence', 'get_paragraph',
 ]
 
-# original lorem ipsum text pool
+#: The original lorem ipsum text pool.
 _TEXT = ('ad', 'adipiscing', 'aliqua', 'aliquip', 'amet', 'anim', 'aute', 'cillum', 'commodo',
          'consectetur', 'consequat', 'culpa', 'cupidatat', 'deserunt', 'do', 'dolor', 'dolore',
          'duis', 'ea', 'eiusmod', 'elit', 'enim', 'esse', 'est', 'et', 'eu', 'ex', 'excepteur',
@@ -108,17 +108,11 @@ _TEXT = ('ad', 'adipiscing', 'aliqua', 'aliquip', 'amet', 'anim', 'aute', 'cillu
 def _gen_pool(dupe: int = 1) -> typing.Iterator[str]:
     """Generate word pool.
 
-    - Args:
+    Args:
+      dupe (int): Duplication to generate the word pool.
 
-      * `dupe` -- `int`
-
-        Duplication to generate the word pool.
-
-        *default*: `1`
-
-    - Returns
-
-      * `Iterator[str]` -- an infinite loop word pool
+    Returns:
+      :obj:`Iterator[str]`: An infinite loop word pool.
 
     """
     pool = list()
@@ -137,34 +131,16 @@ def _gen_word(pool: typing.Iterator[str],  # pylint: disable=dangerous-default-v
               args: typing.Tuple[str] = (), kwargs: typing.Dict[str, str] = {}) -> str:
     """Generate random word.
 
-    - Args:
+    Args:
+        pool (:obj:`Iterator[str]`): Word pool, returned by :func:`_gen_pool`.
+        func (:obj:`Optional[Union[str, Callable[[str], str]]]`): Filter function. It can be an
+            attribute name of :obj:`str`, or a customised function that takes the original :obj:`str`
+            and returns the modified :obj:`str`.
+        args (:obj:`Tuple[str]`):  Additional positional arguments for ``func``.
+        kwargs (:obj:`Dict[str, Any]`): Additional keyword arguments for ``func``.
 
-      * `pool` -- `Iterator[str]`
-
-        Word pool, returned by `_gen_pool`.
-
-      * `func` -- `Optional[Union[str, Callable[[str], str]]]`
-
-        Filter function. It can be an attribute name of `str`, or a customised
-        function that takes the original `str` and returns the modified `str`.
-
-        *default*: `None`
-
-      * `args` -- `Tuple[str]`
-
-        Additional positional arguments for `func`.
-
-        *default*: `()`
-
-      * `kwargs` -- `Dict[str, Any]`
-
-        Additional keyword arguments for `func`.
-
-        *default*: `{}`
-
-    - Returns:
-
-      * `str` -- random word
+    Returns:
+        :obj:`str`: Random word.
 
     """
     text = next(pool)
@@ -181,29 +157,16 @@ def _gen_sentence(pool: typing.Iterator[str],
                   word_range: typing.Tuple[int]) -> str:
     """Generate random sentence.
 
-    - Args:
+    Args:
+        pool (:obj:`Iterator[str]`): Word pool, returned by :func:`_gen_pool`.
+        comma (:obj:`Tuple[int]`): Random range for number of commas. The function will use
+            :func:`random.randint` to choose a random integer as the number of commas.
+        word_range (:obj:`Tuple[int]`): Random range for number of words in each sentence.
+            The function will use :func:`random.randint` to choose a random integer as the
+            number of words.
 
-      * `pool` -- `Iterator[str]`
-
-        Word pool, returned by `_gen_pool`.
-
-      * `comma` -- `Tuple[int]`
-
-        Random range for number of commas. The function will use
-        `random.randint` to choose a random integer as the number of commas.
-
-        *default*: `(0, 2)`
-
-      * `word_range` -- `Tuple[int]`
-
-        Random range for number of words in each sentence. The function will
-        use `random.randint` to choose a random integer as the number of words.
-
-        *default*: `(4, 8)`
-
-    - Returns:
-
-      * `str` -- random sentence
+    Returns:
+        :obj:`str`: Random sentence.
 
     """
     text = _gen_word(pool=pool, func='capitalize')
@@ -227,37 +190,19 @@ def _gen_paragraph(pool: typing.Iterator[str],
                    sentence_range: typing.Tuple[int]) -> str:
     """Generate random paragraph.
 
-    - Args:
+    Args:
+        pool (:obj:`Iterator[str]`): Word pool, returned by :func:`_gen_pool`.
+        comma (:obj:`Tuple[int]`): Random range for number of commas. The function will use
+            :func:`random.randint` to choose a random integer as the number of commas.
+        word_range (:obj:`Tuple[int]`): Random range for number of words in each sentence.
+            The function will use :func:`random.randint` to choose a random integer as the
+            number of words.
+        sentence_range (:obj:`Tuple[int]`): Random range for number of sentences in each
+            paragraph. The function will use :func:`random.randint` to choose a random integer
+            as the number of sentences.
 
-      * `pool` -- `Iterator[str]`
-
-        Word pool, returned by `_gen_pool`.
-
-      * `comma` -- `Tuple[int]`
-
-        Random range for number of commas. The function will use
-        `random.randint` to choose a random integer as the number of commas.
-
-        *default*: `(0, 2)`
-
-      * `word_range` -- `Tuple[int]`
-
-        Random range for number of words in each sentence. The function will
-        use `random.randint` to choose a random integer as the number of words.
-
-        *default*: `(4, 8)`
-
-      * `sentence_range` -- `Tuple[int]`
-
-        Random range for number of sentences in each paragraph. The function
-        will use `random.randint` to choose a random integer as the number of
-        sentences.
-
-        *default*: `(5, 10)`
-
-    - Returns:
-
-      * `str` -- random paragraph
+    Returns:
+        :obj:`str`: Random paragraph.
 
     """
     text = _gen_sentence(pool=pool, comma=comma, word_range=word_range)
@@ -271,45 +216,25 @@ def word(count: int = 1,  # pylint: disable=dangerous-default-value
          args: typing.Tuple[str] = (), kwargs: typing.Dict[str, str] = {}) -> typing.Iterator[str]:
     """Generate a list of random words.
 
-    ```python
-    >>> list(itertools.cycle(word(count=3), 3))
-    ['labore', 'tempor', 'commodo']
-    >>> list(itertools.cycle(word(count=3, func='capitalize'), 3))
-    ['Ea', 'Lorem', 'Do']
-    >>> list(itertools.cycle(word(count=3, func=lambda s: s.upper()), 3))
-    ['UT', 'AMET', 'EXCEPTEUR']
-    ```
+    .. code:: python
 
-    - Args:
+        >>> list(itertools.cycle(word(count=3), 3))
+        ['labore', 'tempor', 'commodo']
+        >>> list(itertools.cycle(word(count=3, func='capitalize'), 3))
+        ['Ea', 'Lorem', 'Do']
+        >>> list(itertools.cycle(word(count=3, func=lambda s: s.upper()), 3))
+        ['UT', 'AMET', 'EXCEPTEUR']
 
-      * `count` -- `int`
+    Args:
+        count (int): Number of non-repeated random words.
+        func (:obj:`Optional[Union[str, Callable[[str], str]]]`): Filter function.
+            It can be an attribute name of :obj:`str`, or a customised function that
+            takes the original :obj:`str` and returns the modified :obj:`str`.
+        args (:obj:`Tuple[str]`): Additional positional arguments for ``func``.
+        kwargs (:obj:`Dict[str, Any]`): Additional keyword arguments for ``func``.
 
-        Number of non-repeated random words.
-
-        *default*: `1`
-
-      * `func` -- `Optional[Union[str, Callable[[str], str]]]`
-
-        Filter function. It can be an attribute name of `str`, or a customised
-        function that takes the original `str` and returns the modified `str`.
-
-        *default*: `None`
-
-      * `args` -- `Tuple[str]`
-
-        Additional positional arguments for `func`.
-
-        *default*: `()`
-
-      * `kwargs` -- `Dict[str, Any]`
-
-        Additional keyword arguments for `func`.
-
-        *default*: `{}`
-
-    - Returns:
-
-      * `Iterator[str]` -- indefinite random words generator
+    Returns:
+      :obj:`Iterator[str]`: Indefinite random words generator.
 
     """
     pool = _gen_pool(count)
@@ -324,36 +249,21 @@ def sentence(count: int = 1,
              word_range: typing.Tuple[int] = (4, 8)) -> typing.Iterator[str]:
     """Generate a list of random sentences.
 
-    ```python
-    >>> list(itertools.islice(sentence(), 1))
-    ['Aute irure et commodo sunt do duis dolor.']
-    ```
+    .. code:: python
 
-    - Args:
+        >>> list(itertools.islice(sentence(), 1))
+        ['Aute irure et commodo sunt do duis dolor.']
 
-      * `count` -- `int`
+    Args:
+        count (int): Number of non-repeated random sentences.
+        comma (:obj:`Tuple[int]`): Random range for number of commas. The function will
+            use :func:`random.randint` to choose a random integer as the number of commas.
+        word_range (:obj:`Tuple[int]`): Random range for number of words in each sentence.
+            The function will use :func:`random.randint` to choose a random integer as the
+            number of words.
 
-        Number of non-repeated random sentences.
-
-        *default*: `1`
-
-      * `comma` -- `Tuple[int]`
-
-        Random range for number of commas. The function will use
-        `random.randint` to choose a random integer as the number of commas.
-
-        *default*: `(0, 2)`
-
-      * `word_range` -- `Tuple[int]`
-
-        Random range for number of words in each sentence. The function will
-        use `random.randint` to choose a random integer as the number of words.
-
-        *default*: `(4, 8)`
-
-    - Returns:
-
-      * `Iterator[str]` -- indefinite random sentence generator
+    Returns:
+        :obj:`Iterator[str]`: Indefinite random sentence generator.
 
     """
     pool = _gen_pool(count * random.randint(*word_range))
@@ -368,50 +278,31 @@ def paragraph(count: int = 1,
               sentence_range: typing.Tuple[int] = (5, 10)) -> typing.Iterator[str]:
     """Generate a list of random paragraphs.
 
-    ```python
-    >>> list(itertools.islice(paragraph(), 1))
-    ['Aute sint et cupidatat aliquip. Non exercitation est aliquip voluptate '
-     'fugiat, reprehenderit ad occaecat laboris velit consequat. Magna enim '
-     'deserunt aute laborum fugiat exercitation. Aliqua ex sunt fugiat in '
-     'magna voluptate. Elit nisi exercitation nostrud. Magna proident et '
-     'fugiat eiusmod cupidatat fugiat, sit culpa fugiat non ea eu '
-     'reprehenderit elit. Proident mollit mollit ut cillum. Nostrud voluptate '
-     'aliquip cupidatat anim.']
-    ```
+    .. code:: python
 
-    - Args:
+        >>> list(itertools.islice(paragraph(), 1))
+        ['Aute sint et cupidatat aliquip. Non exercitation est aliquip voluptate '
+         'fugiat, reprehenderit ad occaecat laboris velit consequat. Magna enim '
+         'deserunt aute laborum fugiat exercitation. Aliqua ex sunt fugiat in '
+         'magna voluptate. Elit nisi exercitation nostrud. Magna proident et '
+         'fugiat eiusmod cupidatat fugiat, sit culpa fugiat non ea eu '
+         'reprehenderit elit. Proident mollit mollit ut cillum. Nostrud voluptate '
+         'aliquip cupidatat anim.']
 
-      * `count` -- `int`
+    Args:
+        count (int): Number of non-repeated random paragraphs.
+        comma (:obj:`Tuple[int]`): Random range for number of commas. The function
+            will use :func:`random.randint` to choose a random integer as the number
+            of commas.
+        word_range (:obj:`Tuple[int]`): Random range for number of words in each sentence.
+            The function will use :func:`random.randint` to choose a random integer as the
+            number of words.
+        sentence_range (:obj:`Tuple[int]`): Random range for number of sentences in each
+            paragraph. The function will use :func:`random.randint` to choose a random
+            integer as the number of sentences.
 
-        Number of non-repeated random paragraphs.
-
-        *default*: `1`
-
-      * `comma` -- `Tuple[int]`
-
-        Random range for number of commas. The function will use
-        `random.randint` to choose a random integer as the number of commas.
-
-        *default*: `(0, 2)`
-
-      * `word_range` -- `Tuple[int]`
-
-        Random range for number of words in each sentence. The function will
-        use `random.randint` to choose a random integer as the number of words.
-
-        *default*: `(4, 8)`
-
-      * `sentence_range` -- `Tuple[int]`
-
-        Random range for number of sentences in each paragraph. The function
-        will use `random.randint` to choose a random integer as the number of
-        sentences.
-
-        *default*: `(5, 10)`
-
-    - Returns:
-
-      * `Iterator[str]` -- random paragraph generator
+    Returns:
+        :obj:`Iterator[str]`: Random paragraph generator.
 
     """
     pool = _gen_pool(count * random.randint(*word_range) * random.randint(*sentence_range))
@@ -427,53 +318,28 @@ def get_word(count: typing.Union[int, typing.Tuple[int]] = 1,  # pylint: disable
              args: typing.Tuple[str] = (), kwargs: typing.Dict[str, str] = {}) -> str:
     """Return random words.
 
-    ```python
-    >>> get_word(count=3)
-    'anim voluptate non'
-    >>> get_word(count=3, func='capitalize')
-    'Non Labore Ut'
-    >>> get_word(count=3, func=lambda s: s.upper())
-    'NISI TEMPOR CILLUM'
-    ```
+    .. code:: python
 
-    - Args:
+        >>> get_word(count=3)
+        'anim voluptate non'
+        >>> get_word(count=3, func='capitalize')
+        'Non Labore Ut'
+        >>> get_word(count=3, func=lambda s: s.upper())
+        'NISI TEMPOR CILLUM'
 
-      * `count` -- `Union[int, Tuple[int]]`
+    Args:
+        count (:obj:`Union[int, Tuple[int]]`): Number of random words. To generate random
+            number of words, supply a 2-element tuple of :obj:`int`, the function will use
+            :func:`random.randint` to choose a random integer as the number of random words.
+        sep (str): Seperator between each word.
+        func (:obj:`Optional[Union[str, Callable[[str], str]]]`): Filter function. It can be
+            a function name of :obj:`str`, or a customised function that takes the original
+            :obj:`str` and returns the modified :obj:`str`.
+        args (:obj:`Tuple[str]`): Additional positional arguments for ``func``.
+        kwargs (:obj:`Dict[str, Any]`): Additional keyword arguments for ``func``.
 
-        Number of random words. To generate random number of words, supply a
-        2-element tuple of `int`, the function will use `random.randint` to choose
-        a random integer as the number of random words.
-
-        *default*: `1`
-
-      * `sep` -- `str`
-
-        Seperator between each word.
-
-        *default*: `' '`
-
-      * `func` -- `Optional[Union[str, Callable[[str], str]]]`
-
-        Filter function. It can be a function name of `str`, or a customised
-        function that takes the original `str` and returns the modified `str`.
-
-        *default*: `None`
-
-      * `args` -- `Tuple[str]`
-
-        Additional positional arguments for `func`.
-
-        *default*: `()`
-
-      * `kwargs` -- `Dict[str, Any]`
-
-        Additional keyword arguments for `func`.
-
-        *default*: `{}`
-
-    - Returns:
-
-      * `str` -- random words
+    Returns:
+        :obj:`str`: Random words.
 
     """
     if isinstance(count, tuple):
@@ -487,45 +353,26 @@ def get_sentence(count: typing.Union[int, typing.Tuple[int]] = 1,
                  word_range: typing.Tuple[int] = (4, 8)) -> str:
     """Return random sentences.
 
-    ```python
-    >>> get_sentence()
-    'Nostrud laboris lorem minim sit culpa, aliqua nostrud in amet, sint pariatur eiusmod esse.'
-    ```
+    .. code:: python
 
-    - Args:
+        >>> get_sentence()
+        'Nostrud laboris lorem minim sit culpa, aliqua nostrud in amet, sint pariatur eiusmod esse.'
 
-      * `count` -- `Union[int, Tuple[int]]`
+    Args:
 
-        Number of random sentences. To generate random number of sentences,
-        supply a 2-element tuple of `int`, the function will use
-        `random.randint` to choose a random integer as the number of random
-        sentences.
+        count (:obj:`Union[int, Tuple[int]]`): Number of random sentences. To generate
+            random number of sentences, supply a 2-element tuple of :obj:`int`, the
+            function will use :func:`random.randint` to choose a random integer as the number
+            of random sentences.
+        sep (str): Seperator between each sentence.
+        comma (:obj:`Tuple[int]`): Random range for number of commas. The function will use
+            :func:`random.randint` to choose a random integer as the number of commas.
+        word_range (:obj:`Tuple[int]`): Random range for number of words in each sentence.
+            The function will use :func:`random.randint` to choose a random integer as the
+            number of words.
 
-        *default*: `1`
-
-      * `sep` -- `str`
-
-        Seperator between each sentence.
-
-        *default*: `' '`
-
-      * `comma` -- `Tuple[int]`
-
-        Random range for number of commas. The function will use
-        `random.randint` to choose a random integer as the number of commas.
-
-        *default*: `(0, 2)`
-
-      * `word_range` -- `Tuple[int]`
-
-        Random range for number of words in each sentence. The function will
-        use `random.randint` to choose a random integer as the number of words.
-
-        *default*: `(4, 8)`
-
-    - Returns:
-
-      * `str` -- random sentences
+    Returns:
+        :obj:`str`: Random sentences.
 
     """
     if isinstance(count, tuple):
@@ -540,60 +387,36 @@ def get_paragraph(count: typing.Union[int, typing.Tuple[int]] = 1,
                   sentence_range: typing.Tuple[int] = (5, 10)) -> str:
     """Return random paragraphs.
 
-    ```python
-    >>> get_paragraph()
-    'Exercitation magna sunt excepteur irure adipiscing commodo duis. Est '
-    'ipsum qui deserunt, deserunt nostrud reprehenderit esse. Do velit '
-    'est in velit sed. Sunt officia officia lorem. Commodo lorem '
-    'exercitation veniam officia pariatur velit. Deserunt deserunt sed '
-    'consequat laborum consequat dolor. Et consectetur irure sint elit tempor,'
-    ' est minim nisi eiusmod id excepteur. Minim cillum veniam sed aliquip '
-    'anim sit, pariatur nostrud ex cillum laboris laborum. Laborum ullamco '
-    'mollit elit. Amet id incididunt ipsum sed.'
-    ```
+    .. code:: python
 
-    - Args:
+        >>> get_paragraph()
+        'Exercitation magna sunt excepteur irure adipiscing commodo duis. Est '
+        'ipsum qui deserunt, deserunt nostrud reprehenderit esse. Do velit '
+        'est in velit sed. Sunt officia officia lorem. Commodo lorem '
+        'exercitation veniam officia pariatur velit. Deserunt deserunt sed '
+        'consequat laborum consequat dolor. Et consectetur irure sint elit tempor,'
+        ' est minim nisi eiusmod id excepteur. Minim cillum veniam sed aliquip '
+        'anim sit, pariatur nostrud ex cillum laboris laborum. Laborum ullamco '
+        'mollit elit. Amet id incididunt ipsum sed.'
 
-      * `count` -- `Union[int, Tuple[int]]`
+    Args:
+        count (:obj:`Union[int, Tuple[int]]`): Number of random paragraphs. To generate
+            random number of paragraphs, supply a 2-element tuple of :obj:`int`, the function
+            will use :func:`random.randint` to choose a random integer as the number of random
+            paragraphs.
+        sep (str): Seperator between each paragraph. The default value is OS-dependent as
+            :data:`os.linsep` (``\\r\\n`` on Windows, ``\\n`` on POSIX).
+        comma (:obj:`Tuple[int]`): Random range for number of commas. The function will use
+            :func:`random.randint` to choose a random integer as the number of commas.
+        word_range (:obj:`Tuple[int]`): Random range for number of words in each sentence.
+            The function will use :func:`random.randint` to choose a random integer as the
+            number of words.
+        sentence_range (:obj:`Tuple[int]`): Random range for number of sentences in each
+            paragraph. The function will use :func:`random.randint` to choose a random integer
+            as the number of sentences.
 
-        Number of random paragraphs. To generate random number of paragraphs,
-        supply a 2-element tuple of `int`, the function will use
-        `random.randint` to choose a random integer as the number of random
-        paragraphs.
-
-        *default*: `1`
-
-      * `sep` -- `str`
-
-        Seperator between each paragraph.
-
-        *default*: `os.linsep` (`\\r\\n` on Windows, `\\n` on POSIX)
-
-      * `comma` -- `Tuple[int]`
-
-        Random range for number of commas. The function will use
-        `random.randint` to choose a random integer as the number of commas.
-
-        *default*: `(0, 2)`
-
-      * `word_range` -- `Tuple[int]`
-
-        Random range for number of words in each sentence. The function will
-        use `random.randint` to choose a random integer as the number of words.
-
-        *default*: `(4, 8)`
-
-      * `sentence_range` -- `Tuple[int]`
-
-        Random range for number of sentences in each paragraph. The function
-        will use `random.randint` to choose a random integer as the number of
-        sentences.
-
-        *default*: `(5, 10)`
-
-    - Returns:
-
-      * `str` -- random paragraphs
+    Returns:
+        :obj:`str`: Random paragraphs.
 
     """
     if isinstance(count, tuple):
@@ -604,11 +427,9 @@ def get_paragraph(count: typing.Union[int, typing.Tuple[int]] = 1,
 def set_pool(pool: typing.Iterable[str]):
     """Customise random word pool.
 
-    - Args:
+    Args:
 
-      * `pool` -- `Iterable[str]`
-
-        List of words to be used as random word pool.
+      pool (:obj:`Iterable[str]`): List of words to be used as random word pool.
 
     """
     global _TEXT

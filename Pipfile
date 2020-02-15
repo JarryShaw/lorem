@@ -21,9 +21,14 @@ verify_ssl = true
 [dev-packages]
 python-lorem = {editable = true,path = "."}
 autopep8 = "*"
+ipython = "*"
+pylint = "*"
 coverage = "*"
 codecov = "*"
-pylint = "*"
+tox = "*"
+sphinx = "*"
+sphinxcontrib-napoleon = "*"
+doc8 = "*"
 
 [packages]
 

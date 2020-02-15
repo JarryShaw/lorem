@@ -35,5 +35,6 @@
         "voluptate",
         "xenial"
     ],
-    "python.pythonPath": ".venv/bin/python"
+    "python.pythonPath": ".venv/bin/python",
+    "restructuredtext.confPath": "${workspaceFolder}/docs/conf.py"
 }
