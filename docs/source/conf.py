@@ -31,9 +31,14 @@ release = '1.1.1'
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
 extensions = [
+    'sphinx.ext.intersphinx',
     'sphinx.ext.autodoc', 'sphinx.ext.autodoc.typehints',
     'sphinxcontrib.napoleon'
 ]
+
+intersphinx_mapping = {
+    'python': ('https://docs.python.org/3', None),
+}
 
 autodoc_typehints = 'description'
 autodoc_member_order = 'bysource'
