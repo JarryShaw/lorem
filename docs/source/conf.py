@@ -31,6 +31,7 @@ release = '1.1.1'
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
 extensions = [
+    'sphinx.ext.viewcode',
     'sphinx.ext.intersphinx',
     'sphinx.ext.autodoc', 'sphinx.ext.autodoc.typehints',
     'sphinxcontrib.napoleon'
