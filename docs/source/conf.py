@@ -88,6 +88,7 @@ html_theme_options = {
     'github_user': 'JarryShaw',
     'github_repo': 'lorem',
     'github_banner': True,
+    'github_type': 'star',
     #'show_related': False,
     #'note_bg': '#FFF59C',
     #'travis_button': True,
