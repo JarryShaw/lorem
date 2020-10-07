@@ -35,6 +35,6 @@
         "voluptate",
         "xenial"
     ],
-    "python.pythonPath": ".venv/bin/python",
+    "python.pythonPath": "/Users/jarryshaw/GitHub/lorem/lorem.py/.venv/bin/python3.8",
     "restructuredtext.confPath": "${workspaceFolder}/docs/conf.py"
 }
