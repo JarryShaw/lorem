@@ -1,0 +1,214 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pythonic Lorem Ipsum Generator &#8212; lorem 1.1.1 documentation</title>
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Lorem Ipsum Generator" href="lorem.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="pythonic-lorem-ipsum-generator">
+<h1>Pythonic Lorem Ipsum Generator<a class="headerlink" href="#pythonic-lorem-ipsum-generator" title="Permalink to this headline">¶</a></h1>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="lorem.html">Lorem Ipsum Generator</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="lorem.html#module-contents">Module contents</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="lorem.html#get-random-words">Get Random Words</a></li>
+<li class="toctree-l3"><a class="reference internal" href="lorem.html#get-random-sentences">Get Random Sentences</a></li>
+<li class="toctree-l3"><a class="reference internal" href="lorem.html#get-random-paragraphs">Get Random Paragraphs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="lorem.html#customise-word-pool">Customise Word Pool</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="lorem.html#internal-utilities">Internal utilities</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="test_lorem.html">Module Unittests</a></li>
+</ul>
+</div>
+<p>In publishing and graphic design, lorem ipsum is a placeholder text commonly
+used to demonstrate the visual form of a document or a typeface without
+relying on meaningful content.</p>
+<p>The <code class="xref py py-mod docutils literal notranslate"><span class="pre">lorem</span></code> module provides a generic access to generating the lorem ipsum
+text from its very original text:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Lorem</span> <span class="n">ipsum</span> <span class="n">dolor</span> <span class="n">sit</span> <span class="n">amet</span><span class="p">,</span> <span class="n">consectetur</span> <span class="n">adipiscing</span> <span class="n">elit</span><span class="p">,</span> <span class="n">sed</span> <span class="n">do</span> <span class="n">eiusmod</span>
+<span class="n">tempor</span> <span class="n">incididunt</span> <span class="n">ut</span> <span class="n">labore</span> <span class="n">et</span> <span class="n">dolore</span> <span class="n">magna</span> <span class="n">aliqua</span><span class="o">.</span> <span class="n">Ut</span> <span class="n">enim</span> <span class="n">ad</span> <span class="n">minim</span>
+<span class="n">veniam</span><span class="p">,</span> <span class="n">quis</span> <span class="n">nostrud</span> <span class="n">exercitation</span> <span class="n">ullamco</span> <span class="n">laboris</span> <span class="n">nisi</span> <span class="n">ut</span> <span class="n">aliquip</span> <span class="n">ex</span> <span class="n">ea</span>
+<span class="n">commodo</span> <span class="n">consequat</span><span class="o">.</span> <span class="n">Duis</span> <span class="n">aute</span> <span class="n">irure</span> <span class="n">dolor</span> <span class="ow">in</span> <span class="n">reprehenderit</span> <span class="ow">in</span> <span class="n">voluptate</span> <span class="n">velit</span>
+<span class="n">esse</span> <span class="n">cillum</span> <span class="n">dolore</span> <span class="n">eu</span> <span class="n">fugiat</span> <span class="n">nulla</span> <span class="n">pariatur</span><span class="o">.</span> <span class="n">Excepteur</span> <span class="n">sint</span> <span class="n">occaecat</span>
+<span class="n">cupidatat</span> <span class="n">non</span> <span class="n">proident</span><span class="p">,</span> <span class="n">sunt</span> <span class="ow">in</span> <span class="n">culpa</span> <span class="n">qui</span> <span class="n">officia</span> <span class="n">deserunt</span> <span class="n">mollit</span> <span class="n">anim</span> <span class="nb">id</span>
+<span class="n">est</span> <span class="n">laborum</span><span class="o">.</span>
+</pre></div>
+</div>
+<p>Usage of the <code class="xref py py-mod docutils literal notranslate"><span class="pre">lorem</span></code> module is rather simple. Depending on your needs, the
+<code class="xref py py-mod docutils literal notranslate"><span class="pre">lorem</span></code> module provides generation of <em>words</em>, <em>sentences</em>, and
+<em>paragraphs</em>.</p>
+<div class="section" id="get-random-words">
+<h2>Get Random Words<a class="headerlink" href="#get-random-words" title="Permalink to this headline">¶</a></h2>
+<p>The <code class="xref py py-mod docutils literal notranslate"><span class="pre">lorem</span></code> module provides two different ways for getting random words.</p>
+<ol class="arabic">
+<li><p><a class="reference internal" href="lorem.html#lorem.word" title="lorem.word"><code class="xref py py-func docutils literal notranslate"><span class="pre">word()</span></code></a> – generate a list of random words</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">word</span><span class="p">(</span><span class="n">count</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">func</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">(),</span> <span class="n">kwargs</span><span class="o">=</span><span class="p">{})</span> <span class="o">-&gt;</span> <span class="n">Iterator</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span>
+</pre></div>
+</div>
+</li>
+<li><p><a class="reference internal" href="lorem.html#lorem.get_word" title="lorem.get_word"><code class="xref py py-func docutils literal notranslate"><span class="pre">get_word()</span></code></a> – return random words</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">get_word</span><span class="p">(</span><span class="n">count</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39; &#39;</span><span class="p">,</span> <span class="n">func</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">(),</span> <span class="n">kwargs</span><span class="o">=</span><span class="p">{})</span> <span class="o">-&gt;</span> <span class="nb">str</span>
+</pre></div>
+</div>
+</li>
+</ol>
+</div>
+<div class="section" id="get-random-sentences">
+<h2>Get Random Sentences<a class="headerlink" href="#get-random-sentences" title="Permalink to this headline">¶</a></h2>
+<p>The <code class="xref py py-mod docutils literal notranslate"><span class="pre">lorem</span></code> module provides two different ways for getting random sentences.</p>
+<ol class="arabic">
+<li><p><a class="reference internal" href="lorem.html#lorem.sentence" title="lorem.sentence"><code class="xref py py-func docutils literal notranslate"><span class="pre">sentence()</span></code></a> – generate a list of random sentences</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">sentence</span><span class="p">(</span><span class="n">count</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">comma</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="n">word_range</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span> <span class="o">-&gt;</span> <span class="n">Iterator</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span>
+</pre></div>
+</div>
+</li>
+<li><p><a class="reference internal" href="lorem.html#lorem.get_sentence" title="lorem.get_sentence"><code class="xref py py-func docutils literal notranslate"><span class="pre">get_sentence()</span></code></a> – return random sentences</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">get_sentence</span><span class="p">(</span><span class="n">count</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39; &#39;</span><span class="p">,</span> <span class="n">comma</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="n">word_range</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span>
+</pre></div>
+</div>
+</li>
+</ol>
+</div>
+<div class="section" id="get-random-paragraphs">
+<h2>Get Random Paragraphs<a class="headerlink" href="#get-random-paragraphs" title="Permalink to this headline">¶</a></h2>
+<p>The <code class="xref py py-mod docutils literal notranslate"><span class="pre">lorem</span></code> module provides two different ways for getting random paragraphs.</p>
+<ol class="arabic">
+<li><p><a class="reference internal" href="lorem.html#lorem.paragraph" title="lorem.paragraph"><code class="xref py py-func docutils literal notranslate"><span class="pre">paragraph()</span></code></a> – generate a list of random paragraphs</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">paragraph</span><span class="p">(</span><span class="n">count</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">comma</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="n">word_range</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">8</span><span class="p">),</span> <span class="n">sentence_range</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span> <span class="o">-&gt;</span> <span class="n">Iterator</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span>
+</pre></div>
+</div>
+</li>
+<li><p><a class="reference internal" href="lorem.html#lorem.get_paragraph" title="lorem.get_paragraph"><code class="xref py py-func docutils literal notranslate"><span class="pre">get_paragraph()</span></code></a> – return random paragraphs</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">get_paragraph</span><span class="p">(</span><span class="n">count</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">linesep</span><span class="p">,</span> <span class="n">comma</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="n">word_range</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">8</span><span class="p">),</span> <span class="n">sentence_range</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span>
+</pre></div>
+</div>
+</li>
+</ol>
+</div>
+<div class="section" id="customise-word-pool">
+<h2>Customise Word Pool<a class="headerlink" href="#customise-word-pool" title="Permalink to this headline">¶</a></h2>
+<p>If wanted, the <code class="xref py py-mod docutils literal notranslate"><span class="pre">lorem</span></code> module also provides an interface to customise the word
+pool as you wish.</p>
+<ol class="arabic">
+<li><p><a class="reference internal" href="lorem.html#lorem.set_pool" title="lorem.set_pool"><code class="xref py py-func docutils literal notranslate"><span class="pre">set_pool()</span></code></a> – customise random word pool</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">set_pool</span><span class="p">(</span><span class="n">pool</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+<div class="section" id="indices-and-tables">
+<h1>Indices and tables<a class="headerlink" href="#indices-and-tables" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li><p><a class="reference internal" href="genindex.html"><span class="std std-ref">Index</span></a></p></li>
+<li><p><a class="reference internal" href="py-modindex.html"><span class="std std-ref">Module Index</span></a></p></li>
+<li><p><a class="reference internal" href="search.html"><span class="std std-ref">Search Page</span></a></p></li>
+</ul>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="#">lorem</a></h1>
+
+
+
+
+
+
+<p>
+<iframe src="https://ghbtns.com/github-btn.html?user=JarryShaw&repo=lorem&type=star&count=true&size=large&v=2"
+  allowtransparency="true" frameborder="0" scrolling="0" width="200px" height="35px"></iframe>
+</p>
+
+
+
+
+
+<h3>Navigation</h3>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="lorem.html">Lorem Ipsum Generator</a></li>
+<li class="toctree-l1"><a class="reference internal" href="test_lorem.html">Module Unittests</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="#">Documentation overview</a><ul>
+      <li>Next: <a href="lorem.html" title="next chapter">Lorem Ipsum Generator</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2020, Jarry Shaw.
+      
+      |
+      <a href="_sources/index.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+    <a href="https://github.com/JarryShaw/lorem" class="github">
+        <img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"  class="github"/>
+    </a>
+    
+
+    
+  </body>
+</html>

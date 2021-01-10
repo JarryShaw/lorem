@@ -1,0 +1,320 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Module Unittests &#8212; lorem 1.1.1 documentation</title>
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Lorem Ipsum Generator" href="lorem.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="module-test_lorem">
+<span id="module-unittests"></span><h1>Module Unittests<a class="headerlink" href="#module-test_lorem" title="Permalink to this headline">¶</a></h1>
+<p>Test suite for <cite>lorem</cite> module.</p>
+<dl class="py data">
+<dt id="test_lorem._T">
+<code class="sig-prename descclassname">test_lorem.</code><code class="sig-name descname">_T</code><a class="headerlink" href="#test_lorem._T" title="Permalink to this definition">¶</a></dt>
+<dd><p>Type variable.</p>
+<p>alias of TypeVar(‘_T’)</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="test_lorem.islice">
+<code class="sig-prename descclassname">test_lorem.</code><code class="sig-name descname">islice</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">iterable</span></em>, <em class="sig-param"><span class="n">stop</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/test_lorem.html#islice"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#test_lorem.islice" title="Permalink to this definition">¶</a></dt>
+<dd><p>Wrapper function for <a class="reference external" href="https://docs.python.org/3/library/itertools.html#itertools.islice" title="(in Python v3.9)"><code class="xref py py-func docutils literal notranslate"><span class="pre">itertools.islice()</span></code></a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>iterable</strong> (<em>Iterator</em><em>[</em><em>_T</em><em>]</em>) – </p></li>
+<li><p><strong>stop</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>List[_T]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="test_lorem.shuffle">
+<code class="sig-prename descclassname">test_lorem.</code><code class="sig-name descname">shuffle</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">x</span></em>, <em class="sig-param"><span class="n">random</span><span class="o">=</span><span class="default_value">None</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/test_lorem.html#shuffle"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#test_lorem.shuffle" title="Permalink to this definition">¶</a></dt>
+<dd><p>Mock <a class="reference external" href="https://docs.python.org/3/library/random.html#random.shuffle" title="(in Python v3.9)"><code class="xref py py-func docutils literal notranslate"><span class="pre">random.shuffle()</span></code></a>, but actually do nothing.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x</strong> (<em>List</em><em>[</em><em>Any</em><em>]</em>) – </p></li>
+<li><p><strong>random</strong> (<em>Optional</em><em>[</em><em>Callable</em><em>[</em><em>[</em><em>]</em><em>, </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.9)"><em>float</em></a><em>]</em><em>]</em>) – </p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="test_lorem.randint">
+<code class="sig-prename descclassname">test_lorem.</code><code class="sig-name descname">randint</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">a</span></em>, <em class="sig-param"><span class="n">b</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/test_lorem.html#randint"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#test_lorem.randint" title="Permalink to this definition">¶</a></dt>
+<dd><p>Mock <a class="reference external" href="https://docs.python.org/3/library/random.html#random.randint" title="(in Python v3.9)"><code class="xref py py-func docutils literal notranslate"><span class="pre">random.randint()</span></code></a>, but return the lower boundary.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>a</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – </p></li>
+<li><p><strong>b</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – </p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)">int</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="test_lorem.choice_first">
+<code class="sig-prename descclassname">test_lorem.</code><code class="sig-name descname">choice_first</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">seq</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/test_lorem.html#choice_first"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#test_lorem.choice_first" title="Permalink to this definition">¶</a></dt>
+<dd><p>Mock <a class="reference external" href="https://docs.python.org/3/library/random.html#random.choice" title="(in Python v3.9)"><code class="xref py py-func docutils literal notranslate"><span class="pre">random.choice()</span></code></a>, but return the first element.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>seq</strong> (<em>Sequence</em><em>[</em><em>_T</em><em>]</em>) – </p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>_T</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="test_lorem.choice_last">
+<code class="sig-prename descclassname">test_lorem.</code><code class="sig-name descname">choice_last</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">seq</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/test_lorem.html#choice_last"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#test_lorem.choice_last" title="Permalink to this definition">¶</a></dt>
+<dd><p>Mock <a class="reference external" href="https://docs.python.org/3/library/random.html#random.choice" title="(in Python v3.9)"><code class="xref py py-func docutils literal notranslate"><span class="pre">random.choice()</span></code></a>, but return the last element.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>seq</strong> (<em>Sequence</em><em>[</em><em>_T</em><em>]</em>) – </p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>_T</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="test_lorem.pool">
+<code class="sig-prename descclassname">test_lorem.</code><code class="sig-name descname">pool</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">dupe</span><span class="o">=</span><span class="default_value">1</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/test_lorem.html#pool"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#test_lorem.pool" title="Permalink to this definition">¶</a></dt>
+<dd><p>Mock <a class="reference internal" href="lorem.html#lorem._gen_pool" title="lorem._gen_pool"><code class="xref py py-func docutils literal notranslate"><span class="pre">lorem._gen_pool()</span></code></a>, but return a minimised pool.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>dupe</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – </p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>Iterator[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)">str</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py class">
+<dt id="test_lorem.TestLorem">
+<em class="property">class </em><code class="sig-prename descclassname">test_lorem.</code><code class="sig-name descname">TestLorem</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">methodName</span><span class="o">=</span><span class="default_value">'runTest'</span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/test_lorem.html#TestLorem"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#test_lorem.TestLorem" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">unittest.case.TestCase</span></code></p>
+<p>Unittest case for <code class="xref py py-mod docutils literal notranslate"><span class="pre">lorem</span></code> module.</p>
+<dl class="py attribute">
+<dt id="test_lorem.TestLorem.mock_shuffle">
+<code class="sig-name descname">mock_shuffle</code><em class="property"> = &lt;unittest.mock._patch object&gt;</em><a class="headerlink" href="#test_lorem.TestLorem.mock_shuffle" title="Permalink to this definition">¶</a></dt>
+<dd><p>Mock <a class="reference external" href="https://docs.python.org/3/library/random.html#random.shuffle" title="(in Python v3.9)"><code class="xref py py-func docutils literal notranslate"><span class="pre">random.shuffle()</span></code></a></p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="test_lorem.TestLorem.mock_randint">
+<code class="sig-name descname">mock_randint</code><em class="property"> = &lt;unittest.mock._patch object&gt;</em><a class="headerlink" href="#test_lorem.TestLorem.mock_randint" title="Permalink to this definition">¶</a></dt>
+<dd><p>Mock <a class="reference external" href="https://docs.python.org/3/library/random.html#random.randint" title="(in Python v3.9)"><code class="xref py py-func docutils literal notranslate"><span class="pre">random.randint()</span></code></a></p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="test_lorem.TestLorem.mock_choice_first">
+<code class="sig-name descname">mock_choice_first</code><em class="property"> = &lt;unittest.mock._patch object&gt;</em><a class="headerlink" href="#test_lorem.TestLorem.mock_choice_first" title="Permalink to this definition">¶</a></dt>
+<dd><p>Mock <a class="reference external" href="https://docs.python.org/3/library/random.html#random.choice" title="(in Python v3.9)"><code class="xref py py-func docutils literal notranslate"><span class="pre">random.choice()</span></code></a> by choosing the first item.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="test_lorem.TestLorem.mock_choice_last">
+<code class="sig-name descname">mock_choice_last</code><em class="property"> = &lt;unittest.mock._patch object&gt;</em><a class="headerlink" href="#test_lorem.TestLorem.mock_choice_last" title="Permalink to this definition">¶</a></dt>
+<dd><p>Mock <a class="reference external" href="https://docs.python.org/3/library/random.html#random.choice" title="(in Python v3.9)"><code class="xref py py-func docutils literal notranslate"><span class="pre">random.choice()</span></code></a> by choosing the last item.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="test_lorem.TestLorem.mock_text">
+<code class="sig-name descname">mock_text</code><em class="property"> = &lt;unittest.mock._patch object&gt;</em><a class="headerlink" href="#test_lorem.TestLorem.mock_text" title="Permalink to this definition">¶</a></dt>
+<dd><p>Mock <a class="reference internal" href="lorem.html#lorem._TEXT" title="lorem._TEXT"><code class="xref py py-data docutils literal notranslate"><span class="pre">lorem._TEXT</span></code></a> by a minimised pool (<code class="docutils literal notranslate"><span class="pre">['lorem',</span> <span class="pre">'ipsum']</span></code>).</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt id="test_lorem.TestLorem.mock_pool">
+<code class="sig-name descname">mock_pool</code><em class="property"> = &lt;unittest.mock._patch object&gt;</em><a class="headerlink" href="#test_lorem.TestLorem.mock_pool" title="Permalink to this definition">¶</a></dt>
+<dd><p>Mock <a class="reference internal" href="lorem.html#lorem._gen_pool" title="lorem._gen_pool"><code class="xref py py-func docutils literal notranslate"><span class="pre">lorem._gen_pool()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="test_lorem.TestLorem.test_set_pool">
+<code class="sig-name descname">test_set_pool</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/test_lorem.html#TestLorem.test_set_pool"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#test_lorem.TestLorem.test_set_pool" title="Permalink to this definition">¶</a></dt>
+<dd><p>Test <a class="reference internal" href="lorem.html#lorem.set_pool" title="lorem.set_pool"><code class="xref py py-func docutils literal notranslate"><span class="pre">lorem.set_pool()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="test_lorem.TestLorem.test_gen_pool">
+<code class="sig-name descname">test_gen_pool</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/test_lorem.html#TestLorem.test_gen_pool"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#test_lorem.TestLorem.test_gen_pool" title="Permalink to this definition">¶</a></dt>
+<dd><p>Test <a class="reference internal" href="lorem.html#lorem._gen_pool" title="lorem._gen_pool"><code class="xref py py-func docutils literal notranslate"><span class="pre">lorem._gen_pool()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="test_lorem.TestLorem.test_gen_word">
+<code class="sig-name descname">test_gen_word</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/test_lorem.html#TestLorem.test_gen_word"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#test_lorem.TestLorem.test_gen_word" title="Permalink to this definition">¶</a></dt>
+<dd><p>Test <a class="reference internal" href="lorem.html#lorem._gen_word" title="lorem._gen_word"><code class="xref py py-func docutils literal notranslate"><span class="pre">lorem._gen_word()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="test_lorem.TestLorem.test_gen_sentence">
+<code class="sig-name descname">test_gen_sentence</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/test_lorem.html#TestLorem.test_gen_sentence"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#test_lorem.TestLorem.test_gen_sentence" title="Permalink to this definition">¶</a></dt>
+<dd><p>Test <a class="reference internal" href="lorem.html#lorem._gen_sentence" title="lorem._gen_sentence"><code class="xref py py-func docutils literal notranslate"><span class="pre">lorem._gen_sentence()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="test_lorem.TestLorem.test_gen_paragraph">
+<code class="sig-name descname">test_gen_paragraph</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/test_lorem.html#TestLorem.test_gen_paragraph"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#test_lorem.TestLorem.test_gen_paragraph" title="Permalink to this definition">¶</a></dt>
+<dd><p>Test <a class="reference internal" href="lorem.html#lorem._gen_paragraph" title="lorem._gen_paragraph"><code class="xref py py-func docutils literal notranslate"><span class="pre">lorem._gen_paragraph()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="test_lorem.TestLorem.test_word">
+<code class="sig-name descname">test_word</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/test_lorem.html#TestLorem.test_word"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#test_lorem.TestLorem.test_word" title="Permalink to this definition">¶</a></dt>
+<dd><p>Test <a class="reference internal" href="lorem.html#lorem.word" title="lorem.word"><code class="xref py py-func docutils literal notranslate"><span class="pre">lorem.word()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="test_lorem.TestLorem.test_sentence">
+<code class="sig-name descname">test_sentence</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/test_lorem.html#TestLorem.test_sentence"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#test_lorem.TestLorem.test_sentence" title="Permalink to this definition">¶</a></dt>
+<dd><p>Test <a class="reference internal" href="lorem.html#lorem.sentence" title="lorem.sentence"><code class="xref py py-func docutils literal notranslate"><span class="pre">lorem.sentence()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="test_lorem.TestLorem.test_paragraph">
+<code class="sig-name descname">test_paragraph</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/test_lorem.html#TestLorem.test_paragraph"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#test_lorem.TestLorem.test_paragraph" title="Permalink to this definition">¶</a></dt>
+<dd><p>Test <a class="reference internal" href="lorem.html#lorem.paragraph" title="lorem.paragraph"><code class="xref py py-func docutils literal notranslate"><span class="pre">lorem.paragraph()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="test_lorem.TestLorem.test_get_word">
+<code class="sig-name descname">test_get_word</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/test_lorem.html#TestLorem.test_get_word"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#test_lorem.TestLorem.test_get_word" title="Permalink to this definition">¶</a></dt>
+<dd><p>Test <a class="reference internal" href="lorem.html#lorem.get_word" title="lorem.get_word"><code class="xref py py-func docutils literal notranslate"><span class="pre">lorem.get_word()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="test_lorem.TestLorem.test_get_sentence">
+<code class="sig-name descname">test_get_sentence</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/test_lorem.html#TestLorem.test_get_sentence"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#test_lorem.TestLorem.test_get_sentence" title="Permalink to this definition">¶</a></dt>
+<dd><p>Test <a class="reference internal" href="lorem.html#lorem.get_sentence" title="lorem.get_sentence"><code class="xref py py-func docutils literal notranslate"><span class="pre">lorem.get_sentence()</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt id="test_lorem.TestLorem.test_get_paragraph">
+<code class="sig-name descname">test_get_paragraph</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/test_lorem.html#TestLorem.test_get_paragraph"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#test_lorem.TestLorem.test_get_paragraph" title="Permalink to this definition">¶</a></dt>
+<dd><p>Test <a class="reference internal" href="lorem.html#lorem.get_paragraph" title="lorem.get_paragraph"><code class="xref py py-func docutils literal notranslate"><span class="pre">lorem.get_paragraph()</span></code></a>.</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">lorem</a></h1>
+
+
+
+
+
+
+<p>
+<iframe src="https://ghbtns.com/github-btn.html?user=JarryShaw&repo=lorem&type=star&count=true&size=large&v=2"
+  allowtransparency="true" frameborder="0" scrolling="0" width="200px" height="35px"></iframe>
+</p>
+
+
+
+
+
+<h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="lorem.html">Lorem Ipsum Generator</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Module Unittests</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="lorem.html" title="previous chapter">Lorem Ipsum Generator</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2020, Jarry Shaw.
+      
+      |
+      <a href="_sources/test_lorem.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+    <a href="https://github.com/JarryShaw/lorem" class="github">
+        <img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"  class="github"/>
+    </a>
+    
+
+    
+  </body>
+</html>

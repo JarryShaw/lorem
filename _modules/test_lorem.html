@@ -1,0 +1,332 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>test_lorem &#8212; lorem 1.1.1 documentation</title>
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <h1>Source code for test_lorem</h1><div class="highlight"><pre>
+<span></span><span class="c1"># -*- coding: utf-8 -*-</span>
+<span class="c1"># pylint: disable=protected-access, unused-argument</span>
+<span class="sd">&quot;&quot;&quot;Test suite for `lorem` module.&quot;&quot;&quot;</span>
+
+<span class="kn">import</span> <span class="nn">itertools</span>
+<span class="kn">import</span> <span class="nn">typing</span>
+<span class="kn">import</span> <span class="nn">unittest</span>
+<span class="kn">import</span> <span class="nn">unittest.mock</span> <span class="k">as</span> <span class="nn">mock</span>
+
+<span class="kn">import</span> <span class="nn">lorem</span>
+
+<span class="c1">#: Type variable.</span>
+<span class="n">_T</span> <span class="o">=</span> <span class="n">typing</span><span class="o">.</span><span class="n">TypeVar</span><span class="p">(</span><span class="s1">&#39;_T&#39;</span><span class="p">)</span>
+
+
+<div class="viewcode-block" id="islice"><a class="viewcode-back" href="../test_lorem.html#test_lorem.islice">[docs]</a><span class="k">def</span> <span class="nf">islice</span><span class="p">(</span><span class="n">iterable</span><span class="p">:</span> <span class="n">typing</span><span class="o">.</span><span class="n">Iterator</span><span class="p">[</span><span class="n">_T</span><span class="p">],</span> <span class="n">stop</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">typing</span><span class="o">.</span><span class="n">List</span><span class="p">[</span><span class="n">_T</span><span class="p">]:</span>
+    <span class="sd">&quot;&quot;&quot;Wrapper function for :func:`itertools.islice`.&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="nb">list</span><span class="p">(</span><span class="n">itertools</span><span class="o">.</span><span class="n">islice</span><span class="p">(</span><span class="n">iterable</span><span class="p">,</span> <span class="n">stop</span><span class="p">))</span></div>
+
+
+<div class="viewcode-block" id="shuffle"><a class="viewcode-back" href="../test_lorem.html#test_lorem.shuffle">[docs]</a><span class="k">def</span> <span class="nf">shuffle</span><span class="p">(</span><span class="n">x</span><span class="p">:</span> <span class="n">typing</span><span class="o">.</span><span class="n">List</span><span class="p">[</span><span class="n">typing</span><span class="o">.</span><span class="n">Any</span><span class="p">],</span>
+            <span class="n">random</span><span class="p">:</span> <span class="n">typing</span><span class="o">.</span><span class="n">Optional</span><span class="p">[</span><span class="n">typing</span><span class="o">.</span><span class="n">Callable</span><span class="p">[[],</span> <span class="nb">float</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Mock :func:`random.shuffle`, but actually do nothing.&quot;&quot;&quot;</span></div>
+
+
+<div class="viewcode-block" id="randint"><a class="viewcode-back" href="../test_lorem.html#test_lorem.randint">[docs]</a><span class="k">def</span> <span class="nf">randint</span><span class="p">(</span><span class="n">a</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">b</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Mock :func:`random.randint`, but return the lower boundary.&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">a</span></div>
+
+
+<div class="viewcode-block" id="choice_first"><a class="viewcode-back" href="../test_lorem.html#test_lorem.choice_first">[docs]</a><span class="k">def</span> <span class="nf">choice_first</span><span class="p">(</span><span class="n">seq</span><span class="p">:</span> <span class="n">typing</span><span class="o">.</span><span class="n">Sequence</span><span class="p">[</span><span class="n">_T</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">_T</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Mock :func:`random.choice`, but return the first element.&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">seq</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span></div>
+
+
+<div class="viewcode-block" id="choice_last"><a class="viewcode-back" href="../test_lorem.html#test_lorem.choice_last">[docs]</a><span class="k">def</span> <span class="nf">choice_last</span><span class="p">(</span><span class="n">seq</span><span class="p">:</span> <span class="n">typing</span><span class="o">.</span><span class="n">Sequence</span><span class="p">[</span><span class="n">_T</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="n">_T</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Mock :func:`random.choice`, but return the last element.&quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">seq</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span></div>
+
+
+<div class="viewcode-block" id="pool"><a class="viewcode-back" href="../test_lorem.html#test_lorem.pool">[docs]</a><span class="k">def</span> <span class="nf">pool</span><span class="p">(</span><span class="n">dupe</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">typing</span><span class="o">.</span><span class="n">Iterator</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+    <span class="sd">&quot;&quot;&quot;Mock :func:`lorem._gen_pool`, but return a minimised pool.&quot;&quot;&quot;</span>
+    <span class="k">yield from</span> <span class="n">itertools</span><span class="o">.</span><span class="n">cycle</span><span class="p">([</span><span class="s1">&#39;lorem&#39;</span><span class="p">,</span> <span class="s1">&#39;ipsum&#39;</span><span class="p">])</span></div>
+
+
+<div class="viewcode-block" id="TestLorem"><a class="viewcode-back" href="../test_lorem.html#test_lorem.TestLorem">[docs]</a><span class="k">class</span> <span class="nc">TestLorem</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Unittest case for :mod:`lorem` module.&quot;&quot;&quot;</span>
+
+    <span class="c1"># mock :mod:`random` module functions</span>
+    <span class="c1">#: Mock :func:`random.shuffle`</span>
+    <span class="n">mock_shuffle</span> <span class="o">=</span> <span class="n">mock</span><span class="o">.</span><span class="n">patch</span><span class="p">(</span><span class="s1">&#39;random.shuffle&#39;</span><span class="p">,</span> <span class="n">shuffle</span><span class="p">)</span>
+    <span class="c1">#: Mock :func:`random.randint`</span>
+    <span class="n">mock_randint</span> <span class="o">=</span> <span class="n">mock</span><span class="o">.</span><span class="n">patch</span><span class="p">(</span><span class="s1">&#39;random.randint&#39;</span><span class="p">,</span> <span class="n">randint</span><span class="p">)</span>
+    <span class="c1">#: Mock :func:`random.choice` by choosing the first item.</span>
+    <span class="n">mock_choice_first</span> <span class="o">=</span> <span class="n">mock</span><span class="o">.</span><span class="n">patch</span><span class="p">(</span><span class="s1">&#39;random.choice&#39;</span><span class="p">,</span> <span class="n">choice_first</span><span class="p">)</span>
+    <span class="c1">#: Mock :func:`random.choice` by choosing the last item.</span>
+    <span class="n">mock_choice_last</span> <span class="o">=</span> <span class="n">mock</span><span class="o">.</span><span class="n">patch</span><span class="p">(</span><span class="s1">&#39;random.choice&#39;</span><span class="p">,</span> <span class="n">choice_last</span><span class="p">)</span>
+
+    <span class="c1"># mock :mod:`lorem` module functions</span>
+    <span class="c1">#: Mock :data:`lorem._TEXT` by a minimised pool (``[&#39;lorem&#39;, &#39;ipsum&#39;]``).</span>
+    <span class="n">mock_text</span> <span class="o">=</span> <span class="n">mock</span><span class="o">.</span><span class="n">patch</span><span class="p">(</span><span class="s1">&#39;lorem._TEXT&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;lorem&#39;</span><span class="p">,</span> <span class="s1">&#39;ipsum&#39;</span><span class="p">])</span>
+    <span class="c1">#: Mock :func:`lorem._gen_pool`.</span>
+    <span class="n">mock_pool</span> <span class="o">=</span> <span class="n">mock</span><span class="o">.</span><span class="n">patch</span><span class="p">(</span><span class="s1">&#39;lorem._gen_pool&#39;</span><span class="p">,</span> <span class="n">pool</span><span class="p">)</span>
+
+<div class="viewcode-block" id="TestLorem.test_set_pool"><a class="viewcode-back" href="../test_lorem.html#test_lorem.TestLorem.test_set_pool">[docs]</a>    <span class="k">def</span> <span class="nf">test_set_pool</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Test :func:`lorem.set_pool`.&quot;&quot;&quot;</span>
+        <span class="n">lorem</span><span class="o">.</span><span class="n">set_pool</span><span class="p">([</span><span class="s1">&#39;lorem&#39;</span><span class="p">,</span> <span class="s1">&#39;ipsum&#39;</span><span class="p">])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">lorem</span><span class="o">.</span><span class="n">_TEXT</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;lorem&#39;</span><span class="p">,</span> <span class="s1">&#39;ipsum&#39;</span><span class="p">])</span></div>
+
+<div class="viewcode-block" id="TestLorem.test_gen_pool"><a class="viewcode-back" href="../test_lorem.html#test_lorem.TestLorem.test_gen_pool">[docs]</a>    <span class="k">def</span> <span class="nf">test_gen_pool</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Test :func:`lorem._gen_pool`.&quot;&quot;&quot;</span>
+        <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">mock_text</span><span class="p">:</span>
+            <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">mock_shuffle</span><span class="p">:</span>
+                <span class="n">iter_pool</span> <span class="o">=</span> <span class="n">lorem</span><span class="o">.</span><span class="n">_gen_pool</span><span class="p">(</span><span class="n">dupe</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+                <span class="n">list_pool</span> <span class="o">=</span> <span class="n">islice</span><span class="p">(</span><span class="n">iter_pool</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">list_pool</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;lorem&#39;</span><span class="p">,</span> <span class="s1">&#39;ipsum&#39;</span><span class="p">,</span> <span class="s1">&#39;lorem&#39;</span><span class="p">,</span> <span class="s1">&#39;ipsum&#39;</span><span class="p">,</span> <span class="s1">&#39;lorem&#39;</span><span class="p">,</span>
+                                     <span class="s1">&#39;ipsum&#39;</span><span class="p">,</span> <span class="s1">&#39;lorem&#39;</span><span class="p">,</span> <span class="s1">&#39;ipsum&#39;</span><span class="p">,</span> <span class="s1">&#39;lorem&#39;</span><span class="p">,</span> <span class="s1">&#39;ipsum&#39;</span><span class="p">])</span></div>
+
+<div class="viewcode-block" id="TestLorem.test_gen_word"><a class="viewcode-back" href="../test_lorem.html#test_lorem.TestLorem.test_gen_word">[docs]</a>    <span class="k">def</span> <span class="nf">test_gen_word</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Test :func:`lorem._gen_word`.&quot;&quot;&quot;</span>
+        <span class="n">iter_pool</span> <span class="o">=</span> <span class="n">pool</span><span class="p">()</span>
+
+        <span class="n">word</span> <span class="o">=</span> <span class="n">lorem</span><span class="o">.</span><span class="n">_gen_word</span><span class="p">(</span><span class="n">pool</span><span class="o">=</span><span class="n">iter_pool</span><span class="p">,</span> <span class="n">func</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">word</span><span class="p">,</span> <span class="s1">&#39;lorem&#39;</span><span class="p">)</span>
+
+        <span class="n">word</span> <span class="o">=</span> <span class="n">lorem</span><span class="o">.</span><span class="n">_gen_word</span><span class="p">(</span><span class="n">pool</span><span class="o">=</span><span class="n">iter_pool</span><span class="p">,</span> <span class="n">func</span><span class="o">=</span><span class="s1">&#39;capitalize&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">word</span><span class="p">,</span> <span class="s1">&#39;Ipsum&#39;</span><span class="p">)</span>
+
+        <span class="n">word</span> <span class="o">=</span> <span class="n">lorem</span><span class="o">.</span><span class="n">_gen_word</span><span class="p">(</span><span class="n">pool</span><span class="o">=</span><span class="n">iter_pool</span><span class="p">,</span> <span class="n">func</span><span class="o">=</span><span class="k">lambda</span> <span class="n">s</span><span class="p">:</span> <span class="n">s</span><span class="o">.</span><span class="n">upper</span><span class="p">())</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">word</span><span class="p">,</span> <span class="s1">&#39;LOREM&#39;</span><span class="p">)</span>
+
+        <span class="n">word</span> <span class="o">=</span> <span class="n">lorem</span><span class="o">.</span><span class="n">_gen_word</span><span class="p">(</span><span class="n">pool</span><span class="o">=</span><span class="n">iter_pool</span><span class="p">,</span> <span class="n">func</span><span class="o">=</span><span class="s1">&#39;replace&#39;</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">(</span><span class="s1">&#39;i&#39;</span><span class="p">,</span> <span class="s1">&#39;I&#39;</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">word</span><span class="p">,</span> <span class="s1">&#39;Ipsum&#39;</span><span class="p">)</span>
+
+        <span class="n">word</span> <span class="o">=</span> <span class="n">lorem</span><span class="o">.</span><span class="n">_gen_word</span><span class="p">(</span><span class="n">pool</span><span class="o">=</span><span class="n">iter_pool</span><span class="p">,</span> <span class="n">func</span><span class="o">=</span><span class="k">lambda</span> <span class="n">s</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">:</span> <span class="n">s</span><span class="p">,</span> <span class="n">kwargs</span><span class="o">=</span><span class="p">{</span><span class="s1">&#39;test&#39;</span><span class="p">:</span> <span class="s1">&#39;null&#39;</span><span class="p">})</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">word</span><span class="p">,</span> <span class="s1">&#39;lorem&#39;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="TestLorem.test_gen_sentence"><a class="viewcode-back" href="../test_lorem.html#test_lorem.TestLorem.test_gen_sentence">[docs]</a>    <span class="k">def</span> <span class="nf">test_gen_sentence</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Test :func:`lorem._gen_sentence`.&quot;&quot;&quot;</span>
+        <span class="n">iter_pool</span> <span class="o">=</span> <span class="n">pool</span><span class="p">()</span>
+
+        <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">mock_randint</span><span class="p">:</span>
+            <span class="n">sentence</span> <span class="o">=</span> <span class="n">lorem</span><span class="o">.</span><span class="n">_gen_sentence</span><span class="p">(</span><span class="n">pool</span><span class="o">=</span><span class="n">iter_pool</span><span class="p">,</span> <span class="n">comma</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="n">word_range</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">sentence</span><span class="p">,</span> <span class="s1">&#39;Lorem.&#39;</span><span class="p">)</span>
+
+        <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">mock_randint</span><span class="p">:</span>
+            <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">mock_choice_first</span><span class="p">:</span>
+                <span class="n">sentence</span> <span class="o">=</span> <span class="n">lorem</span><span class="o">.</span><span class="n">_gen_sentence</span><span class="p">(</span><span class="n">pool</span><span class="o">=</span><span class="n">iter_pool</span><span class="p">,</span> <span class="n">comma</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="n">word_range</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">sentence</span><span class="p">,</span> <span class="s1">&#39;Ipsum, lorem.&#39;</span><span class="p">)</span>
+
+        <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">mock_randint</span><span class="p">:</span>
+            <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">mock_choice_last</span><span class="p">:</span>
+                <span class="n">sentence</span> <span class="o">=</span> <span class="n">lorem</span><span class="o">.</span><span class="n">_gen_sentence</span><span class="p">(</span><span class="n">pool</span><span class="o">=</span><span class="n">iter_pool</span><span class="p">,</span> <span class="n">comma</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="n">word_range</span><span class="o">=</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">sentence</span><span class="p">,</span> <span class="s1">&#39;Ipsum lorem.&#39;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="TestLorem.test_gen_paragraph"><a class="viewcode-back" href="../test_lorem.html#test_lorem.TestLorem.test_gen_paragraph">[docs]</a>    <span class="k">def</span> <span class="nf">test_gen_paragraph</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Test :func:`lorem._gen_paragraph`.&quot;&quot;&quot;</span>
+        <span class="n">iter_pool</span> <span class="o">=</span> <span class="n">pool</span><span class="p">()</span>
+
+        <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">mock_randint</span><span class="p">:</span>
+            <span class="n">paragraph</span> <span class="o">=</span> <span class="n">lorem</span><span class="o">.</span><span class="n">_gen_paragraph</span><span class="p">(</span><span class="n">pool</span><span class="o">=</span><span class="n">iter_pool</span><span class="p">,</span> <span class="n">comma</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span>
+                                             <span class="n">word_range</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="n">sentence_range</span><span class="o">=</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">paragraph</span><span class="p">,</span> <span class="s1">&#39;Lorem. Ipsum.&#39;</span><span class="p">)</span>
+
+        <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">mock_randint</span><span class="p">:</span>
+            <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">mock_choice_first</span><span class="p">:</span>
+                <span class="n">paragraph</span> <span class="o">=</span> <span class="n">lorem</span><span class="o">.</span><span class="n">_gen_paragraph</span><span class="p">(</span><span class="n">pool</span><span class="o">=</span><span class="n">iter_pool</span><span class="p">,</span> <span class="n">comma</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span>
+                                                 <span class="n">word_range</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="n">sentence_range</span><span class="o">=</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">paragraph</span><span class="p">,</span> <span class="s1">&#39;Lorem, ipsum. Lorem, ipsum.&#39;</span><span class="p">)</span>
+
+        <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">mock_randint</span><span class="p">:</span>
+            <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">mock_choice_last</span><span class="p">:</span>
+                <span class="n">paragraph</span> <span class="o">=</span> <span class="n">lorem</span><span class="o">.</span><span class="n">_gen_paragraph</span><span class="p">(</span><span class="n">pool</span><span class="o">=</span><span class="n">iter_pool</span><span class="p">,</span> <span class="n">comma</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span>
+                                                 <span class="n">word_range</span><span class="o">=</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span> <span class="n">sentence_range</span><span class="o">=</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">paragraph</span><span class="p">,</span> <span class="s1">&#39;Lorem ipsum. Lorem ipsum. Lorem ipsum.&#39;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="TestLorem.test_word"><a class="viewcode-back" href="../test_lorem.html#test_lorem.TestLorem.test_word">[docs]</a>    <span class="k">def</span> <span class="nf">test_word</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Test :func:`lorem.word`.&quot;&quot;&quot;</span>
+        <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">mock_pool</span><span class="p">:</span>
+            <span class="n">iter_word</span> <span class="o">=</span> <span class="n">lorem</span><span class="o">.</span><span class="n">word</span><span class="p">(</span><span class="n">count</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+            <span class="n">list_word</span> <span class="o">=</span> <span class="n">islice</span><span class="p">(</span><span class="n">iter_word</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">list_word</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;lorem&#39;</span><span class="p">,</span> <span class="s1">&#39;ipsum&#39;</span><span class="p">,</span> <span class="s1">&#39;lorem&#39;</span><span class="p">])</span>
+
+        <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">mock_pool</span><span class="p">:</span>
+            <span class="n">iter_word</span> <span class="o">=</span> <span class="n">lorem</span><span class="o">.</span><span class="n">word</span><span class="p">(</span><span class="n">count</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">func</span><span class="o">=</span><span class="s1">&#39;capitalize&#39;</span><span class="p">)</span>
+            <span class="n">list_word</span> <span class="o">=</span> <span class="n">islice</span><span class="p">(</span><span class="n">iter_word</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">list_word</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;Lorem&#39;</span><span class="p">,</span> <span class="s1">&#39;Ipsum&#39;</span><span class="p">,</span> <span class="s1">&#39;Lorem&#39;</span><span class="p">])</span>
+
+        <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">mock_pool</span><span class="p">:</span>
+            <span class="n">iter_word</span> <span class="o">=</span> <span class="n">lorem</span><span class="o">.</span><span class="n">word</span><span class="p">(</span><span class="n">count</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">func</span><span class="o">=</span><span class="k">lambda</span> <span class="n">s</span><span class="p">:</span> <span class="n">s</span><span class="o">.</span><span class="n">upper</span><span class="p">())</span>
+            <span class="n">list_word</span> <span class="o">=</span> <span class="n">islice</span><span class="p">(</span><span class="n">iter_word</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">list_word</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;LOREM&#39;</span><span class="p">,</span> <span class="s1">&#39;IPSUM&#39;</span><span class="p">,</span> <span class="s1">&#39;LOREM&#39;</span><span class="p">])</span></div>
+
+<div class="viewcode-block" id="TestLorem.test_sentence"><a class="viewcode-back" href="../test_lorem.html#test_lorem.TestLorem.test_sentence">[docs]</a>    <span class="k">def</span> <span class="nf">test_sentence</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Test :func:`lorem.sentence`.&quot;&quot;&quot;</span>
+        <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">mock_pool</span><span class="p">:</span>
+            <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">mock_randint</span><span class="p">:</span>
+                <span class="n">iter_sentence</span> <span class="o">=</span> <span class="n">lorem</span><span class="o">.</span><span class="n">sentence</span><span class="p">()</span>
+                <span class="n">list_sentence</span> <span class="o">=</span> <span class="n">islice</span><span class="p">(</span><span class="n">iter_sentence</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">list_sentence</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;Lorem ipsum lorem ipsum.&#39;</span><span class="p">])</span></div>
+
+<div class="viewcode-block" id="TestLorem.test_paragraph"><a class="viewcode-back" href="../test_lorem.html#test_lorem.TestLorem.test_paragraph">[docs]</a>    <span class="k">def</span> <span class="nf">test_paragraph</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Test :func:`lorem.paragraph`.&quot;&quot;&quot;</span>
+        <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">mock_pool</span><span class="p">:</span>
+            <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">mock_randint</span><span class="p">:</span>
+                <span class="n">iter_paragraph</span> <span class="o">=</span> <span class="n">lorem</span><span class="o">.</span><span class="n">paragraph</span><span class="p">()</span>
+                <span class="n">list_paragraph</span> <span class="o">=</span> <span class="n">islice</span><span class="p">(</span><span class="n">iter_paragraph</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">list_paragraph</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;Lorem ipsum lorem ipsum. Lorem ipsum lorem ipsum. &#39;</span>
+                                          <span class="s1">&#39;Lorem ipsum lorem ipsum. Lorem ipsum lorem ipsum. &#39;</span>
+                                          <span class="s1">&#39;Lorem ipsum lorem ipsum.&#39;</span><span class="p">])</span></div>
+
+<div class="viewcode-block" id="TestLorem.test_get_word"><a class="viewcode-back" href="../test_lorem.html#test_lorem.TestLorem.test_get_word">[docs]</a>    <span class="k">def</span> <span class="nf">test_get_word</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Test :func:`lorem.get_word`.&quot;&quot;&quot;</span>
+        <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">mock_pool</span><span class="p">:</span>
+            <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">mock_randint</span><span class="p">:</span>
+                <span class="n">word</span> <span class="o">=</span> <span class="n">lorem</span><span class="o">.</span><span class="n">get_word</span><span class="p">(</span><span class="n">count</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">word</span><span class="p">,</span> <span class="s1">&#39;lorem ipsum lorem&#39;</span><span class="p">)</span>
+
+        <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">mock_pool</span><span class="p">:</span>
+            <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">mock_randint</span><span class="p">:</span>
+                <span class="n">word</span> <span class="o">=</span> <span class="n">lorem</span><span class="o">.</span><span class="n">get_word</span><span class="p">(</span><span class="n">count</span><span class="o">=</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">word</span><span class="p">,</span> <span class="s1">&#39;lorem ipsum lorem&#39;</span><span class="p">)</span>
+
+        <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">mock_pool</span><span class="p">:</span>
+            <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">mock_randint</span><span class="p">:</span>
+                <span class="n">word</span> <span class="o">=</span> <span class="n">lorem</span><span class="o">.</span><span class="n">get_word</span><span class="p">(</span><span class="n">count</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">func</span><span class="o">=</span><span class="s1">&#39;capitalize&#39;</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">word</span><span class="p">,</span> <span class="s1">&#39;Lorem Ipsum Lorem&#39;</span><span class="p">)</span>
+
+        <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">mock_pool</span><span class="p">:</span>
+            <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">mock_randint</span><span class="p">:</span>
+                <span class="n">word</span> <span class="o">=</span> <span class="n">lorem</span><span class="o">.</span><span class="n">get_word</span><span class="p">(</span><span class="n">count</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">func</span><span class="o">=</span><span class="k">lambda</span> <span class="n">s</span><span class="p">:</span> <span class="n">s</span><span class="o">.</span><span class="n">upper</span><span class="p">())</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">word</span><span class="p">,</span> <span class="s1">&#39;LOREM IPSUM LOREM&#39;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="TestLorem.test_get_sentence"><a class="viewcode-back" href="../test_lorem.html#test_lorem.TestLorem.test_get_sentence">[docs]</a>    <span class="k">def</span> <span class="nf">test_get_sentence</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Test :func:`lorem.get_sentence`.&quot;&quot;&quot;</span>
+        <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">mock_pool</span><span class="p">:</span>
+            <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">mock_randint</span><span class="p">:</span>
+                <span class="n">sentence</span> <span class="o">=</span> <span class="n">lorem</span><span class="o">.</span><span class="n">get_sentence</span><span class="p">(</span><span class="n">count</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">sentence</span><span class="p">,</span> <span class="s1">&#39;Lorem ipsum lorem ipsum.&#39;</span><span class="p">)</span>
+
+        <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">mock_pool</span><span class="p">:</span>
+            <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">mock_randint</span><span class="p">:</span>
+                <span class="n">sentence</span> <span class="o">=</span> <span class="n">lorem</span><span class="o">.</span><span class="n">get_sentence</span><span class="p">(</span><span class="n">count</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">sentence</span><span class="p">,</span> <span class="s1">&#39;Lorem ipsum lorem ipsum.&#39;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="TestLorem.test_get_paragraph"><a class="viewcode-back" href="../test_lorem.html#test_lorem.TestLorem.test_get_paragraph">[docs]</a>    <span class="k">def</span> <span class="nf">test_get_paragraph</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Test :func:`lorem.get_paragraph`.&quot;&quot;&quot;</span>
+        <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">mock_pool</span><span class="p">:</span>
+            <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">mock_randint</span><span class="p">:</span>
+                <span class="n">paragraph</span> <span class="o">=</span> <span class="n">lorem</span><span class="o">.</span><span class="n">get_paragraph</span><span class="p">(</span><span class="n">count</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">paragraph</span><span class="p">,</span> <span class="s1">&#39;Lorem ipsum lorem ipsum. Lorem ipsum lorem ipsum. &#39;</span>
+                                    <span class="s1">&#39;Lorem ipsum lorem ipsum. Lorem ipsum lorem ipsum. &#39;</span>
+                                    <span class="s1">&#39;Lorem ipsum lorem ipsum.&#39;</span><span class="p">)</span>
+
+        <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">mock_pool</span><span class="p">:</span>
+            <span class="k">with</span> <span class="bp">self</span><span class="o">.</span><span class="n">mock_randint</span><span class="p">:</span>
+                <span class="n">paragraph</span> <span class="o">=</span> <span class="n">lorem</span><span class="o">.</span><span class="n">get_paragraph</span><span class="p">(</span><span class="n">count</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">paragraph</span><span class="p">,</span> <span class="s1">&#39;Lorem ipsum lorem ipsum. Lorem ipsum lorem ipsum. &#39;</span>
+                                    <span class="s1">&#39;Lorem ipsum lorem ipsum. Lorem ipsum lorem ipsum. &#39;</span>
+                                    <span class="s1">&#39;Lorem ipsum lorem ipsum.&#39;</span><span class="p">)</span></div></div>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">unittest</span><span class="o">.</span><span class="n">main</span><span class="p">()</span>
+</pre></div>
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../index.html">lorem</a></h1>
+
+
+
+
+
+
+<p>
+<iframe src="https://ghbtns.com/github-btn.html?user=JarryShaw&repo=lorem&type=star&count=true&size=large&v=2"
+  allowtransparency="true" frameborder="0" scrolling="0" width="200px" height="35px"></iframe>
+</p>
+
+
+
+
+
+<h3>Navigation</h3>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../lorem.html">Lorem Ipsum Generator</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../test_lorem.html">Module Unittests</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+  <li><a href="index.html">Module code</a><ul>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script>$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2020, Jarry Shaw.
+      
+    </div>
+
+    
+    <a href="https://github.com/JarryShaw/lorem" class="github">
+        <img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png" alt="Fork me on GitHub"  class="github"/>
+    </a>
+    
+
+    
+  </body>
+</html>
