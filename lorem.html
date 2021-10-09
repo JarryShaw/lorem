@@ -54,10 +54,10 @@
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>count</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – Number of non-repeated random words.</p></li>
+<li><p><strong>count</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><em>int</em></a>) – Number of non-repeated random words.</p></li>
 <li><p><strong>func</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">Optional[Union[str,</span> <span class="pre">Callable[[str],</span> <span class="pre">str]]]</span></code>) – Filter function.
-It can be an attribute name of <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>, or a customised function that
-takes the original <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a> and returns the modified <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>.</p></li>
+It can be an attribute name of <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>, or a customised function that
+takes the original <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a> and returns the modified <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>.</p></li>
 <li><p><strong>args</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">Tuple[str]</span></code>) – Additional positional arguments for <code class="docutils literal notranslate"><span class="pre">func</span></code>.</p></li>
 <li><p><strong>kwargs</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">Dict[str,</span> <span class="pre">Any]</span></code>) – Additional keyword arguments for <code class="docutils literal notranslate"><span class="pre">func</span></code>.</p></li>
 </ul>
@@ -87,12 +87,12 @@ takes the original <a class="reference external" href="https://docs.python.org/3
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>count</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">Union[int,</span> <span class="pre">Tuple[int]]</span></code>) – Number of random words. To generate random
-number of words, supply a 2-element tuple of <a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">int</span></code></a>, the function will use
-<a class="reference external" href="https://docs.python.org/3/library/random.html#random.randint" title="(in Python v3.9)"><code class="xref py py-func docutils literal notranslate"><span class="pre">random.randint()</span></code></a> to choose a random integer as the number of random words.</p></li>
-<li><p><strong>sep</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – Seperator between each word.</p></li>
+number of words, supply a 2-element tuple of <a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">int</span></code></a>, the function will use
+<a class="reference external" href="https://docs.python.org/3/library/random.html#random.randint" title="(in Python v3.10)"><code class="xref py py-func docutils literal notranslate"><span class="pre">random.randint()</span></code></a> to choose a random integer as the number of random words.</p></li>
+<li><p><strong>sep</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a>) – Seperator between each word.</p></li>
 <li><p><strong>func</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">Optional[Union[str,</span> <span class="pre">Callable[[str],</span> <span class="pre">str]]]</span></code>) – Filter function. It can be
-a function name of <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>, or a customised function that takes the original
-<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a> and returns the modified <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>.</p></li>
+a function name of <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>, or a customised function that takes the original
+<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a> and returns the modified <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>.</p></li>
 <li><p><strong>args</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">Tuple[str]</span></code>) – Additional positional arguments for <code class="docutils literal notranslate"><span class="pre">func</span></code>.</p></li>
 <li><p><strong>kwargs</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">Dict[str,</span> <span class="pre">Any]</span></code>) – Additional keyword arguments for <code class="docutils literal notranslate"><span class="pre">func</span></code>.</p></li>
 </ul>
@@ -101,7 +101,7 @@ a function name of <a class="reference external" href="https://docs.python.org/3
 <dd class="field-even"><p>Random words.</p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a></p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a></p>
 </dd>
 </dl>
 </dd></dl>
@@ -120,11 +120,11 @@ a function name of <a class="reference external" href="https://docs.python.org/3
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>count</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – Number of non-repeated random sentences.</p></li>
+<li><p><strong>count</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><em>int</em></a>) – Number of non-repeated random sentences.</p></li>
 <li><p><strong>comma</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">Tuple[int]</span></code>) – Random range for number of commas. The function will
-use <a class="reference external" href="https://docs.python.org/3/library/random.html#random.randint" title="(in Python v3.9)"><code class="xref py py-func docutils literal notranslate"><span class="pre">random.randint()</span></code></a> to choose a random integer as the number of commas.</p></li>
+use <a class="reference external" href="https://docs.python.org/3/library/random.html#random.randint" title="(in Python v3.10)"><code class="xref py py-func docutils literal notranslate"><span class="pre">random.randint()</span></code></a> to choose a random integer as the number of commas.</p></li>
 <li><p><strong>word_range</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">Tuple[int]</span></code>) – Random range for number of words in each sentence.
-The function will use <a class="reference external" href="https://docs.python.org/3/library/random.html#random.randint" title="(in Python v3.9)"><code class="xref py py-func docutils literal notranslate"><span class="pre">random.randint()</span></code></a> to choose a random integer as the
+The function will use <a class="reference external" href="https://docs.python.org/3/library/random.html#random.randint" title="(in Python v3.10)"><code class="xref py py-func docutils literal notranslate"><span class="pre">random.randint()</span></code></a> to choose a random integer as the
 number of words.</p></li>
 </ul>
 </dd>
@@ -149,14 +149,14 @@ number of words.</p></li>
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>count</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">Union[int,</span> <span class="pre">Tuple[int]]</span></code>) – Number of random sentences. To generate
-random number of sentences, supply a 2-element tuple of <a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">int</span></code></a>, the
-function will use <a class="reference external" href="https://docs.python.org/3/library/random.html#random.randint" title="(in Python v3.9)"><code class="xref py py-func docutils literal notranslate"><span class="pre">random.randint()</span></code></a> to choose a random integer as the number
+random number of sentences, supply a 2-element tuple of <a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">int</span></code></a>, the
+function will use <a class="reference external" href="https://docs.python.org/3/library/random.html#random.randint" title="(in Python v3.10)"><code class="xref py py-func docutils literal notranslate"><span class="pre">random.randint()</span></code></a> to choose a random integer as the number
 of random sentences.</p></li>
-<li><p><strong>sep</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – Seperator between each sentence.</p></li>
+<li><p><strong>sep</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a>) – Seperator between each sentence.</p></li>
 <li><p><strong>comma</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">Tuple[int]</span></code>) – Random range for number of commas. The function will use
-<a class="reference external" href="https://docs.python.org/3/library/random.html#random.randint" title="(in Python v3.9)"><code class="xref py py-func docutils literal notranslate"><span class="pre">random.randint()</span></code></a> to choose a random integer as the number of commas.</p></li>
+<a class="reference external" href="https://docs.python.org/3/library/random.html#random.randint" title="(in Python v3.10)"><code class="xref py py-func docutils literal notranslate"><span class="pre">random.randint()</span></code></a> to choose a random integer as the number of commas.</p></li>
 <li><p><strong>word_range</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">Tuple[int]</span></code>) – Random range for number of words in each sentence.
-The function will use <a class="reference external" href="https://docs.python.org/3/library/random.html#random.randint" title="(in Python v3.9)"><code class="xref py py-func docutils literal notranslate"><span class="pre">random.randint()</span></code></a> to choose a random integer as the
+The function will use <a class="reference external" href="https://docs.python.org/3/library/random.html#random.randint" title="(in Python v3.10)"><code class="xref py py-func docutils literal notranslate"><span class="pre">random.randint()</span></code></a> to choose a random integer as the
 number of words.</p></li>
 </ul>
 </dd>
@@ -164,7 +164,7 @@ number of words.</p></li>
 <dd class="field-even"><p>Random sentences.</p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a></p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a></p>
 </dd>
 </dl>
 </dd></dl>
@@ -189,15 +189,15 @@ number of words.</p></li>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>count</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – Number of non-repeated random paragraphs.</p></li>
+<li><p><strong>count</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><em>int</em></a>) – Number of non-repeated random paragraphs.</p></li>
 <li><p><strong>comma</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">Tuple[int]</span></code>) – Random range for number of commas. The function
-will use <a class="reference external" href="https://docs.python.org/3/library/random.html#random.randint" title="(in Python v3.9)"><code class="xref py py-func docutils literal notranslate"><span class="pre">random.randint()</span></code></a> to choose a random integer as the number
+will use <a class="reference external" href="https://docs.python.org/3/library/random.html#random.randint" title="(in Python v3.10)"><code class="xref py py-func docutils literal notranslate"><span class="pre">random.randint()</span></code></a> to choose a random integer as the number
 of commas.</p></li>
 <li><p><strong>word_range</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">Tuple[int]</span></code>) – Random range for number of words in each sentence.
-The function will use <a class="reference external" href="https://docs.python.org/3/library/random.html#random.randint" title="(in Python v3.9)"><code class="xref py py-func docutils literal notranslate"><span class="pre">random.randint()</span></code></a> to choose a random integer as the
+The function will use <a class="reference external" href="https://docs.python.org/3/library/random.html#random.randint" title="(in Python v3.10)"><code class="xref py py-func docutils literal notranslate"><span class="pre">random.randint()</span></code></a> to choose a random integer as the
 number of words.</p></li>
 <li><p><strong>sentence_range</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">Tuple[int]</span></code>) – Random range for number of sentences in each
-paragraph. The function will use <a class="reference external" href="https://docs.python.org/3/library/random.html#random.randint" title="(in Python v3.9)"><code class="xref py py-func docutils literal notranslate"><span class="pre">random.randint()</span></code></a> to choose a random
+paragraph. The function will use <a class="reference external" href="https://docs.python.org/3/library/random.html#random.randint" title="(in Python v3.10)"><code class="xref py py-func docutils literal notranslate"><span class="pre">random.randint()</span></code></a> to choose a random
 integer as the number of sentences.</p></li>
 </ul>
 </dd>
@@ -229,18 +229,18 @@ integer as the number of sentences.</p></li>
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>count</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">Union[int,</span> <span class="pre">Tuple[int]]</span></code>) – Number of random paragraphs. To generate
-random number of paragraphs, supply a 2-element tuple of <a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">int</span></code></a>, the function
-will use <a class="reference external" href="https://docs.python.org/3/library/random.html#random.randint" title="(in Python v3.9)"><code class="xref py py-func docutils literal notranslate"><span class="pre">random.randint()</span></code></a> to choose a random integer as the number of random
+random number of paragraphs, supply a 2-element tuple of <a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">int</span></code></a>, the function
+will use <a class="reference external" href="https://docs.python.org/3/library/random.html#random.randint" title="(in Python v3.10)"><code class="xref py py-func docutils literal notranslate"><span class="pre">random.randint()</span></code></a> to choose a random integer as the number of random
 paragraphs.</p></li>
-<li><p><strong>sep</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><em>str</em></a>) – Seperator between each paragraph. The default value is OS-dependent as
+<li><p><strong>sep</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a>) – Seperator between each paragraph. The default value is OS-dependent as
 <code class="xref py py-data docutils literal notranslate"><span class="pre">os.linsep</span></code> (<code class="docutils literal notranslate"><span class="pre">\r\n</span></code> on Windows, <code class="docutils literal notranslate"><span class="pre">\n</span></code> on POSIX).</p></li>
 <li><p><strong>comma</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">Tuple[int]</span></code>) – Random range for number of commas. The function will use
-<a class="reference external" href="https://docs.python.org/3/library/random.html#random.randint" title="(in Python v3.9)"><code class="xref py py-func docutils literal notranslate"><span class="pre">random.randint()</span></code></a> to choose a random integer as the number of commas.</p></li>
+<a class="reference external" href="https://docs.python.org/3/library/random.html#random.randint" title="(in Python v3.10)"><code class="xref py py-func docutils literal notranslate"><span class="pre">random.randint()</span></code></a> to choose a random integer as the number of commas.</p></li>
 <li><p><strong>word_range</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">Tuple[int]</span></code>) – Random range for number of words in each sentence.
-The function will use <a class="reference external" href="https://docs.python.org/3/library/random.html#random.randint" title="(in Python v3.9)"><code class="xref py py-func docutils literal notranslate"><span class="pre">random.randint()</span></code></a> to choose a random integer as the
+The function will use <a class="reference external" href="https://docs.python.org/3/library/random.html#random.randint" title="(in Python v3.10)"><code class="xref py py-func docutils literal notranslate"><span class="pre">random.randint()</span></code></a> to choose a random integer as the
 number of words.</p></li>
 <li><p><strong>sentence_range</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">Tuple[int]</span></code>) – Random range for number of sentences in each
-paragraph. The function will use <a class="reference external" href="https://docs.python.org/3/library/random.html#random.randint" title="(in Python v3.9)"><code class="xref py py-func docutils literal notranslate"><span class="pre">random.randint()</span></code></a> to choose a random integer
+paragraph. The function will use <a class="reference external" href="https://docs.python.org/3/library/random.html#random.randint" title="(in Python v3.10)"><code class="xref py py-func docutils literal notranslate"><span class="pre">random.randint()</span></code></a> to choose a random integer
 as the number of sentences.</p></li>
 </ul>
 </dd>
@@ -248,7 +248,7 @@ as the number of sentences.</p></li>
 <dd class="field-even"><p>Random paragraphs.</p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a></p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a></p>
 </dd>
 </dl>
 </dd></dl>
@@ -293,7 +293,7 @@ as the number of sentences.</p></li>
 <dd><p>Generate word pool.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>dupe</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.9)"><em>int</em></a>) – Duplication to generate the word pool.</p>
+<dd class="field-odd"><p><strong>dupe</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><em>int</em></a>) – Duplication to generate the word pool.</p>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p>An infinite loop word pool.</p>
@@ -313,8 +313,8 @@ as the number of sentences.</p></li>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>pool</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">Iterator[str]</span></code>) – Word pool, returned by <a class="reference internal" href="#lorem._gen_pool" title="lorem._gen_pool"><code class="xref py py-func docutils literal notranslate"><span class="pre">_gen_pool()</span></code></a>.</p></li>
 <li><p><strong>func</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">Optional[Union[str,</span> <span class="pre">Callable[[str],</span> <span class="pre">str]]]</span></code>) – Filter function. It can be an
-attribute name of <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>, or a customised function that takes the original <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>
-and returns the modified <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>.</p></li>
+attribute name of <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>, or a customised function that takes the original <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>
+and returns the modified <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a>.</p></li>
 <li><p><strong>args</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">Tuple[str]</span></code>) – Additional positional arguments for <code class="docutils literal notranslate"><span class="pre">func</span></code>.</p></li>
 <li><p><strong>kwargs</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">Dict[str,</span> <span class="pre">Any]</span></code>) – Additional keyword arguments for <code class="docutils literal notranslate"><span class="pre">func</span></code>.</p></li>
 </ul>
@@ -323,7 +323,7 @@ and returns the modified <a class="reference external" href="https://docs.python
 <dd class="field-even"><p>Random word.</p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a></p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a></p>
 </dd>
 </dl>
 </dd></dl>
@@ -337,9 +337,9 @@ and returns the modified <a class="reference external" href="https://docs.python
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>pool</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">Iterator[str]</span></code>) – Word pool, returned by <a class="reference internal" href="#lorem._gen_pool" title="lorem._gen_pool"><code class="xref py py-func docutils literal notranslate"><span class="pre">_gen_pool()</span></code></a>.</p></li>
 <li><p><strong>comma</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">Tuple[int]</span></code>) – Random range for number of commas. The function will use
-<a class="reference external" href="https://docs.python.org/3/library/random.html#random.randint" title="(in Python v3.9)"><code class="xref py py-func docutils literal notranslate"><span class="pre">random.randint()</span></code></a> to choose a random integer as the number of commas.</p></li>
+<a class="reference external" href="https://docs.python.org/3/library/random.html#random.randint" title="(in Python v3.10)"><code class="xref py py-func docutils literal notranslate"><span class="pre">random.randint()</span></code></a> to choose a random integer as the number of commas.</p></li>
 <li><p><strong>word_range</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">Tuple[int]</span></code>) – Random range for number of words in each sentence.
-The function will use <a class="reference external" href="https://docs.python.org/3/library/random.html#random.randint" title="(in Python v3.9)"><code class="xref py py-func docutils literal notranslate"><span class="pre">random.randint()</span></code></a> to choose a random integer as the
+The function will use <a class="reference external" href="https://docs.python.org/3/library/random.html#random.randint" title="(in Python v3.10)"><code class="xref py py-func docutils literal notranslate"><span class="pre">random.randint()</span></code></a> to choose a random integer as the
 number of words.</p></li>
 </ul>
 </dd>
@@ -347,7 +347,7 @@ number of words.</p></li>
 <dd class="field-even"><p>Random sentence.</p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a></p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a></p>
 </dd>
 </dl>
 </dd></dl>
@@ -361,12 +361,12 @@ number of words.</p></li>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>pool</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">Iterator[str]</span></code>) – Word pool, returned by <a class="reference internal" href="#lorem._gen_pool" title="lorem._gen_pool"><code class="xref py py-func docutils literal notranslate"><span class="pre">_gen_pool()</span></code></a>.</p></li>
 <li><p><strong>comma</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">Tuple[int]</span></code>) – Random range for number of commas. The function will use
-<a class="reference external" href="https://docs.python.org/3/library/random.html#random.randint" title="(in Python v3.9)"><code class="xref py py-func docutils literal notranslate"><span class="pre">random.randint()</span></code></a> to choose a random integer as the number of commas.</p></li>
+<a class="reference external" href="https://docs.python.org/3/library/random.html#random.randint" title="(in Python v3.10)"><code class="xref py py-func docutils literal notranslate"><span class="pre">random.randint()</span></code></a> to choose a random integer as the number of commas.</p></li>
 <li><p><strong>word_range</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">Tuple[int]</span></code>) – Random range for number of words in each sentence.
-The function will use <a class="reference external" href="https://docs.python.org/3/library/random.html#random.randint" title="(in Python v3.9)"><code class="xref py py-func docutils literal notranslate"><span class="pre">random.randint()</span></code></a> to choose a random integer as the
+The function will use <a class="reference external" href="https://docs.python.org/3/library/random.html#random.randint" title="(in Python v3.10)"><code class="xref py py-func docutils literal notranslate"><span class="pre">random.randint()</span></code></a> to choose a random integer as the
 number of words.</p></li>
 <li><p><strong>sentence_range</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">Tuple[int]</span></code>) – Random range for number of sentences in each
-paragraph. The function will use <a class="reference external" href="https://docs.python.org/3/library/random.html#random.randint" title="(in Python v3.9)"><code class="xref py py-func docutils literal notranslate"><span class="pre">random.randint()</span></code></a> to choose a random integer
+paragraph. The function will use <a class="reference external" href="https://docs.python.org/3/library/random.html#random.randint" title="(in Python v3.10)"><code class="xref py py-func docutils literal notranslate"><span class="pre">random.randint()</span></code></a> to choose a random integer
 as the number of sentences.</p></li>
 </ul>
 </dd>
@@ -374,7 +374,7 @@ as the number of sentences.</p></li>
 <dd class="field-even"><p>Random paragraph.</p>
 </dd>
 <dt class="field-odd">Return type</dt>
-<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.9)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a></p>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a></p>
 </dd>
 </dl>
 </dd></dl>
