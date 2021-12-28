@@ -5,7 +5,7 @@
 [![PyPI - Format](https://img.shields.io/pypi/format/python-lorem.svg)](https://pypi.org/project/python-lorem)
 [![PyPI - Python Version](https://img.shields.io/pypi/pyversions/python-lorem.svg)](https://pypi.org/project/python-lorem)
 
-[![Travis CI - Status](https://travis-ci.com/JarryShaw/lorem.svg)](https://travis-ci.com/JarryShaw/lorem)
+<!-- [![Travis CI - Status](https://travis-ci.com/JarryShaw/lorem.svg)](https://travis-ci.com/JarryShaw/lorem) -->
 [![Codecov - Coverage](https://codecov.io/gh/JarryShaw/lorem/branch/master/graph/badge.svg)](https://codecov.io/gh/JarryShaw/lorem)
 [![License](https://img.shields.io/github/license/jarryshaw/lorem.svg)](https://opensource.org/licenses/BSD-3-Clause)
 [![LICENSE](https://img.shields.io/badge/license-Anti%20996-blue.svg)](https://github.com/996icu/996.ICU/blob/master/LICENSE)
