@@ -1,10 +1,10 @@
 
 <!DOCTYPE html>
 
-<html>
+<html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
     <title>Lorem Ipsum Generator &#8212; lorem 1.1.1 documentation</title>
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
@@ -12,6 +12,7 @@
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
+    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="_static/doctools.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -34,11 +35,11 @@
           <div class="body" role="main">
             
   <section id="lorem-ipsum-generator">
-<h1>Lorem Ipsum Generator<a class="headerlink" href="#lorem-ipsum-generator" title="Permalink to this headline">¶</a></h1>
+<h1>Lorem Ipsum Generator<a class="headerlink" href="#lorem-ipsum-generator" title="Permalink to this heading">¶</a></h1>
 <section id="module-contents">
-<h2>Module contents<a class="headerlink" href="#module-contents" title="Permalink to this headline">¶</a></h2>
+<h2>Module contents<a class="headerlink" href="#module-contents" title="Permalink to this heading">¶</a></h2>
 <section id="get-random-words">
-<h3>Get Random Words<a class="headerlink" href="#get-random-words" title="Permalink to this headline">¶</a></h3>
+<h3>Get Random Words<a class="headerlink" href="#get-random-words" title="Permalink to this heading">¶</a></h3>
 <dl class="py function">
 <dt class="sig sig-object py" id="lorem.word">
 <span class="sig-prename descclassname"><span class="pre">lorem.</span></span><span class="sig-name descname"><span class="pre">word</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">count</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">func</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">args</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">()</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kwargs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/lorem.html#word"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lorem.word" title="Permalink to this definition">¶</a></dt>
@@ -52,7 +53,7 @@
 </pre></div>
 </div>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>count</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><em>int</em></a>) – Number of non-repeated random words.</p></li>
 <li><p><strong>func</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">Optional[Union[str,</span> <span class="pre">Callable[[str],</span> <span class="pre">str]]]</span></code>) – Filter function.
@@ -62,10 +63,10 @@ takes the original <a class="reference external" href="https://docs.python.org/3
 <li><p><strong>kwargs</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">Dict[str,</span> <span class="pre">Any]</span></code>) – Additional keyword arguments for <code class="docutils literal notranslate"><span class="pre">func</span></code>.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>Indefinite random words generator.</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">Iterator[str]</span></code></p>
 </dd>
 </dl>
@@ -84,7 +85,7 @@ takes the original <a class="reference external" href="https://docs.python.org/3
 </pre></div>
 </div>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>count</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">Union[int,</span> <span class="pre">Tuple[int]]</span></code>) – Number of random words. To generate random
 number of words, supply a 2-element tuple of <a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">int</span></code></a>, the function will use
@@ -97,10 +98,10 @@ a function name of <a class="reference external" href="https://docs.python.org/3
 <li><p><strong>kwargs</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">Dict[str,</span> <span class="pre">Any]</span></code>) – Additional keyword arguments for <code class="docutils literal notranslate"><span class="pre">func</span></code>.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>Random words.</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a></p>
 </dd>
 </dl>
@@ -108,7 +109,7 @@ a function name of <a class="reference external" href="https://docs.python.org/3
 
 </section>
 <section id="get-random-sentences">
-<h3>Get Random Sentences<a class="headerlink" href="#get-random-sentences" title="Permalink to this headline">¶</a></h3>
+<h3>Get Random Sentences<a class="headerlink" href="#get-random-sentences" title="Permalink to this heading">¶</a></h3>
 <dl class="py function">
 <dt class="sig sig-object py" id="lorem.sentence">
 <span class="sig-prename descclassname"><span class="pre">lorem.</span></span><span class="sig-name descname"><span class="pre">sentence</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">count</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">comma</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(0,</span> <span class="pre">2)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">word_range</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(4,</span> <span class="pre">8)</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/lorem.html#sentence"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lorem.sentence" title="Permalink to this definition">¶</a></dt>
@@ -118,7 +119,7 @@ a function name of <a class="reference external" href="https://docs.python.org/3
 </pre></div>
 </div>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>count</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><em>int</em></a>) – Number of non-repeated random sentences.</p></li>
 <li><p><strong>comma</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">Tuple[int]</span></code>) – Random range for number of commas. The function will
@@ -128,10 +129,10 @@ The function will use <a class="reference external" href="https://docs.python.or
 number of words.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>Indefinite random sentence generator.</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">Iterator[str]</span></code></p>
 </dd>
 </dl>
@@ -146,7 +147,7 @@ number of words.</p></li>
 </pre></div>
 </div>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>count</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">Union[int,</span> <span class="pre">Tuple[int]]</span></code>) – Number of random sentences. To generate
 random number of sentences, supply a 2-element tuple of <a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">int</span></code></a>, the
@@ -160,10 +161,10 @@ The function will use <a class="reference external" href="https://docs.python.or
 number of words.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>Random sentences.</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a></p>
 </dd>
 </dl>
@@ -171,7 +172,7 @@ number of words.</p></li>
 
 </section>
 <section id="get-random-paragraphs">
-<h3>Get Random Paragraphs<a class="headerlink" href="#get-random-paragraphs" title="Permalink to this headline">¶</a></h3>
+<h3>Get Random Paragraphs<a class="headerlink" href="#get-random-paragraphs" title="Permalink to this heading">¶</a></h3>
 <dl class="py function">
 <dt class="sig sig-object py" id="lorem.paragraph">
 <span class="sig-prename descclassname"><span class="pre">lorem.</span></span><span class="sig-name descname"><span class="pre">paragraph</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">count</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">comma</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(0,</span> <span class="pre">2)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">word_range</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(4,</span> <span class="pre">8)</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sentence_range</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">(5,</span> <span class="pre">10)</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/lorem.html#paragraph"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lorem.paragraph" title="Permalink to this definition">¶</a></dt>
@@ -187,7 +188,7 @@ number of words.</p></li>
 </pre></div>
 </div>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>count</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><em>int</em></a>) – Number of non-repeated random paragraphs.</p></li>
 <li><p><strong>comma</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">Tuple[int]</span></code>) – Random range for number of commas. The function
@@ -201,10 +202,10 @@ paragraph. The function will use <a class="reference external" href="https://doc
 integer as the number of sentences.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>Random paragraph generator.</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">Iterator[str]</span></code></p>
 </dd>
 </dl>
@@ -226,7 +227,7 @@ integer as the number of sentences.</p></li>
 </pre></div>
 </div>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>count</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">Union[int,</span> <span class="pre">Tuple[int]]</span></code>) – Number of random paragraphs. To generate
 random number of paragraphs, supply a 2-element tuple of <a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">int</span></code></a>, the function
@@ -244,10 +245,10 @@ paragraph. The function will use <a class="reference external" href="https://doc
 as the number of sentences.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>Random paragraphs.</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a></p>
 </dd>
 </dl>
@@ -255,13 +256,13 @@ as the number of sentences.</p></li>
 
 </section>
 <section id="customise-word-pool">
-<h3>Customise Word Pool<a class="headerlink" href="#customise-word-pool" title="Permalink to this headline">¶</a></h3>
+<h3>Customise Word Pool<a class="headerlink" href="#customise-word-pool" title="Permalink to this heading">¶</a></h3>
 <dl class="py function">
 <dt class="sig sig-object py" id="lorem.set_pool">
 <span class="sig-prename descclassname"><span class="pre">lorem.</span></span><span class="sig-name descname"><span class="pre">set_pool</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pool</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/lorem.html#set_pool"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lorem.set_pool" title="Permalink to this definition">¶</a></dt>
 <dd><p>Customise random word pool.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>pool</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">Iterable[str]</span></code>) – List of words to be used as random word pool.</p>
 </dd>
 </dl>
@@ -270,7 +271,7 @@ as the number of sentences.</p></li>
 </section>
 </section>
 <section id="internal-utilities">
-<h2>Internal utilities<a class="headerlink" href="#internal-utilities" title="Permalink to this headline">¶</a></h2>
+<h2>Internal utilities<a class="headerlink" href="#internal-utilities" title="Permalink to this heading">¶</a></h2>
 <dl class="py data">
 <dt class="sig sig-object py" id="lorem._TEXT">
 <span class="sig-prename descclassname"><span class="pre">lorem.</span></span><span class="sig-name descname"><span class="pre">_TEXT</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">('ad',</span> <span class="pre">'adipiscing',</span> <span class="pre">'aliqua',</span> <span class="pre">'aliquip',</span> <span class="pre">'amet',</span> <span class="pre">'anim',</span> <span class="pre">'aute',</span> <span class="pre">'cillum',</span> <span class="pre">'commodo',</span> <span class="pre">'consectetur',</span> <span class="pre">'consequat',</span> <span class="pre">'culpa',</span> <span class="pre">'cupidatat',</span> <span class="pre">'deserunt',</span> <span class="pre">'do',</span> <span class="pre">'dolor',</span> <span class="pre">'dolore',</span> <span class="pre">'duis',</span> <span class="pre">'ea',</span> <span class="pre">'eiusmod',</span> <span class="pre">'elit',</span> <span class="pre">'enim',</span> <span class="pre">'esse',</span> <span class="pre">'est',</span> <span class="pre">'et',</span> <span class="pre">'eu',</span> <span class="pre">'ex',</span> <span class="pre">'excepteur',</span> <span class="pre">'exercitation',</span> <span class="pre">'fugiat',</span> <span class="pre">'id',</span> <span class="pre">'in',</span> <span class="pre">'incididunt',</span> <span class="pre">'ipsum',</span> <span class="pre">'irure',</span> <span class="pre">'labore',</span> <span class="pre">'laboris',</span> <span class="pre">'laborum',</span> <span class="pre">'lorem',</span> <span class="pre">'magna',</span> <span class="pre">'minim',</span> <span class="pre">'mollit',</span> <span class="pre">'nisi',</span> <span class="pre">'non',</span> <span class="pre">'nostrud',</span> <span class="pre">'nulla',</span> <span class="pre">'occaecat',</span> <span class="pre">'officia',</span> <span class="pre">'pariatur',</span> <span class="pre">'proident',</span> <span class="pre">'qui',</span> <span class="pre">'quis',</span> <span class="pre">'reprehenderit',</span> <span class="pre">'sed',</span> <span class="pre">'sint',</span> <span class="pre">'sit',</span> <span class="pre">'sunt',</span> <span class="pre">'tempor',</span> <span class="pre">'ullamco',</span> <span class="pre">'ut',</span> <span class="pre">'velit',</span> <span class="pre">'veniam',</span> <span class="pre">'voluptate')</span></em><a class="headerlink" href="#lorem._TEXT" title="Permalink to this definition">¶</a></dt>
@@ -292,13 +293,13 @@ as the number of sentences.</p></li>
 <span class="sig-prename descclassname"><span class="pre">lorem.</span></span><span class="sig-name descname"><span class="pre">_gen_pool</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dupe</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/lorem.html#_gen_pool"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lorem._gen_pool" title="Permalink to this definition">¶</a></dt>
 <dd><p>Generate word pool.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>dupe</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.10)"><em>int</em></a>) – Duplication to generate the word pool.</p>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>An infinite loop word pool.</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">Iterator[str]</span></code></p>
 </dd>
 </dl>
@@ -309,7 +310,7 @@ as the number of sentences.</p></li>
 <span class="sig-prename descclassname"><span class="pre">lorem.</span></span><span class="sig-name descname"><span class="pre">_gen_word</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pool</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">func</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">args</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">()</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kwargs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">{}</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/lorem.html#_gen_word"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lorem._gen_word" title="Permalink to this definition">¶</a></dt>
 <dd><p>Generate random word.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>pool</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">Iterator[str]</span></code>) – Word pool, returned by <a class="reference internal" href="#lorem._gen_pool" title="lorem._gen_pool"><code class="xref py py-func docutils literal notranslate"><span class="pre">_gen_pool()</span></code></a>.</p></li>
 <li><p><strong>func</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">Optional[Union[str,</span> <span class="pre">Callable[[str],</span> <span class="pre">str]]]</span></code>) – Filter function. It can be an
@@ -319,10 +320,10 @@ and returns the modified <a class="reference external" href="https://docs.python
 <li><p><strong>kwargs</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">Dict[str,</span> <span class="pre">Any]</span></code>) – Additional keyword arguments for <code class="docutils literal notranslate"><span class="pre">func</span></code>.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>Random word.</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a></p>
 </dd>
 </dl>
@@ -333,7 +334,7 @@ and returns the modified <a class="reference external" href="https://docs.python
 <span class="sig-prename descclassname"><span class="pre">lorem.</span></span><span class="sig-name descname"><span class="pre">_gen_sentence</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pool</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">comma</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">word_range</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/lorem.html#_gen_sentence"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lorem._gen_sentence" title="Permalink to this definition">¶</a></dt>
 <dd><p>Generate random sentence.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>pool</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">Iterator[str]</span></code>) – Word pool, returned by <a class="reference internal" href="#lorem._gen_pool" title="lorem._gen_pool"><code class="xref py py-func docutils literal notranslate"><span class="pre">_gen_pool()</span></code></a>.</p></li>
 <li><p><strong>comma</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">Tuple[int]</span></code>) – Random range for number of commas. The function will use
@@ -343,10 +344,10 @@ The function will use <a class="reference external" href="https://docs.python.or
 number of words.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>Random sentence.</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a></p>
 </dd>
 </dl>
@@ -357,7 +358,7 @@ number of words.</p></li>
 <span class="sig-prename descclassname"><span class="pre">lorem.</span></span><span class="sig-name descname"><span class="pre">_gen_paragraph</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pool</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">comma</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">word_range</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">sentence_range</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/lorem.html#_gen_paragraph"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#lorem._gen_paragraph" title="Permalink to this definition">¶</a></dt>
 <dd><p>Generate random paragraph.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>pool</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">Iterator[str]</span></code>) – Word pool, returned by <a class="reference internal" href="#lorem._gen_pool" title="lorem._gen_pool"><code class="xref py py-func docutils literal notranslate"><span class="pre">_gen_pool()</span></code></a>.</p></li>
 <li><p><strong>comma</strong> (<code class="xref py py-obj docutils literal notranslate"><span class="pre">Tuple[int]</span></code>) – Random range for number of commas. The function will use
@@ -370,10 +371,10 @@ paragraph. The function will use <a class="reference external" href="https://doc
 as the number of sentences.</p></li>
 </ul>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><p>Random paragraph.</p>
 </dd>
-<dt class="field-odd">Return type</dt>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">str</span></code></a></p>
 </dd>
 </dl>
@@ -439,7 +440,7 @@ as the number of sentences.</p></li>
     </form>
     </div>
 </div>
-<script>$('#searchbox').show(0);</script>
+<script>document.getElementById('searchbox').style.display = "block"</script>
 
 
 
