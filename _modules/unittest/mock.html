@@ -70,6 +70,10 @@
 <span class="kn">from</span> <span class="nn">functools</span> <span class="kn">import</span> <span class="n">wraps</span><span class="p">,</span> <span class="n">partial</span>
 
 
+<span class="k">class</span> <span class="nc">InvalidSpecError</span><span class="p">(</span><span class="ne">Exception</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Indicates that an invalid value was used as a mock spec.&quot;&quot;&quot;</span>
+
+
 <span class="n">_builtins</span> <span class="o">=</span> <span class="p">{</span><span class="n">name</span> <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="nb">dir</span><span class="p">(</span><span class="n">builtins</span><span class="p">)</span> <span class="k">if</span> <span class="ow">not</span> <span class="n">name</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;_&#39;</span><span class="p">)}</span>
 
 <span class="n">FILTER_DIR</span> <span class="o">=</span> <span class="kc">True</span>
@@ -665,9 +669,10 @@
         <span class="k">elif</span> <span class="n">_is_magic</span><span class="p">(</span><span class="n">name</span><span class="p">):</span>
             <span class="k">raise</span> <span class="ne">AttributeError</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_mock_unsafe</span><span class="p">:</span>
-            <span class="k">if</span> <span class="n">name</span><span class="o">.</span><span class="n">startswith</span><span class="p">((</span><span class="s1">&#39;assert&#39;</span><span class="p">,</span> <span class="s1">&#39;assret&#39;</span><span class="p">)):</span>
-                <span class="k">raise</span> <span class="ne">AttributeError</span><span class="p">(</span><span class="s2">&quot;Attributes cannot start with &#39;assert&#39; &quot;</span>
-                                     <span class="s2">&quot;or &#39;assret&#39;&quot;</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">name</span><span class="o">.</span><span class="n">startswith</span><span class="p">((</span><span class="s1">&#39;assert&#39;</span><span class="p">,</span> <span class="s1">&#39;assret&#39;</span><span class="p">,</span> <span class="s1">&#39;asert&#39;</span><span class="p">,</span> <span class="s1">&#39;aseert&#39;</span><span class="p">,</span> <span class="s1">&#39;assrt&#39;</span><span class="p">)):</span>
+                <span class="k">raise</span> <span class="ne">AttributeError</span><span class="p">(</span>
+                    <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">name</span><span class="si">!r}</span><span class="s2"> is not a valid assertion. Use a spec &quot;</span>
+                    <span class="sa">f</span><span class="s2">&quot;for the mock if </span><span class="si">{</span><span class="n">name</span><span class="si">!r}</span><span class="s2"> is meant to be an attribute.&quot;</span><span class="p">)</span>
 
         <span class="n">result</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_mock_children</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">result</span> <span class="ow">is</span> <span class="n">_deleted</span><span class="p">:</span>
@@ -686,10 +691,17 @@
             <span class="bp">self</span><span class="o">.</span><span class="n">_mock_children</span><span class="p">[</span><span class="n">name</span><span class="p">]</span>  <span class="o">=</span> <span class="n">result</span>
 
         <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">result</span><span class="p">,</span> <span class="n">_SpecState</span><span class="p">):</span>
-            <span class="n">result</span> <span class="o">=</span> <span class="n">create_autospec</span><span class="p">(</span>
-                <span class="n">result</span><span class="o">.</span><span class="n">spec</span><span class="p">,</span> <span class="n">result</span><span class="o">.</span><span class="n">spec_set</span><span class="p">,</span> <span class="n">result</span><span class="o">.</span><span class="n">instance</span><span class="p">,</span>
-                <span class="n">result</span><span class="o">.</span><span class="n">parent</span><span class="p">,</span> <span class="n">result</span><span class="o">.</span><span class="n">name</span>
-            <span class="p">)</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">result</span> <span class="o">=</span> <span class="n">create_autospec</span><span class="p">(</span>
+                    <span class="n">result</span><span class="o">.</span><span class="n">spec</span><span class="p">,</span> <span class="n">result</span><span class="o">.</span><span class="n">spec_set</span><span class="p">,</span> <span class="n">result</span><span class="o">.</span><span class="n">instance</span><span class="p">,</span>
+                    <span class="n">result</span><span class="o">.</span><span class="n">parent</span><span class="p">,</span> <span class="n">result</span><span class="o">.</span><span class="n">name</span>
+                <span class="p">)</span>
+            <span class="k">except</span> <span class="n">InvalidSpecError</span><span class="p">:</span>
+                <span class="n">target_name</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">[</span><span class="s1">&#39;_mock_name&#39;</span><span class="p">]</span> <span class="ow">or</span> <span class="bp">self</span>
+                <span class="k">raise</span> <span class="n">InvalidSpecError</span><span class="p">(</span>
+                    <span class="sa">f</span><span class="s1">&#39;Cannot autospec attr </span><span class="si">{</span><span class="n">name</span><span class="si">!r}</span><span class="s1"> from target &#39;</span>
+                    <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">target_name</span><span class="si">!r}</span><span class="s1"> as it has already been mocked out. &#39;</span>
+                    <span class="sa">f</span><span class="s1">&#39;[target=</span><span class="si">{</span><span class="bp">self</span><span class="si">!r}</span><span class="s1">, attr=</span><span class="si">{</span><span class="n">result</span><span class="o">.</span><span class="n">spec</span><span class="si">!r}</span><span class="s1">]&#39;</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">_mock_children</span><span class="p">[</span><span class="n">name</span><span class="p">]</span>  <span class="o">=</span> <span class="n">result</span>
 
         <span class="k">return</span> <span class="n">result</span>
@@ -1274,6 +1286,17 @@
     <span class="k">return</span> <span class="n">thing</span>
 
 
+<span class="c1"># _check_spec_arg_typos takes kwargs from commands like patch and checks that</span>
+<span class="c1"># they don&#39;t contain common misspellings of arguments related to autospeccing.</span>
+<span class="k">def</span> <span class="nf">_check_spec_arg_typos</span><span class="p">(</span><span class="n">kwargs_to_check</span><span class="p">):</span>
+    <span class="n">typos</span> <span class="o">=</span> <span class="p">(</span><span class="s2">&quot;autospect&quot;</span><span class="p">,</span> <span class="s2">&quot;auto_spec&quot;</span><span class="p">,</span> <span class="s2">&quot;set_spec&quot;</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">typo</span> <span class="ow">in</span> <span class="n">typos</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">typo</span> <span class="ow">in</span> <span class="n">kwargs_to_check</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">typo</span><span class="si">!r}</span><span class="s2"> might be a typo; use unsafe=True if this is intended&quot;</span>
+            <span class="p">)</span>
+
+
 <span class="k">class</span> <span class="nc">_patch</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
 
     <span class="n">attribute_name</span> <span class="o">=</span> <span class="kc">None</span>
@@ -1281,7 +1304,7 @@
 
     <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span>
             <span class="bp">self</span><span class="p">,</span> <span class="n">getter</span><span class="p">,</span> <span class="n">attribute</span><span class="p">,</span> <span class="n">new</span><span class="p">,</span> <span class="n">spec</span><span class="p">,</span> <span class="n">create</span><span class="p">,</span>
-            <span class="n">spec_set</span><span class="p">,</span> <span class="n">autospec</span><span class="p">,</span> <span class="n">new_callable</span><span class="p">,</span> <span class="n">kwargs</span>
+            <span class="n">spec_set</span><span class="p">,</span> <span class="n">autospec</span><span class="p">,</span> <span class="n">new_callable</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">unsafe</span><span class="o">=</span><span class="kc">False</span>
         <span class="p">):</span>
         <span class="k">if</span> <span class="n">new_callable</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="k">if</span> <span class="n">new</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">DEFAULT</span><span class="p">:</span>
@@ -1292,6 +1315,16 @@
                 <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
                     <span class="s2">&quot;Cannot use &#39;autospec&#39; and &#39;new_callable&#39; together&quot;</span>
                 <span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">unsafe</span><span class="p">:</span>
+            <span class="n">_check_spec_arg_typos</span><span class="p">(</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">_is_instance_mock</span><span class="p">(</span><span class="n">spec</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="n">InvalidSpecError</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s1">&#39;Cannot spec attr </span><span class="si">{</span><span class="n">attribute</span><span class="si">!r}</span><span class="s1"> as the spec &#39;</span>
+                <span class="sa">f</span><span class="s1">&#39;has already been mocked out. [spec=</span><span class="si">{</span><span class="n">spec</span><span class="si">!r}</span><span class="s1">]&#39;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">_is_instance_mock</span><span class="p">(</span><span class="n">spec_set</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="n">InvalidSpecError</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s1">&#39;Cannot spec attr </span><span class="si">{</span><span class="n">attribute</span><span class="si">!r}</span><span class="s1"> as the spec_set &#39;</span>
+                <span class="sa">f</span><span class="s1">&#39;target has already been mocked out. [spec_set=</span><span class="si">{</span><span class="n">spec_set</span><span class="si">!r}</span><span class="s1">]&#39;</span><span class="p">)</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">getter</span> <span class="o">=</span> <span class="n">getter</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">attribute</span> <span class="o">=</span> <span class="n">attribute</span>
@@ -1519,6 +1552,18 @@
             <span class="k">if</span> <span class="n">autospec</span> <span class="ow">is</span> <span class="kc">True</span><span class="p">:</span>
                 <span class="n">autospec</span> <span class="o">=</span> <span class="n">original</span>
 
+            <span class="k">if</span> <span class="n">_is_instance_mock</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">target</span><span class="p">):</span>
+                <span class="k">raise</span> <span class="n">InvalidSpecError</span><span class="p">(</span>
+                    <span class="sa">f</span><span class="s1">&#39;Cannot autospec attr </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">attribute</span><span class="si">!r}</span><span class="s1"> as the patch &#39;</span>
+                    <span class="sa">f</span><span class="s1">&#39;target has already been mocked out. &#39;</span>
+                    <span class="sa">f</span><span class="s1">&#39;[target=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">target</span><span class="si">!r}</span><span class="s1">, attr=</span><span class="si">{</span><span class="n">autospec</span><span class="si">!r}</span><span class="s1">]&#39;</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">_is_instance_mock</span><span class="p">(</span><span class="n">autospec</span><span class="p">):</span>
+                <span class="n">target_name</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">target</span><span class="p">,</span> <span class="s1">&#39;__name__&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">target</span><span class="p">)</span>
+                <span class="k">raise</span> <span class="n">InvalidSpecError</span><span class="p">(</span>
+                    <span class="sa">f</span><span class="s1">&#39;Cannot autospec attr </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">attribute</span><span class="si">!r}</span><span class="s1"> from target &#39;</span>
+                    <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">target_name</span><span class="si">!r}</span><span class="s1"> as it has already been mocked out. &#39;</span>
+                    <span class="sa">f</span><span class="s1">&#39;[target=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">target</span><span class="si">!r}</span><span class="s1">, attr=</span><span class="si">{</span><span class="n">autospec</span><span class="si">!r}</span><span class="s1">]&#39;</span><span class="p">)</span>
+
             <span class="n">new</span> <span class="o">=</span> <span class="n">create_autospec</span><span class="p">(</span><span class="n">autospec</span><span class="p">,</span> <span class="n">spec_set</span><span class="o">=</span><span class="n">spec_set</span><span class="p">,</span>
                                   <span class="n">_name</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">attribute</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
         <span class="k">elif</span> <span class="n">kwargs</span><span class="p">:</span>
@@ -1601,7 +1646,7 @@
 <span class="k">def</span> <span class="nf">_patch_object</span><span class="p">(</span>
         <span class="n">target</span><span class="p">,</span> <span class="n">attribute</span><span class="p">,</span> <span class="n">new</span><span class="o">=</span><span class="n">DEFAULT</span><span class="p">,</span> <span class="n">spec</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
         <span class="n">create</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">spec_set</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">autospec</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-        <span class="n">new_callable</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span>
+        <span class="n">new_callable</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">unsafe</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span>
     <span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    patch the named member (`attribute`) on an object (`target`) with a mock</span>
@@ -1623,7 +1668,7 @@
     <span class="n">getter</span> <span class="o">=</span> <span class="k">lambda</span><span class="p">:</span> <span class="n">target</span>
     <span class="k">return</span> <span class="n">_patch</span><span class="p">(</span>
         <span class="n">getter</span><span class="p">,</span> <span class="n">attribute</span><span class="p">,</span> <span class="n">new</span><span class="p">,</span> <span class="n">spec</span><span class="p">,</span> <span class="n">create</span><span class="p">,</span>
-        <span class="n">spec_set</span><span class="p">,</span> <span class="n">autospec</span><span class="p">,</span> <span class="n">new_callable</span><span class="p">,</span> <span class="n">kwargs</span>
+        <span class="n">spec_set</span><span class="p">,</span> <span class="n">autospec</span><span class="p">,</span> <span class="n">new_callable</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">,</span> <span class="n">unsafe</span><span class="o">=</span><span class="n">unsafe</span>
     <span class="p">)</span>
 
 
@@ -1678,7 +1723,7 @@
 
 <span class="k">def</span> <span class="nf">patch</span><span class="p">(</span>
         <span class="n">target</span><span class="p">,</span> <span class="n">new</span><span class="o">=</span><span class="n">DEFAULT</span><span class="p">,</span> <span class="n">spec</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">create</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-        <span class="n">spec_set</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">autospec</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">new_callable</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span>
+        <span class="n">spec_set</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">autospec</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">new_callable</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">unsafe</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span>
     <span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    `patch` acts as a function decorator, class decorator or a context</span>
@@ -1740,6 +1785,10 @@
 <span class="sd">    use &quot;as&quot; then the patched object will be bound to the name after the</span>
 <span class="sd">    &quot;as&quot;; very useful if `patch` is creating a mock object for you.</span>
 
+<span class="sd">    Patch will raise a `RuntimeError` if passed some common misspellings of</span>
+<span class="sd">    the arguments autospec and spec_set. Pass the argument `unsafe` with the</span>
+<span class="sd">    value True to disable that check.</span>
+
 <span class="sd">    `patch` takes arbitrary keyword arguments. These will be passed to</span>
 <span class="sd">    `AsyncMock` if the patched object is asynchronous, to `MagicMock`</span>
 <span class="sd">    otherwise or to `new_callable` if specified.</span>
@@ -1750,7 +1799,7 @@
     <span class="n">getter</span><span class="p">,</span> <span class="n">attribute</span> <span class="o">=</span> <span class="n">_get_target</span><span class="p">(</span><span class="n">target</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">_patch</span><span class="p">(</span>
         <span class="n">getter</span><span class="p">,</span> <span class="n">attribute</span><span class="p">,</span> <span class="n">new</span><span class="p">,</span> <span class="n">spec</span><span class="p">,</span> <span class="n">create</span><span class="p">,</span>
-        <span class="n">spec_set</span><span class="p">,</span> <span class="n">autospec</span><span class="p">,</span> <span class="n">new_callable</span><span class="p">,</span> <span class="n">kwargs</span>
+        <span class="n">spec_set</span><span class="p">,</span> <span class="n">autospec</span><span class="p">,</span> <span class="n">new_callable</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">,</span> <span class="n">unsafe</span><span class="o">=</span><span class="n">unsafe</span>
     <span class="p">)</span>
 
 
@@ -2171,6 +2220,10 @@
         <span class="n">code_mock</span> <span class="o">=</span> <span class="n">NonCallableMock</span><span class="p">(</span><span class="n">spec_set</span><span class="o">=</span><span class="n">CodeType</span><span class="p">)</span>
         <span class="n">code_mock</span><span class="o">.</span><span class="n">co_flags</span> <span class="o">=</span> <span class="n">inspect</span><span class="o">.</span><span class="n">CO_COROUTINE</span>
         <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">[</span><span class="s1">&#39;__code__&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">code_mock</span>
+        <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">[</span><span class="s1">&#39;__name__&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;AsyncMock&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">[</span><span class="s1">&#39;__defaults__&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="nb">tuple</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">[</span><span class="s1">&#39;__kwdefaults__&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="vm">__dict__</span><span class="p">[</span><span class="s1">&#39;__annotations__&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
 
     <span class="k">async</span> <span class="k">def</span> <span class="nf">_execute_mock_call</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">/</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
         <span class="c1"># This is nearly just like super(), except for special handling</span>
@@ -2600,7 +2653,7 @@
 
 
 <span class="k">def</span> <span class="nf">create_autospec</span><span class="p">(</span><span class="n">spec</span><span class="p">,</span> <span class="n">spec_set</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">instance</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">_parent</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-                    <span class="n">_name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+                    <span class="n">_name</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="o">*</span><span class="p">,</span> <span class="n">unsafe</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;Create a mock object using another object as a spec. Attributes on the</span>
 <span class="sd">    mock will use the corresponding attribute on the `spec` object as their</span>
 <span class="sd">    spec.</span>
@@ -2616,6 +2669,10 @@
 <span class="sd">    spec for an instance object by passing `instance=True`. The returned mock</span>
 <span class="sd">    will only be callable if instances of the mock are callable.</span>
 
+<span class="sd">    `create_autospec` will raise a `RuntimeError` if passed some common</span>
+<span class="sd">    misspellings of the arguments autospec and spec_set. Pass the argument</span>
+<span class="sd">    `unsafe` with the value True to disable that check.</span>
+
 <span class="sd">    `create_autospec` also takes arbitrary keyword arguments that are passed to</span>
 <span class="sd">    the constructor of the created mock.&quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">_is_list</span><span class="p">(</span><span class="n">spec</span><span class="p">):</span>
@@ -2624,6 +2681,9 @@
         <span class="n">spec</span> <span class="o">=</span> <span class="nb">type</span><span class="p">(</span><span class="n">spec</span><span class="p">)</span>
 
     <span class="n">is_type</span> <span class="o">=</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">spec</span><span class="p">,</span> <span class="nb">type</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">_is_instance_mock</span><span class="p">(</span><span class="n">spec</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="n">InvalidSpecError</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Cannot autospec a Mock object. &#39;</span>
+                               <span class="sa">f</span><span class="s1">&#39;[object=</span><span class="si">{</span><span class="n">spec</span><span class="si">!r}</span><span class="s1">]&#39;</span><span class="p">)</span>
     <span class="n">is_async_func</span> <span class="o">=</span> <span class="n">_is_async_func</span><span class="p">(</span><span class="n">spec</span><span class="p">)</span>
     <span class="n">_kwargs</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;spec&#39;</span><span class="p">:</span> <span class="n">spec</span><span class="p">}</span>
     <span class="k">if</span> <span class="n">spec_set</span><span class="p">:</span>
@@ -2633,6 +2693,8 @@
         <span class="n">_kwargs</span> <span class="o">=</span> <span class="p">{}</span>
     <span class="k">if</span> <span class="n">_kwargs</span> <span class="ow">and</span> <span class="n">instance</span><span class="p">:</span>
         <span class="n">_kwargs</span><span class="p">[</span><span class="s1">&#39;_spec_as_instance&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">unsafe</span><span class="p">:</span>
+        <span class="n">_check_spec_arg_typos</span><span class="p">(</span><span class="n">kwargs</span><span class="p">)</span>
 
     <span class="n">_kwargs</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">kwargs</span><span class="p">)</span>
 
