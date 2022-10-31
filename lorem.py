@@ -112,10 +112,10 @@ def _gen_pool(dupe: 'int' = 1) -> 'Iterator[str]':
     """Generate word pool.
 
     Args:
-      dupe (int): Duplication to generate the word pool.
+        dupe: Duplication to generate the word pool.
 
     Returns:
-      :obj:`Iterator[str]`: An infinite loop word pool.
+        An infinite loop word pool.
 
     """
     pool = []  # type: list[str]
