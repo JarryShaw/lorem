@@ -164,7 +164,7 @@ try:
     from setuptools import setup
 
     attrs.update(dict(
-        include_package_data=True,
+        include_package_data=True,  # type: ignore[dict-item]
         # libraries
         # headers
         # ext_package
@@ -173,7 +173,7 @@ try:
         # fullname
         long_description_content_type='text/markdown',
         python_requires='>=3.5',
-        zip_safe=True,
+        zip_safe=True,  # type: ignore[dict-item]
     ))
 except ImportError:
     from distutils.core import setup

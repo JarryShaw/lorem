@@ -111,7 +111,7 @@ The `lorem` module provides two different ways for getting random words.
 
        *default*: `None`
 
-     * `args` -- `Tuple[str]`
+     * `args` -- `Tuple[str, ...]`
 
        Additional positional arguments for `func`.
 
@@ -146,7 +146,7 @@ The `lorem` module provides two different ways for getting random words.
 
    - Args:
 
-     * `count` -- `Union[int, Tuple[int]]`
+     * `count` -- `Union[int, Tuple[int, int]]`
 
        Number of random words. To generate random number of words, supply a
        2-element tuple of `int`, the function will use `random.randint` to choose
@@ -167,7 +167,7 @@ The `lorem` module provides two different ways for getting random words.
 
        *default*: `None`
 
-     * `args` -- `Tuple[str]`
+     * `args` -- `Tuple[str, ...]`
 
        Additional positional arguments for `func`.
 
@@ -208,14 +208,14 @@ The `lorem` module provides two different ways for getting random sentences.
 
        *default*: `1`
 
-     * `comma` -- `Tuple[int]`
+     * `comma` -- `Tuple[int, int]`
 
        Random range for number of commas. The function will use
        `random.randint` to choose a random integer as the number of commas.
 
        *default*: `(0, 2)`
 
-     * `word_range` -- `Tuple[int]`
+     * `word_range` -- `Tuple[int, int]`
 
        Random range for number of words in each sentence. The function will
        use `random.randint` to choose a random integer as the number of words.
@@ -241,7 +241,7 @@ The `lorem` module provides two different ways for getting random sentences.
 
    - Args:
 
-     * `count` -- `Union[int, Tuple[int]]`
+     * `count` -- `Union[int, Tuple[int, int]]`
 
        Number of random sentences. To generate random number of sentences,
        supply a 2-element tuple of `int`, the function will use
@@ -256,14 +256,14 @@ The `lorem` module provides two different ways for getting random sentences.
 
        *default*: `' '`
 
-     * `comma` -- `Tuple[int]`
+     * `comma` -- `Tuple[int, int]`
 
        Random range for number of commas. The function will use
        `random.randint` to choose a random integer as the number of commas.
 
        *default*: `(0, 2)`
 
-     * `word_range` -- `Tuple[int]`
+     * `word_range` -- `Tuple[int, int]`
 
        Random range for number of words in each sentence. The function will
        use `random.randint` to choose a random integer as the number of words.
@@ -306,21 +306,21 @@ The `lorem` module provides two different ways for getting random paragraphs.
 
        *default*: `1`
 
-     * `comma` -- `Tuple[int]`
+     * `comma` -- `Tuple[int, int]`
 
        Random range for number of commas. The function will use
        `random.randint` to choose a random integer as the number of commas.
 
        *default*: `(0, 2)`
 
-     * `word_range` -- `Tuple[int]`
+     * `word_range` -- `Tuple[int, int]`
 
        Random range for number of words in each sentence. The function will
        use `random.randint` to choose a random integer as the number of words.
 
        *default*: `(4, 8)`
 
-     * `sentence_range` -- `Tuple[int]`
+     * `sentence_range` -- `Tuple[int, int]`
 
        Random range for number of sentences in each paragraph. The function
        will use `random.randint` to choose a random integer as the number of
@@ -354,7 +354,7 @@ The `lorem` module provides two different ways for getting random paragraphs.
 
    - Args:
 
-     * `count` -- `Union[int, Tuple[int]]`
+     * `count` -- `Union[int, Tuple[int, int]]`
 
        Number of random paragraphs. To generate random number of paragraphs,
        supply a 2-element tuple of `int`, the function will use
@@ -369,21 +369,21 @@ The `lorem` module provides two different ways for getting random paragraphs.
 
        *default*: `os.linesep` (`\r\n` on Windows, `\n` on POSIX)
 
-     * `comma` -- `Tuple[int]`
+     * `comma` -- `Tuple[int, int]`
 
        Random range for number of commas. The function will use
        `random.randint` to choose a random integer as the number of commas.
 
        *default*: `(0, 2)`
 
-     * `word_range` -- `Tuple[int]`
+     * `word_range` -- `Tuple[int, int]`
 
        Random range for number of words in each sentence. The function will
        use `random.randint` to choose a random integer as the number of words.
 
        *default*: `(4, 8)`
 
-     * `sentence_range` -- `Tuple[int]`
+     * `sentence_range` -- `Tuple[int, int]`
 
        Random range for number of sentences in each paragraph. The function
        will use `random.randint` to choose a random integer as the number of
@@ -421,13 +421,13 @@ Following are internal APIs for the `lorem` module.
 <a name="_text"></a>
 
 1. ```python
-   _TEXT: Tuple[str] = ('ad', 'adipiscing', 'aliqua', 'aliquip', 'amet', 'anim', 'aute', 'cillum', 'commodo',
-                        'consectetur', 'consequat', 'culpa', 'cupidatat', 'deserunt', 'do', 'dolor', 'dolore',
-                        'duis', 'ea', 'eiusmod', 'elit', 'enim', 'esse', 'est', 'et', 'eu', 'ex', 'excepteur',
-                        'exercitation', 'fugiat', 'id', 'in', 'incididunt', 'ipsum', 'irure', 'labore', 'laboris',
-                        'laborum', 'lorem', 'magna', 'minim', 'mollit', 'nisi', 'non', 'nostrud', 'nulla',
-                        'occaecat', 'officia', 'pariatur', 'proident', 'qui', 'quis', 'reprehenderit', 'sed',
-                        'sint', 'sit', 'sunt', 'tempor', 'ullamco', 'ut', 'velit', 'veniam', 'voluptate')
+   _TEXT: Tuple[str, ...] = ('ad', 'adipiscing', 'aliqua', 'aliquip', 'amet', 'anim', 'aute', 'cillum', 'commodo',
+                             'consectetur', 'consequat', 'culpa', 'cupidatat', 'deserunt', 'do', 'dolor', 'dolore',
+                             'duis', 'ea', 'eiusmod', 'elit', 'enim', 'esse', 'est', 'et', 'eu', 'ex', 'excepteur',
+                             'exercitation', 'fugiat', 'id', 'in', 'incididunt', 'ipsum', 'irure', 'labore', 'laboris',
+                             'laborum', 'lorem', 'magna', 'minim', 'mollit', 'nisi', 'non', 'nostrud', 'nulla',
+                             'occaecat', 'officia', 'pariatur', 'proident', 'qui', 'quis', 'reprehenderit', 'sed',
+                             'sint', 'sit', 'sunt', 'tempor', 'ullamco', 'ut', 'velit', 'veniam', 'voluptate')
    ```
 
    Original *lorem ipsum* text pool.
@@ -471,7 +471,7 @@ Following are internal APIs for the `lorem` module.
        Filter function. It can be an attribute name of `str`, or a customised
        function that takes the original `str` and returns the modified `str`.
 
-     * `args` -- `Tuple[str]`
+     * `args` -- `Tuple[str, ...]`
 
        Additional positional arguments for `func`.
 
@@ -501,14 +501,14 @@ Following are internal APIs for the `lorem` module.
 
        Word pool, returned by `_gen_pool`.
 
-     * `comma` -- `Tuple[int]`
+     * `comma` -- `Tuple[int, int]`
 
        Random range for number of commas. The function will use
        `random.randint` to choose a random integer as the number of commas.
 
        *default*: `(0, 2)`
 
-     * `word_range` -- `Tuple[int]`
+     * `word_range` -- `Tuple[int, int]`
 
        Random range for number of words in each sentence. The function will
        use `random.randint` to choose a random integer as the number of words.
@@ -533,21 +533,21 @@ Following are internal APIs for the `lorem` module.
 
        Word pool, returned by `_gen_pool`.
 
-     * `comma` -- `Tuple[int]`
+     * `comma` -- `Tuple[int, int]`
 
        Random range for number of commas. The function will use
        `random.randint` to choose a random integer as the number of commas.
 
        *default*: `(0, 2)`
 
-     * `word_range` -- `Tuple[int]`
+     * `word_range` -- `Tuple[int, int]`
 
        Random range for number of words in each sentence. The function will
        use `random.randint` to choose a random integer as the number of words.
 
        *default*: `(4, 8)`
 
-     * `sentence_range` -- `Tuple[int]`
+     * `sentence_range` -- `Tuple[int, int]`
 
        Random range for number of sentences in each paragraph. The function
        will use `random.randint` to choose a random integer as the number of
