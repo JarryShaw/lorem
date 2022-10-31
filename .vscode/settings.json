@@ -36,5 +36,7 @@
         "xenial"
     ],
     "python.pythonPath": "/Users/jarryshaw/GitHub/lorem/lorem.py/.venv/bin/python3.8",
-    "restructuredtext.confPath": "${workspaceFolder}/docs/conf.py"
+    "restructuredtext.confPath": "${workspaceFolder}/docs/conf.py",
+    "esbonio.sphinx.confDir": "${workspaceFolder}/docs/conf.py",
+    "restructuredtext.preview.name": "sphinx"
 }
