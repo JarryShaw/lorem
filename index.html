@@ -14,6 +14,7 @@
     <script src="_static/underscore.js"></script>
     <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="_static/doctools.js"></script>
+    <script src="_static/sphinx_highlight.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Lorem Ipsum Generator" href="lorem.html" />
@@ -39,16 +40,67 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="lorem.html">Lorem Ipsum Generator</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="lorem.html#module-contents">Module contents</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="lorem.html#get-random-words">Get Random Words</a></li>
-<li class="toctree-l3"><a class="reference internal" href="lorem.html#get-random-sentences">Get Random Sentences</a></li>
-<li class="toctree-l3"><a class="reference internal" href="lorem.html#get-random-paragraphs">Get Random Paragraphs</a></li>
-<li class="toctree-l3"><a class="reference internal" href="lorem.html#customise-word-pool">Customise Word Pool</a></li>
+<li class="toctree-l3"><a class="reference internal" href="lorem.html#get-random-words">Get Random Words</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="lorem.html#lorem.word"><code class="docutils literal notranslate"><span class="pre">word()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="lorem.html#lorem.get_word"><code class="docutils literal notranslate"><span class="pre">get_word()</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="lorem.html#internal-utilities">Internal utilities</a></li>
+<li class="toctree-l3"><a class="reference internal" href="lorem.html#get-random-sentences">Get Random Sentences</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="lorem.html#lorem.sentence"><code class="docutils literal notranslate"><span class="pre">sentence()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="lorem.html#lorem.get_sentence"><code class="docutils literal notranslate"><span class="pre">get_sentence()</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="test_lorem.html">Module Unittests</a></li>
+<li class="toctree-l3"><a class="reference internal" href="lorem.html#get-random-paragraphs">Get Random Paragraphs</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="lorem.html#lorem.paragraph"><code class="docutils literal notranslate"><span class="pre">paragraph()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="lorem.html#lorem.get_paragraph"><code class="docutils literal notranslate"><span class="pre">get_paragraph()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="lorem.html#customise-word-pool">Customise Word Pool</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="lorem.html#lorem.set_pool"><code class="docutils literal notranslate"><span class="pre">set_pool()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="lorem.html#internal-utilities">Internal utilities</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="lorem.html#lorem._TEXT"><code class="docutils literal notranslate"><span class="pre">_TEXT</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="lorem.html#lorem._gen_pool"><code class="docutils literal notranslate"><span class="pre">_gen_pool()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="lorem.html#lorem._gen_word"><code class="docutils literal notranslate"><span class="pre">_gen_word()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="lorem.html#lorem._gen_sentence"><code class="docutils literal notranslate"><span class="pre">_gen_sentence()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="lorem.html#lorem._gen_paragraph"><code class="docutils literal notranslate"><span class="pre">_gen_paragraph()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="test_lorem.html">Module Unittests</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="test_lorem.html#test_lorem._T"><code class="docutils literal notranslate"><span class="pre">_T</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="test_lorem.html#test_lorem.islice"><code class="docutils literal notranslate"><span class="pre">islice()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="test_lorem.html#test_lorem.shuffle"><code class="docutils literal notranslate"><span class="pre">shuffle()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="test_lorem.html#test_lorem.randint"><code class="docutils literal notranslate"><span class="pre">randint()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="test_lorem.html#test_lorem.choice_first"><code class="docutils literal notranslate"><span class="pre">choice_first()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="test_lorem.html#test_lorem.choice_last"><code class="docutils literal notranslate"><span class="pre">choice_last()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="test_lorem.html#test_lorem.pool"><code class="docutils literal notranslate"><span class="pre">pool()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="test_lorem.html#test_lorem.TestLorem"><code class="docutils literal notranslate"><span class="pre">TestLorem</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="test_lorem.html#test_lorem.TestLorem.mock_shuffle"><code class="docutils literal notranslate"><span class="pre">TestLorem.mock_shuffle</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="test_lorem.html#test_lorem.TestLorem.mock_randint"><code class="docutils literal notranslate"><span class="pre">TestLorem.mock_randint</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="test_lorem.html#test_lorem.TestLorem.mock_choice_first"><code class="docutils literal notranslate"><span class="pre">TestLorem.mock_choice_first</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="test_lorem.html#test_lorem.TestLorem.mock_choice_last"><code class="docutils literal notranslate"><span class="pre">TestLorem.mock_choice_last</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="test_lorem.html#test_lorem.TestLorem.mock_text"><code class="docutils literal notranslate"><span class="pre">TestLorem.mock_text</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="test_lorem.html#test_lorem.TestLorem.mock_pool"><code class="docutils literal notranslate"><span class="pre">TestLorem.mock_pool</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="test_lorem.html#test_lorem.TestLorem.test_set_pool"><code class="docutils literal notranslate"><span class="pre">TestLorem.test_set_pool()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="test_lorem.html#test_lorem.TestLorem.test_gen_pool"><code class="docutils literal notranslate"><span class="pre">TestLorem.test_gen_pool()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="test_lorem.html#test_lorem.TestLorem.test_gen_word"><code class="docutils literal notranslate"><span class="pre">TestLorem.test_gen_word()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="test_lorem.html#test_lorem.TestLorem.test_gen_sentence"><code class="docutils literal notranslate"><span class="pre">TestLorem.test_gen_sentence()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="test_lorem.html#test_lorem.TestLorem.test_gen_paragraph"><code class="docutils literal notranslate"><span class="pre">TestLorem.test_gen_paragraph()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="test_lorem.html#test_lorem.TestLorem.test_word"><code class="docutils literal notranslate"><span class="pre">TestLorem.test_word()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="test_lorem.html#test_lorem.TestLorem.test_sentence"><code class="docutils literal notranslate"><span class="pre">TestLorem.test_sentence()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="test_lorem.html#test_lorem.TestLorem.test_paragraph"><code class="docutils literal notranslate"><span class="pre">TestLorem.test_paragraph()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="test_lorem.html#test_lorem.TestLorem.test_get_word"><code class="docutils literal notranslate"><span class="pre">TestLorem.test_get_word()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="test_lorem.html#test_lorem.TestLorem.test_get_sentence"><code class="docutils literal notranslate"><span class="pre">TestLorem.test_get_sentence()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="test_lorem.html#test_lorem.TestLorem.test_get_paragraph"><code class="docutils literal notranslate"><span class="pre">TestLorem.test_get_paragraph()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 </div>
 <p>In publishing and graphic design, lorem ipsum is a placeholder text commonly
