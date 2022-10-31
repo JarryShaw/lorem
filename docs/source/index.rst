@@ -38,13 +38,13 @@ The :mod:`lorem` module provides two different ways for getting random words.
 
 1. :func:`~lorem.word` -- generate a list of random words
 
-   .. code:: python
+   .. code-block:: python
 
       word(count=1, func=None, args=(), kwargs={}) -> Iterator[str]
 
 2. :func:`~lorem.get_word` -- return random words
 
-   .. code:: python
+   .. code-block:: python
 
       get_word(count=1, sep=' ', func=None, args=(), kwargs={}) -> str
 
@@ -55,13 +55,13 @@ The :mod:`lorem` module provides two different ways for getting random sentences
 
 1. :func:`~lorem.sentence` -- generate a list of random sentences
 
-   .. code:: python
+   .. code-block:: python
 
       sentence(count=1, comma=(0, 2), word_range=(4, 8)) -> Iterator[str]
 
 2. :func:`~lorem.get_sentence` -- return random sentences
 
-   .. code :: python
+   .. code-block:: python
 
       get_sentence(count=1, sep=' ', comma=(0, 2), word_range=(4, 8)) -> Union[str]
 
@@ -72,13 +72,13 @@ The :mod:`lorem` module provides two different ways for getting random paragraph
 
 1. :func:`~lorem.paragraph` -- generate a list of random paragraphs
 
-   .. code:: python
+   .. code-block:: python
 
       paragraph(count=1, comma=(0, 2), word_range=(4, 8), sentence_range=(5, 10)) -> Iterator[str]
 
 2. :func:`~lorem.get_paragraph` -- return random paragraphs
 
-   .. code:: python
+   .. code-block:: python
 
       get_paragraph(count=1, sep=os.linesep, comma=(0, 2), word_range=(4, 8), sentence_range=(5, 10)) -> Union[str]
 
@@ -90,7 +90,7 @@ pool as you wish.
 
 1. :func:`~lorem.set_pool` -- customise random word pool
 
-   .. code:: python
+   .. code-block:: python
 
       set_pool(pool)
 
