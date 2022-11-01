@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>Pythonic Lorem Ipsum Generator &#8212; lorem 1.1.1 documentation</title>
+    <title>Pythonic Lorem Ipsum Generator &#8212; lorem 1.2.0 documentation</title>
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="_static/alabaster.css" />
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
@@ -39,33 +39,29 @@
 <div class="toctree-wrapper compound">
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="lorem.html">Lorem Ipsum Generator</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="lorem.html#module-contents">Module contents</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="lorem.html#get-random-words">Get Random Words</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="lorem.html#lorem.word"><code class="docutils literal notranslate"><span class="pre">word()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="lorem.html#lorem.get_word"><code class="docutils literal notranslate"><span class="pre">get_word()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="lorem.html#get-random-words">Get Random Words</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="lorem.html#lorem.word"><code class="docutils literal notranslate"><span class="pre">word()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="lorem.html#lorem.get_word"><code class="docutils literal notranslate"><span class="pre">get_word()</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="lorem.html#get-random-sentences">Get Random Sentences</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="lorem.html#lorem.sentence"><code class="docutils literal notranslate"><span class="pre">sentence()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="lorem.html#lorem.get_sentence"><code class="docutils literal notranslate"><span class="pre">get_sentence()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="lorem.html#get-random-sentences">Get Random Sentences</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="lorem.html#lorem.sentence"><code class="docutils literal notranslate"><span class="pre">sentence()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="lorem.html#lorem.get_sentence"><code class="docutils literal notranslate"><span class="pre">get_sentence()</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="lorem.html#get-random-paragraphs">Get Random Paragraphs</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="lorem.html#lorem.paragraph"><code class="docutils literal notranslate"><span class="pre">paragraph()</span></code></a></li>
-<li class="toctree-l4"><a class="reference internal" href="lorem.html#lorem.get_paragraph"><code class="docutils literal notranslate"><span class="pre">get_paragraph()</span></code></a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="lorem.html#customise-word-pool">Customise Word Pool</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lorem.html#get-random-paragraphs">Get Random Paragraphs</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="lorem.html#lorem.paragraph"><code class="docutils literal notranslate"><span class="pre">paragraph()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="lorem.html#lorem.get_paragraph"><code class="docutils literal notranslate"><span class="pre">get_paragraph()</span></code></a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="lorem.html#internal-utilities">Internal utilities</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="lorem.html#lorem._TEXT"><code class="docutils literal notranslate"><span class="pre">_TEXT</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="lorem.html#lorem.LoremGenerator"><code class="docutils literal notranslate"><span class="pre">LoremGenerator</span></code></a></li>
 </ul>
 </li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="test_lorem.html">Module Unittests</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="test_lorem.html#test_lorem._T"><code class="docutils literal notranslate"><span class="pre">_T</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="test_lorem.html#test_lorem.islice"><code class="docutils literal notranslate"><span class="pre">islice()</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="test_lorem.html#test_lorem.shuffle"><code class="docutils literal notranslate"><span class="pre">shuffle()</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="test_lorem.html#test_lorem.randint"><code class="docutils literal notranslate"><span class="pre">randint()</span></code></a></li>
@@ -73,11 +69,6 @@
 <li class="toctree-l2"><a class="reference internal" href="test_lorem.html#test_lorem.choice_last"><code class="docutils literal notranslate"><span class="pre">choice_last()</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="test_lorem.html#test_lorem.pool"><code class="docutils literal notranslate"><span class="pre">pool()</span></code></a></li>
 <li class="toctree-l2"><a class="reference internal" href="test_lorem.html#test_lorem.TestLorem"><code class="docutils literal notranslate"><span class="pre">TestLorem</span></code></a><ul>
-<li class="toctree-l3"><a class="reference internal" href="test_lorem.html#test_lorem.TestLorem.mock_shuffle"><code class="docutils literal notranslate"><span class="pre">TestLorem.mock_shuffle</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="test_lorem.html#test_lorem.TestLorem.mock_randint"><code class="docutils literal notranslate"><span class="pre">TestLorem.mock_randint</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="test_lorem.html#test_lorem.TestLorem.mock_choice_first"><code class="docutils literal notranslate"><span class="pre">TestLorem.mock_choice_first</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="test_lorem.html#test_lorem.TestLorem.mock_choice_last"><code class="docutils literal notranslate"><span class="pre">TestLorem.mock_choice_last</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="test_lorem.html#test_lorem.TestLorem.mock_pool"><code class="docutils literal notranslate"><span class="pre">TestLorem.mock_pool</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="test_lorem.html#test_lorem.TestLorem.test_lorem_init"><code class="docutils literal notranslate"><span class="pre">TestLorem.test_lorem_init()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="test_lorem.html#test_lorem.TestLorem.test_gen_word"><code class="docutils literal notranslate"><span class="pre">TestLorem.test_gen_word()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="test_lorem.html#test_lorem.TestLorem.test_gen_sentence"><code class="docutils literal notranslate"><span class="pre">TestLorem.test_gen_sentence()</span></code></a></li>
@@ -116,12 +107,12 @@ text from its very original text:</p>
 <p>The <code class="xref py py-mod docutils literal notranslate"><span class="pre">lorem</span></code> module provides two different ways for getting random words.</p>
 <ol class="arabic">
 <li><p><a class="reference internal" href="lorem.html#lorem.word" title="lorem.word"><code class="xref py py-func docutils literal notranslate"><span class="pre">word()</span></code></a> – generate a list of random words</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">word</span><span class="p">(</span><span class="n">count</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">func</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">(),</span> <span class="n">kwargs</span><span class="o">=</span><span class="p">{})</span> <span class="o">-&gt;</span> <span class="n">Iterator</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">word</span><span class="p">(</span><span class="n">count</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">func</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">(),</span> <span class="n">kwargs</span><span class="o">=</span><span class="p">{})</span> <span class="o">-&gt;</span> <span class="n">Iterator</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span> <span class="o">...</span>
 </pre></div>
 </div>
 </li>
 <li><p><a class="reference internal" href="lorem.html#lorem.get_word" title="lorem.get_word"><code class="xref py py-func docutils literal notranslate"><span class="pre">get_word()</span></code></a> – return random words</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">get_word</span><span class="p">(</span><span class="n">count</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39; &#39;</span><span class="p">,</span> <span class="n">func</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">(),</span> <span class="n">kwargs</span><span class="o">=</span><span class="p">{})</span> <span class="o">-&gt;</span> <span class="nb">str</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">get_word</span><span class="p">(</span><span class="n">count</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39; &#39;</span><span class="p">,</span> <span class="n">func</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">args</span><span class="o">=</span><span class="p">(),</span> <span class="n">kwargs</span><span class="o">=</span><span class="p">{})</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span> <span class="o">...</span>
 </pre></div>
 </div>
 </li>
@@ -132,12 +123,12 @@ text from its very original text:</p>
 <p>The <code class="xref py py-mod docutils literal notranslate"><span class="pre">lorem</span></code> module provides two different ways for getting random sentences.</p>
 <ol class="arabic">
 <li><p><a class="reference internal" href="lorem.html#lorem.sentence" title="lorem.sentence"><code class="xref py py-func docutils literal notranslate"><span class="pre">sentence()</span></code></a> – generate a list of random sentences</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">sentence</span><span class="p">(</span><span class="n">count</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">comma</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="n">word_range</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span> <span class="o">-&gt;</span> <span class="n">Iterator</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">sentence</span><span class="p">(</span><span class="n">count</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">comma</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="n">word_range</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span> <span class="o">-&gt;</span> <span class="n">Iterator</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span> <span class="o">...</span>
 </pre></div>
 </div>
 </li>
 <li><p><a class="reference internal" href="lorem.html#lorem.get_sentence" title="lorem.get_sentence"><code class="xref py py-func docutils literal notranslate"><span class="pre">get_sentence()</span></code></a> – return random sentences</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">get_sentence</span><span class="p">(</span><span class="n">count</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39; &#39;</span><span class="p">,</span> <span class="n">comma</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="n">word_range</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">get_sentence</span><span class="p">(</span><span class="n">count</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39; &#39;</span><span class="p">,</span> <span class="n">comma</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="n">word_range</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span> <span class="o">...</span>
 </pre></div>
 </div>
 </li>
@@ -148,24 +139,12 @@ text from its very original text:</p>
 <p>The <code class="xref py py-mod docutils literal notranslate"><span class="pre">lorem</span></code> module provides two different ways for getting random paragraphs.</p>
 <ol class="arabic">
 <li><p><a class="reference internal" href="lorem.html#lorem.paragraph" title="lorem.paragraph"><code class="xref py py-func docutils literal notranslate"><span class="pre">paragraph()</span></code></a> – generate a list of random paragraphs</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">paragraph</span><span class="p">(</span><span class="n">count</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">comma</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="n">word_range</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">8</span><span class="p">),</span> <span class="n">sentence_range</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span> <span class="o">-&gt;</span> <span class="n">Iterator</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">paragraph</span><span class="p">(</span><span class="n">count</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">comma</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="n">word_range</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">8</span><span class="p">),</span> <span class="n">sentence_range</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span> <span class="o">-&gt;</span> <span class="n">Iterator</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span> <span class="o">...</span>
 </pre></div>
 </div>
 </li>
 <li><p><a class="reference internal" href="lorem.html#lorem.get_paragraph" title="lorem.get_paragraph"><code class="xref py py-func docutils literal notranslate"><span class="pre">get_paragraph()</span></code></a> – return random paragraphs</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">get_paragraph</span><span class="p">(</span><span class="n">count</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">linesep</span><span class="p">,</span> <span class="n">comma</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="n">word_range</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">8</span><span class="p">),</span> <span class="n">sentence_range</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span>
-</pre></div>
-</div>
-</li>
-</ol>
-</section>
-<section id="customise-word-pool">
-<h2>Customise Word Pool<a class="headerlink" href="#customise-word-pool" title="Permalink to this heading">¶</a></h2>
-<p>If wanted, the <code class="xref py py-mod docutils literal notranslate"><span class="pre">lorem</span></code> module also provides an interface to customise the word
-pool as you wish.</p>
-<ol class="arabic">
-<li><p><code class="xref py py-func docutils literal notranslate"><span class="pre">set_pool()</span></code> – customise random word pool</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">set_pool</span><span class="p">(</span><span class="n">pool</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">get_paragraph</span><span class="p">(</span><span class="n">count</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="n">os</span><span class="o">.</span><span class="n">linesep</span><span class="p">,</span> <span class="n">comma</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="n">word_range</span><span class="o">=</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">8</span><span class="p">),</span> <span class="n">sentence_range</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span> <span class="o">...</span>
 </pre></div>
 </div>
 </li>
@@ -241,7 +220,7 @@ pool as you wish.</p>
       <div class="clearer"></div>
     </div>
     <div class="footer">
-      &copy;2020, Jarry Shaw.
+      &copy;2020-2022, Jarry Shaw.
       
       |
       <a href="_sources/index.rst.txt"
