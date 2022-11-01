@@ -128,7 +128,7 @@
     <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Callable</span><span class="p">,</span> <span class="n">Iterable</span><span class="p">,</span> <span class="n">Iterator</span><span class="p">,</span> <span class="n">Optional</span>
 
 <span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span>
-    <span class="s1">&#39;set_pool&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;LoremGenerator&#39;</span><span class="p">,</span>
     <span class="s1">&#39;word&#39;</span><span class="p">,</span> <span class="s1">&#39;sentence&#39;</span><span class="p">,</span> <span class="s1">&#39;paragraph&#39;</span><span class="p">,</span>
     <span class="s1">&#39;get_word&#39;</span><span class="p">,</span> <span class="s1">&#39;get_sentence&#39;</span><span class="p">,</span> <span class="s1">&#39;get_paragraph&#39;</span><span class="p">,</span>
 <span class="p">]</span>
@@ -143,109 +143,141 @@
          <span class="s1">&#39;sint&#39;</span><span class="p">,</span> <span class="s1">&#39;sit&#39;</span><span class="p">,</span> <span class="s1">&#39;sunt&#39;</span><span class="p">,</span> <span class="s1">&#39;tempor&#39;</span><span class="p">,</span> <span class="s1">&#39;ullamco&#39;</span><span class="p">,</span> <span class="s1">&#39;ut&#39;</span><span class="p">,</span> <span class="s1">&#39;velit&#39;</span><span class="p">,</span> <span class="s1">&#39;veniam&#39;</span><span class="p">,</span> <span class="s1">&#39;voluptate&#39;</span><span class="p">)</span>
 
 
-<div class="viewcode-block" id="_gen_pool"><a class="viewcode-back" href="../lorem.html#lorem._gen_pool">[docs]</a><span class="k">def</span> <span class="nf">_gen_pool</span><span class="p">(</span><span class="n">dupe</span><span class="p">:</span> <span class="s1">&#39;int&#39;</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s1">&#39;Iterator[str]&#39;</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot;Generate word pool.</span>
+<span class="k">def</span> <span class="nf">_random_cycle</span><span class="p">(</span><span class="n">iterable</span><span class="p">:</span> <span class="s1">&#39;Iterable[Any]&#39;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s1">&#39;Iterator[Any]&#39;</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Randomly cycle the given iterable.</span>
 
 <span class="sd">    Args:</span>
-<span class="sd">        dupe: Duplication to generate the word pool.</span>
+<span class="sd">        iterable: Iterable to be cycled.</span>
 
 <span class="sd">    Returns:</span>
-<span class="sd">        An infinite loop word pool.</span>
+<span class="sd">        Randomly cycled iterable.</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">pool</span> <span class="o">=</span> <span class="p">[]</span>  <span class="c1"># type: list[str]</span>
-    <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">dupe</span><span class="p">):</span>
-        <span class="n">pool</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">_TEXT</span><span class="p">)</span>
+    <span class="n">pool</span> <span class="o">=</span> <span class="p">[]</span>  <span class="c1"># type: list</span>
+    <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">iterable</span><span class="p">:</span>
+        <span class="k">yield</span> <span class="n">item</span>
+        <span class="n">pool</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
     <span class="n">random</span><span class="o">.</span><span class="n">shuffle</span><span class="p">(</span><span class="n">pool</span><span class="p">)</span>
 
-    <span class="k">while</span> <span class="n">pool</span><span class="p">:</span>  <span class="c1"># pragma: no cover</span>
-        <span class="k">for</span> <span class="n">text</span> <span class="ow">in</span> <span class="n">pool</span><span class="p">:</span>
-            <span class="k">yield</span> <span class="n">text</span>
-        <span class="n">random</span><span class="o">.</span><span class="n">shuffle</span><span class="p">(</span><span class="n">pool</span><span class="p">)</span></div>
+    <span class="k">while</span> <span class="kc">True</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">pool</span><span class="p">:</span>
+            <span class="k">yield</span> <span class="n">item</span>
+        <span class="n">random</span><span class="o">.</span><span class="n">shuffle</span><span class="p">(</span><span class="n">pool</span><span class="p">)</span>
 
 
-<div class="viewcode-block" id="_gen_word"><a class="viewcode-back" href="../lorem.html#lorem._gen_word">[docs]</a><span class="k">def</span> <span class="nf">_gen_word</span><span class="p">(</span><span class="n">pool</span><span class="p">:</span> <span class="s1">&#39;Iterator[str]&#39;</span><span class="p">,</span>  <span class="c1"># pylint: disable=dangerous-default-value</span>
-              <span class="n">func</span><span class="p">:</span> <span class="s1">&#39;Optional[str | Callable[[str], str]]&#39;</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
-              <span class="n">args</span><span class="p">:</span> <span class="s1">&#39;tuple[str, ...]&#39;</span> <span class="o">=</span> <span class="p">(),</span> <span class="n">kwargs</span><span class="p">:</span> <span class="s1">&#39;dict[str, Any]&#39;</span> <span class="o">=</span> <span class="p">{})</span> <span class="o">-&gt;</span> <span class="s1">&#39;str&#39;</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot;Generate random word.</span>
+<span class="k">class</span> <span class="nc">LoremGenerator</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;Generate random words.</span>
 
 <span class="sd">    Args:</span>
-<span class="sd">        pool: Word pool, returned by :func:`_gen_pool`.</span>
-<span class="sd">        func: Filter function. It can be an attribute name of :obj:`str`, or a customised</span>
-<span class="sd">            function that takes the original :obj:`str` and returns the modified :obj:`str`.</span>
-<span class="sd">        args:  Additional positional arguments for ``func``.</span>
-<span class="sd">        kwargs: Additional keyword arguments for ``func``.</span>
-
-<span class="sd">    Returns:</span>
-<span class="sd">        Random word.</span>
+<span class="sd">        pool: List of words to be used as random word pool.</span>
+<span class="sd">        dupe: Duplication to generate the word pool.</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">text</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="n">pool</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">func</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">func</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
-            <span class="n">text</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">func</span><span class="p">)(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="n">text</span> <span class="o">=</span> <span class="n">func</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">text</span></div>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">pool</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s1">&#39;Iterator[str]&#39;</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Return the current random word pool.&quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_pool</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pool</span><span class="p">:</span> <span class="s1">&#39;Iterable[str]&#39;</span> <span class="o">=</span> <span class="n">_TEXT</span><span class="p">,</span> <span class="n">dupe</span><span class="p">:</span> <span class="s1">&#39;int&#39;</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s1">&#39;None&#39;</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_text</span> <span class="o">=</span> <span class="n">pool</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_pool</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_gen_pool</span><span class="p">(</span><span class="n">dupe</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_gen_pool</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dupe</span><span class="p">:</span> <span class="s1">&#39;int&#39;</span> <span class="o">=</span> <span class="mi">1</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s1">&#39;Iterator[str]&#39;</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Generate word pool.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            dupe: Duplication to generate the word pool.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            An infinite loop word pool.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">pool</span> <span class="o">=</span> <span class="p">[]</span>  <span class="c1"># type: list[str]</span>
+        <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">dupe</span><span class="p">):</span>
+            <span class="n">pool</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_text</span><span class="p">)</span>
+        <span class="n">random</span><span class="o">.</span><span class="n">shuffle</span><span class="p">(</span><span class="n">pool</span><span class="p">)</span>
+
+        <span class="k">while</span> <span class="n">pool</span><span class="p">:</span>  <span class="c1"># pragma: no cover</span>
+            <span class="k">for</span> <span class="n">text</span> <span class="ow">in</span> <span class="n">pool</span><span class="p">:</span>
+                <span class="k">yield</span> <span class="n">text</span>
+            <span class="n">random</span><span class="o">.</span><span class="n">shuffle</span><span class="p">(</span><span class="n">pool</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">gen_word</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="c1"># pylint: disable=dangerous-default-value</span>
+                 <span class="n">func</span><span class="p">:</span> <span class="s1">&#39;Optional[str | Callable[[str], str]]&#39;</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+                 <span class="n">args</span><span class="p">:</span> <span class="s1">&#39;tuple[str, ...]&#39;</span> <span class="o">=</span> <span class="p">(),</span> <span class="n">kwargs</span><span class="p">:</span> <span class="s1">&#39;dict[str, Any]&#39;</span> <span class="o">=</span> <span class="p">{})</span> <span class="o">-&gt;</span> <span class="s1">&#39;str&#39;</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Generate random word.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            func: Filter function. It can be an attribute name of :obj:`str`, or a customised</span>
+<span class="sd">                function that takes the original :obj:`str` and returns the modified :obj:`str`.</span>
+<span class="sd">            args:  Additional positional arguments for ``func``.</span>
+<span class="sd">            kwargs: Additional keyword arguments for ``func``.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            Random word.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">text</span> <span class="o">=</span> <span class="nb">next</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">pool</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">func</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">func</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+                <span class="n">text</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="n">func</span><span class="p">)(</span><span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">text</span> <span class="o">=</span> <span class="n">func</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">text</span>
+
+    <span class="k">def</span> <span class="nf">gen_sentence</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">comma</span><span class="p">:</span> <span class="s1">&#39;tuple[int, int]&#39;</span><span class="p">,</span>
+                     <span class="n">word_range</span><span class="p">:</span> <span class="s1">&#39;tuple[int, int]&#39;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s1">&#39;str&#39;</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Generate random sentence.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            comma: Random range for number of commas. The function will use :func:`random.randint`</span>
+<span class="sd">                to choose a random integer as the number of commas.</span>
+<span class="sd">            word_range: Random range for number of words in each sentence. The function will use</span>
+<span class="sd">                :func:`random.randint` to choose a random integer as the number of words.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            Random sentence.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">text</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">gen_word</span><span class="p">(</span><span class="n">func</span><span class="o">=</span><span class="s1">&#39;capitalize&#39;</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="o">*</span><span class="n">word_range</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">):</span>  <span class="c1"># nosec B311</span>
+            <span class="n">text</span> <span class="o">+=</span> <span class="s1">&#39; &#39;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">gen_word</span><span class="p">()</span>
+
+        <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="o">*</span><span class="n">comma</span><span class="p">)):</span>  <span class="c1"># nosec B311</span>
+            <span class="n">include_comma</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">([</span><span class="kc">True</span><span class="p">,</span> <span class="kc">False</span><span class="p">])</span>  <span class="c1"># nosec B311</span>
+            <span class="k">if</span> <span class="n">include_comma</span><span class="p">:</span>
+                <span class="n">text</span> <span class="o">+=</span> <span class="s1">&#39;,&#39;</span>
+                <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="o">*</span><span class="n">word_range</span><span class="p">)):</span>  <span class="c1"># nosec B311</span>
+                    <span class="n">text</span> <span class="o">+=</span> <span class="s1">&#39; &#39;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">gen_word</span><span class="p">()</span>
+                <span class="k">continue</span>
+            <span class="k">break</span>
+        <span class="k">return</span> <span class="n">text</span> <span class="o">+</span> <span class="s1">&#39;.&#39;</span>
+
+    <span class="k">def</span> <span class="nf">gen_paragraph</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">comma</span><span class="p">:</span> <span class="s1">&#39;tuple[int, int]&#39;</span><span class="p">,</span>
+                      <span class="n">word_range</span><span class="p">:</span> <span class="s1">&#39;tuple[int, int]&#39;</span><span class="p">,</span>
+                      <span class="n">sentence_range</span><span class="p">:</span> <span class="s1">&#39;tuple[int, int]&#39;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s1">&#39;str&#39;</span><span class="p">:</span>
+        <span class="sd">&quot;&quot;&quot;Generate random paragraph.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            comma: Random range for number of commas. The function will use :func:`random.randint`</span>
+<span class="sd">                to choose a random integer as the number of commas.</span>
+<span class="sd">            word_range: Random range for number of words in each sentence. The function will use</span>
+<span class="sd">                :func:`random.randint` to choose a random integer as the number of words.</span>
+<span class="sd">            sentence_range: Random range for number of sentences in each  paragraph. The function</span>
+<span class="sd">                will use :func:`random.randint` to choose a random integer as the number of sentences.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            Random paragraph.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">text</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">gen_sentence</span><span class="p">(</span><span class="n">comma</span><span class="o">=</span><span class="n">comma</span><span class="p">,</span> <span class="n">word_range</span><span class="o">=</span><span class="n">word_range</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="o">*</span><span class="n">sentence_range</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">):</span>  <span class="c1"># nosec B311</span>
+            <span class="n">text</span> <span class="o">+=</span> <span class="s1">&#39; &#39;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">gen_sentence</span><span class="p">(</span><span class="n">comma</span><span class="o">=</span><span class="n">comma</span><span class="p">,</span> <span class="n">word_range</span><span class="o">=</span><span class="n">word_range</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">text</span>
 
 
-<div class="viewcode-block" id="_gen_sentence"><a class="viewcode-back" href="../lorem.html#lorem._gen_sentence">[docs]</a><span class="k">def</span> <span class="nf">_gen_sentence</span><span class="p">(</span><span class="n">pool</span><span class="p">:</span> <span class="s1">&#39;Iterator[str]&#39;</span><span class="p">,</span>
-                  <span class="n">comma</span><span class="p">:</span> <span class="s1">&#39;tuple[int, int]&#39;</span><span class="p">,</span>
-                  <span class="n">word_range</span><span class="p">:</span> <span class="s1">&#39;tuple[int, int]&#39;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s1">&#39;str&#39;</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot;Generate random sentence.</span>
-
-<span class="sd">    Args:</span>
-<span class="sd">        pool: Word pool, returned by :func:`_gen_pool`.</span>
-<span class="sd">        comma: Random range for number of commas. The function will use :func:`random.randint`</span>
-<span class="sd">            to choose a random integer as the number of commas.</span>
-<span class="sd">        word_range: Random range for number of words in each sentence. The function will use</span>
-<span class="sd">            :func:`random.randint` to choose a random integer as the number of words.</span>
-
-<span class="sd">    Returns:</span>
-<span class="sd">        Random sentence.</span>
-
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">text</span> <span class="o">=</span> <span class="n">_gen_word</span><span class="p">(</span><span class="n">pool</span><span class="o">=</span><span class="n">pool</span><span class="p">,</span> <span class="n">func</span><span class="o">=</span><span class="s1">&#39;capitalize&#39;</span><span class="p">)</span>
-    <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="o">*</span><span class="n">word_range</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">):</span>  <span class="c1"># nosec B311</span>
-        <span class="n">text</span> <span class="o">+=</span> <span class="s1">&#39; &#39;</span> <span class="o">+</span> <span class="n">_gen_word</span><span class="p">(</span><span class="n">pool</span><span class="o">=</span><span class="n">pool</span><span class="p">)</span>
-
-    <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="o">*</span><span class="n">comma</span><span class="p">)):</span>  <span class="c1"># nosec B311</span>
-        <span class="n">include_comma</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">([</span><span class="kc">True</span><span class="p">,</span> <span class="kc">False</span><span class="p">])</span>  <span class="c1"># nosec B311</span>
-        <span class="k">if</span> <span class="n">include_comma</span><span class="p">:</span>
-            <span class="n">text</span> <span class="o">+=</span> <span class="s1">&#39;,&#39;</span>
-            <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="o">*</span><span class="n">word_range</span><span class="p">)):</span>  <span class="c1"># nosec B311</span>
-                <span class="n">text</span> <span class="o">+=</span> <span class="s1">&#39; &#39;</span> <span class="o">+</span> <span class="n">_gen_word</span><span class="p">(</span><span class="n">pool</span><span class="o">=</span><span class="n">pool</span><span class="p">)</span>
-            <span class="k">continue</span>
-        <span class="k">break</span>
-    <span class="k">return</span> <span class="n">text</span> <span class="o">+</span> <span class="s1">&#39;.&#39;</span></div>
-
-
-<div class="viewcode-block" id="_gen_paragraph"><a class="viewcode-back" href="../lorem.html#lorem._gen_paragraph">[docs]</a><span class="k">def</span> <span class="nf">_gen_paragraph</span><span class="p">(</span><span class="n">pool</span><span class="p">:</span> <span class="s1">&#39;Iterator[str]&#39;</span><span class="p">,</span>
-                   <span class="n">comma</span><span class="p">:</span> <span class="s1">&#39;tuple[int, int]&#39;</span><span class="p">,</span>
-                   <span class="n">word_range</span><span class="p">:</span> <span class="s1">&#39;tuple[int, int]&#39;</span><span class="p">,</span>
-                   <span class="n">sentence_range</span><span class="p">:</span> <span class="s1">&#39;tuple[int, int]&#39;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s1">&#39;str&#39;</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot;Generate random paragraph.</span>
-
-<span class="sd">    Args:</span>
-<span class="sd">        pool: Word pool, returned by :func:`_gen_pool`.</span>
-<span class="sd">        comma: Random range for number of commas. The function will use :func:`random.randint`</span>
-<span class="sd">            to choose a random integer as the number of commas.</span>
-<span class="sd">        word_range: Random range for number of words in each sentence. The function will use</span>
-<span class="sd">            :func:`random.randint` to choose a random integer as the number of words.</span>
-<span class="sd">        sentence_range: Random range for number of sentences in each  paragraph. The function</span>
-<span class="sd">            will use :func:`random.randint` to choose a random integer as the number of sentences.</span>
-
-<span class="sd">    Returns:</span>
-<span class="sd">        Random paragraph.</span>
-
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">text</span> <span class="o">=</span> <span class="n">_gen_sentence</span><span class="p">(</span><span class="n">pool</span><span class="o">=</span><span class="n">pool</span><span class="p">,</span> <span class="n">comma</span><span class="o">=</span><span class="n">comma</span><span class="p">,</span> <span class="n">word_range</span><span class="o">=</span><span class="n">word_range</span><span class="p">)</span>
-    <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="o">*</span><span class="n">sentence_range</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">):</span>  <span class="c1"># nosec B311</span>
-        <span class="n">text</span> <span class="o">+=</span> <span class="s1">&#39; &#39;</span> <span class="o">+</span> <span class="n">_gen_sentence</span><span class="p">(</span><span class="n">pool</span><span class="o">=</span><span class="n">pool</span><span class="p">,</span> <span class="n">comma</span><span class="o">=</span><span class="n">comma</span><span class="p">,</span> <span class="n">word_range</span><span class="o">=</span><span class="n">word_range</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">text</span></div>
-
-
-<div class="viewcode-block" id="word"><a class="viewcode-back" href="../lorem.html#lorem.word">[docs]</a><span class="k">def</span> <span class="nf">word</span><span class="p">(</span><span class="n">count</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>  <span class="c1"># pylint: disable=dangerous-default-value</span>
+<div class="viewcode-block" id="word"><a class="viewcode-back" href="../lorem.html#lorem.word">[docs]</a><span class="k">def</span> <span class="nf">word</span><span class="p">(</span><span class="n">pool</span><span class="p">:</span> <span class="s1">&#39;Iterable[str]&#39;</span> <span class="o">=</span> <span class="n">_TEXT</span><span class="p">,</span> <span class="n">count</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>  <span class="c1"># pylint: disable=dangerous-default-value</span>
          <span class="n">func</span><span class="p">:</span> <span class="s1">&#39;Optional[str | Callable[[str], str]]&#39;</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
          <span class="n">args</span><span class="p">:</span> <span class="s1">&#39;tuple[str, ...]&#39;</span> <span class="o">=</span> <span class="p">(),</span> <span class="n">kwargs</span><span class="p">:</span> <span class="s1">&#39;dict[str, Any]&#39;</span> <span class="o">=</span> <span class="p">{})</span> <span class="o">-&gt;</span> <span class="s1">&#39;Iterator[str]&#39;</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;Generate a list of random words.</span>
@@ -260,6 +292,7 @@
 <span class="sd">        [&#39;UT&#39;, &#39;AMET&#39;, &#39;EXCEPTEUR&#39;]</span>
 
 <span class="sd">    Args:</span>
+<span class="sd">        pool: List of words to be used as random word pool.</span>
 <span class="sd">        count: Number of non-repeated random words.</span>
 <span class="sd">        func: Filter function. It can be an attribute name of :obj:`str`, or a customised</span>
 <span class="sd">            function that takes the original :obj:`str` and returns the modified :obj:`str`.</span>
@@ -270,14 +303,13 @@
 <span class="sd">        Indefinite random words generator.</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">pool</span> <span class="o">=</span> <span class="n">_gen_pool</span><span class="p">(</span><span class="n">count</span><span class="p">)</span>
-    <span class="k">yield from</span> <span class="n">itertools</span><span class="o">.</span><span class="n">cycle</span><span class="p">(</span><span class="n">_gen_word</span><span class="p">(</span><span class="n">pool</span><span class="o">=</span><span class="n">pool</span><span class="p">,</span>
-                                         <span class="n">func</span><span class="o">=</span><span class="n">func</span><span class="p">,</span>
-                                         <span class="n">args</span><span class="o">=</span><span class="n">args</span><span class="p">,</span>
-                                         <span class="n">kwargs</span><span class="o">=</span><span class="n">kwargs</span><span class="p">)</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">count</span><span class="p">))</span></div>
+    <span class="n">lorem</span> <span class="o">=</span> <span class="n">LoremGenerator</span><span class="p">(</span><span class="n">pool</span><span class="o">=</span><span class="n">pool</span><span class="p">,</span> <span class="n">dupe</span><span class="o">=</span><span class="n">count</span><span class="p">)</span>
+    <span class="k">yield from</span> <span class="n">itertools</span><span class="o">.</span><span class="n">cycle</span><span class="p">(</span><span class="n">lorem</span><span class="o">.</span><span class="n">gen_word</span><span class="p">(</span><span class="n">func</span><span class="o">=</span><span class="n">func</span><span class="p">,</span>
+                                              <span class="n">args</span><span class="o">=</span><span class="n">args</span><span class="p">,</span>
+                                              <span class="n">kwargs</span><span class="o">=</span><span class="n">kwargs</span><span class="p">)</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">count</span><span class="p">))</span></div>
 
 
-<div class="viewcode-block" id="sentence"><a class="viewcode-back" href="../lorem.html#lorem.sentence">[docs]</a><span class="k">def</span> <span class="nf">sentence</span><span class="p">(</span><span class="n">count</span><span class="p">:</span> <span class="s1">&#39;int&#39;</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
+<div class="viewcode-block" id="sentence"><a class="viewcode-back" href="../lorem.html#lorem.sentence">[docs]</a><span class="k">def</span> <span class="nf">sentence</span><span class="p">(</span><span class="n">pool</span><span class="p">:</span> <span class="s1">&#39;Iterable[str]&#39;</span> <span class="o">=</span> <span class="n">_TEXT</span><span class="p">,</span> <span class="n">count</span><span class="p">:</span> <span class="s1">&#39;int&#39;</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
              <span class="n">comma</span><span class="p">:</span> <span class="s1">&#39;tuple[int, int]&#39;</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span>
              <span class="n">word_range</span><span class="p">:</span> <span class="s1">&#39;tuple[int, int]&#39;</span> <span class="o">=</span> <span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span> <span class="o">-&gt;</span> <span class="s1">&#39;Iterator[str]&#39;</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;Generate a list of random sentences.</span>
@@ -288,6 +320,7 @@
 <span class="sd">        [&#39;Aute irure et commodo sunt do duis dolor.&#39;]</span>
 
 <span class="sd">    Args:</span>
+<span class="sd">        pool: List of words to be used as random word pool.</span>
 <span class="sd">        count: Number of non-repeated random sentences.</span>
 <span class="sd">        comma: Random range for number of commas. The function will use :func:`random.randint`</span>
 <span class="sd">            to choose a random integer as the number of commas.</span>
@@ -298,13 +331,12 @@
 <span class="sd">        Indefinite random sentence generator.</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">pool</span> <span class="o">=</span> <span class="n">_gen_pool</span><span class="p">(</span><span class="n">count</span> <span class="o">*</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="o">*</span><span class="n">word_range</span><span class="p">))</span>  <span class="c1"># nosec B311</span>
-    <span class="k">yield from</span> <span class="n">itertools</span><span class="o">.</span><span class="n">cycle</span><span class="p">(</span><span class="n">_gen_sentence</span><span class="p">(</span><span class="n">pool</span><span class="o">=</span><span class="n">pool</span><span class="p">,</span>
-                                             <span class="n">comma</span><span class="o">=</span><span class="n">comma</span><span class="p">,</span>
-                                             <span class="n">word_range</span><span class="o">=</span><span class="n">word_range</span><span class="p">)</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">count</span><span class="p">))</span></div>
+    <span class="n">lorem</span> <span class="o">=</span> <span class="n">LoremGenerator</span><span class="p">(</span><span class="n">pool</span><span class="o">=</span><span class="n">pool</span><span class="p">,</span> <span class="n">dupe</span><span class="o">=</span><span class="n">count</span><span class="p">)</span>
+    <span class="k">yield from</span> <span class="n">_random_cycle</span><span class="p">(</span><span class="n">lorem</span><span class="o">.</span><span class="n">gen_sentence</span><span class="p">(</span><span class="n">comma</span><span class="o">=</span><span class="n">comma</span><span class="p">,</span>
+                                                <span class="n">word_range</span><span class="o">=</span><span class="n">word_range</span><span class="p">)</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">count</span><span class="p">))</span></div>
 
 
-<div class="viewcode-block" id="paragraph"><a class="viewcode-back" href="../lorem.html#lorem.paragraph">[docs]</a><span class="k">def</span> <span class="nf">paragraph</span><span class="p">(</span><span class="n">count</span><span class="p">:</span> <span class="s1">&#39;int&#39;</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
+<div class="viewcode-block" id="paragraph"><a class="viewcode-back" href="../lorem.html#lorem.paragraph">[docs]</a><span class="k">def</span> <span class="nf">paragraph</span><span class="p">(</span><span class="n">pool</span><span class="p">:</span> <span class="s1">&#39;Iterable[str]&#39;</span> <span class="o">=</span> <span class="n">_TEXT</span><span class="p">,</span> <span class="n">count</span><span class="p">:</span> <span class="s1">&#39;int&#39;</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
               <span class="n">comma</span><span class="p">:</span> <span class="s1">&#39;tuple[int, int]&#39;</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span>
               <span class="n">word_range</span><span class="p">:</span> <span class="s1">&#39;tuple[int, int]&#39;</span> <span class="o">=</span> <span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">8</span><span class="p">),</span>
               <span class="n">sentence_range</span><span class="p">:</span> <span class="s1">&#39;tuple[int, int]&#39;</span> <span class="o">=</span> <span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">10</span><span class="p">))</span> <span class="o">-&gt;</span> <span class="s1">&#39;Iterator[str]&#39;</span><span class="p">:</span>
@@ -314,14 +346,15 @@
 
 <span class="sd">        &gt;&gt;&gt; list(itertools.islice(paragraph(), 1))</span>
 <span class="sd">        [&#39;Aute sint et cupidatat aliquip. Non exercitation est aliquip voluptate &#39;</span>
-<span class="sd">         &#39;fugiat, reprehenderit ad occaecat laboris velit consequat. Magna enim &#39;</span>
-<span class="sd">         &#39;deserunt aute laborum fugiat exercitation. Aliqua ex sunt fugiat in &#39;</span>
-<span class="sd">         &#39;magna voluptate. Elit nisi exercitation nostrud. Magna proident et &#39;</span>
-<span class="sd">         &#39;fugiat eiusmod cupidatat fugiat, sit culpa fugiat non ea eu &#39;</span>
-<span class="sd">         &#39;reprehenderit elit. Proident mollit mollit ut cillum. Nostrud voluptate &#39;</span>
-<span class="sd">         &#39;aliquip cupidatat anim.&#39;]</span>
+<span class="sd">            &#39;fugiat, reprehenderit ad occaecat laboris velit consequat. Magna enim &#39;</span>
+<span class="sd">            &#39;deserunt aute laborum fugiat exercitation. Aliqua ex sunt fugiat in &#39;</span>
+<span class="sd">            &#39;magna voluptate. Elit nisi exercitation nostrud. Magna proident et &#39;</span>
+<span class="sd">            &#39;fugiat eiusmod cupidatat fugiat, sit culpa fugiat non ea eu &#39;</span>
+<span class="sd">            &#39;reprehenderit elit. Proident mollit mollit ut cillum. Nostrud voluptate &#39;</span>
+<span class="sd">            &#39;aliquip cupidatat anim.&#39;]</span>
 
 <span class="sd">    Args:</span>
+<span class="sd">        pool: List of words to be used as random word pool.</span>
 <span class="sd">        count: Number of non-repeated random paragraphs.</span>
 <span class="sd">        comma: Random range for number of commas. The function will use :func:`random.randint`</span>
 <span class="sd">            to choose a random integer as the number of commas.</span>
@@ -334,14 +367,17 @@
 <span class="sd">        Random paragraph generator.</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">pool</span> <span class="o">=</span> <span class="n">_gen_pool</span><span class="p">(</span><span class="n">count</span> <span class="o">*</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="o">*</span><span class="n">word_range</span><span class="p">)</span> <span class="o">*</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="o">*</span><span class="n">sentence_range</span><span class="p">))</span>  <span class="c1"># nosec B311</span>
-    <span class="k">yield from</span> <span class="n">itertools</span><span class="o">.</span><span class="n">cycle</span><span class="p">(</span><span class="n">_gen_paragraph</span><span class="p">(</span><span class="n">pool</span><span class="o">=</span><span class="n">pool</span><span class="p">,</span>
-                                              <span class="n">comma</span><span class="o">=</span><span class="n">comma</span><span class="p">,</span>
-                                              <span class="n">word_range</span><span class="o">=</span><span class="n">word_range</span><span class="p">,</span>
-                                              <span class="n">sentence_range</span><span class="o">=</span><span class="n">sentence_range</span><span class="p">)</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">count</span><span class="p">))</span></div>
+    <span class="n">lorem</span> <span class="o">=</span> <span class="n">LoremGenerator</span><span class="p">(</span>
+        <span class="n">pool</span><span class="o">=</span><span class="n">pool</span><span class="p">,</span>
+        <span class="n">dupe</span><span class="o">=</span><span class="n">count</span> <span class="o">*</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="o">*</span><span class="n">word_range</span><span class="p">)</span> <span class="o">*</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="o">*</span><span class="n">sentence_range</span><span class="p">),</span>  <span class="c1"># nosec B311</span>
+    <span class="p">)</span>
+    <span class="k">yield from</span> <span class="n">_random_cycle</span><span class="p">(</span><span class="n">lorem</span><span class="o">.</span><span class="n">gen_paragraph</span><span class="p">(</span><span class="n">comma</span><span class="o">=</span><span class="n">comma</span><span class="p">,</span>
+                                                 <span class="n">word_range</span><span class="o">=</span><span class="n">word_range</span><span class="p">,</span>
+                                                 <span class="n">sentence_range</span><span class="o">=</span><span class="n">sentence_range</span><span class="p">)</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">count</span><span class="p">))</span></div>
 
 
-<div class="viewcode-block" id="get_word"><a class="viewcode-back" href="../lorem.html#lorem.get_word">[docs]</a><span class="k">def</span> <span class="nf">get_word</span><span class="p">(</span><span class="n">count</span><span class="p">:</span> <span class="s1">&#39;int | tuple[int, int]&#39;</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>  <span class="c1"># pylint: disable=dangerous-default-value</span>
+<div class="viewcode-block" id="get_word"><a class="viewcode-back" href="../lorem.html#lorem.get_word">[docs]</a><span class="k">def</span> <span class="nf">get_word</span><span class="p">(</span><span class="n">pool</span><span class="p">:</span> <span class="s1">&#39;Iterable[str]&#39;</span> <span class="o">=</span> <span class="n">_TEXT</span><span class="p">,</span>  <span class="c1"># pylint: disable=dangerous-default-value</span>
+             <span class="n">count</span><span class="p">:</span> <span class="s1">&#39;int | tuple[int, int]&#39;</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
              <span class="n">sep</span><span class="p">:</span> <span class="s1">&#39;str&#39;</span> <span class="o">=</span> <span class="s1">&#39; &#39;</span><span class="p">,</span>
              <span class="n">func</span><span class="p">:</span> <span class="s1">&#39;Optional[str | Callable[[str], str]]&#39;</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
              <span class="n">args</span><span class="p">:</span> <span class="s1">&#39;tuple[str, ...]&#39;</span> <span class="o">=</span> <span class="p">(),</span> <span class="n">kwargs</span><span class="p">:</span> <span class="s1">&#39;dict[str, Any]&#39;</span> <span class="o">=</span> <span class="p">{})</span> <span class="o">-&gt;</span> <span class="s1">&#39;str&#39;</span><span class="p">:</span>
@@ -357,6 +393,7 @@
 <span class="sd">        &#39;NISI TEMPOR CILLUM&#39;</span>
 
 <span class="sd">    Args:</span>
+<span class="sd">        pool: List of words to be used as random word pool.</span>
 <span class="sd">        count: Number of random words. To generate random number of words, supply a 2-element</span>
 <span class="sd">            tuple of :obj:`int`, the function will use :func:`random.randint` to choose a</span>
 <span class="sd">            random integer as the number of random words.</span>
@@ -367,15 +404,16 @@
 <span class="sd">        kwargs: Additional keyword arguments for ``func``.</span>
 
 <span class="sd">    Returns:</span>
-<span class="sd">        :obj:`str`: Random words.</span>
+<span class="sd">        Random words.</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">count</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">):</span>
         <span class="n">count</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="o">*</span><span class="n">count</span><span class="p">)</span>  <span class="c1"># nosec B311</span>
-    <span class="k">return</span> <span class="n">sep</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">itertools</span><span class="o">.</span><span class="n">islice</span><span class="p">(</span><span class="n">word</span><span class="p">(</span><span class="n">count</span><span class="p">,</span> <span class="n">func</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">),</span> <span class="n">count</span><span class="p">))</span></div>
+    <span class="k">return</span> <span class="n">sep</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">itertools</span><span class="o">.</span><span class="n">islice</span><span class="p">(</span><span class="n">word</span><span class="p">(</span><span class="n">pool</span><span class="p">,</span> <span class="n">count</span><span class="p">,</span> <span class="n">func</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">),</span> <span class="n">count</span><span class="p">))</span></div>
 
 
-<div class="viewcode-block" id="get_sentence"><a class="viewcode-back" href="../lorem.html#lorem.get_sentence">[docs]</a><span class="k">def</span> <span class="nf">get_sentence</span><span class="p">(</span><span class="n">count</span><span class="p">:</span> <span class="s1">&#39;int | tuple[int, int]&#39;</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
+<div class="viewcode-block" id="get_sentence"><a class="viewcode-back" href="../lorem.html#lorem.get_sentence">[docs]</a><span class="k">def</span> <span class="nf">get_sentence</span><span class="p">(</span><span class="n">pool</span><span class="p">:</span> <span class="s1">&#39;Iterable[str]&#39;</span> <span class="o">=</span> <span class="n">_TEXT</span><span class="p">,</span>
+                 <span class="n">count</span><span class="p">:</span> <span class="s1">&#39;int | tuple[int, int]&#39;</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
                  <span class="n">sep</span><span class="p">:</span> <span class="s1">&#39;str&#39;</span> <span class="o">=</span> <span class="s1">&#39; &#39;</span><span class="p">,</span>
                  <span class="n">comma</span><span class="p">:</span> <span class="s1">&#39;tuple[int, int]&#39;</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span>
                  <span class="n">word_range</span><span class="p">:</span> <span class="s1">&#39;tuple[int, int]&#39;</span> <span class="o">=</span> <span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span> <span class="o">-&gt;</span> <span class="s1">&#39;str&#39;</span><span class="p">:</span>
@@ -387,7 +425,7 @@
 <span class="sd">        &#39;Nostrud laboris lorem minim sit culpa, aliqua nostrud in amet, sint pariatur eiusmod esse.&#39;</span>
 
 <span class="sd">    Args:</span>
-
+<span class="sd">        pool: List of words to be used as random word pool.</span>
 <span class="sd">        count: Number of random sentences. To generate random number of sentences, supply a</span>
 <span class="sd">            2-element tuple of :obj:`int`, the function will use :func:`random.randint` to</span>
 <span class="sd">            choose a random integer as the number of random sentences.</span>
@@ -403,10 +441,11 @@
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">count</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">):</span>
         <span class="n">count</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="o">*</span><span class="n">count</span><span class="p">)</span>  <span class="c1"># nosec B311</span>
-    <span class="k">return</span> <span class="n">sep</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">itertools</span><span class="o">.</span><span class="n">islice</span><span class="p">(</span><span class="n">sentence</span><span class="p">(</span><span class="n">count</span><span class="p">,</span> <span class="n">comma</span><span class="p">,</span> <span class="n">word_range</span><span class="p">),</span> <span class="n">count</span><span class="p">))</span></div>
+    <span class="k">return</span> <span class="n">sep</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">itertools</span><span class="o">.</span><span class="n">islice</span><span class="p">(</span><span class="n">sentence</span><span class="p">(</span><span class="n">pool</span><span class="p">,</span> <span class="n">count</span><span class="p">,</span> <span class="n">comma</span><span class="p">,</span> <span class="n">word_range</span><span class="p">),</span> <span class="n">count</span><span class="p">))</span></div>
 
 
-<div class="viewcode-block" id="get_paragraph"><a class="viewcode-back" href="../lorem.html#lorem.get_paragraph">[docs]</a><span class="k">def</span> <span class="nf">get_paragraph</span><span class="p">(</span><span class="n">count</span><span class="p">:</span> <span class="s1">&#39;int | tuple[int, int]&#39;</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
+<div class="viewcode-block" id="get_paragraph"><a class="viewcode-back" href="../lorem.html#lorem.get_paragraph">[docs]</a><span class="k">def</span> <span class="nf">get_paragraph</span><span class="p">(</span><span class="n">pool</span><span class="p">:</span> <span class="s1">&#39;Iterable[str]&#39;</span> <span class="o">=</span> <span class="n">_TEXT</span><span class="p">,</span>
+                  <span class="n">count</span><span class="p">:</span> <span class="s1">&#39;int | tuple[int, int]&#39;</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
                   <span class="n">sep</span><span class="p">:</span> <span class="s1">&#39;str&#39;</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">linesep</span><span class="p">,</span>
                   <span class="n">comma</span><span class="p">:</span> <span class="s1">&#39;tuple[int, int]&#39;</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span>
                   <span class="n">word_range</span><span class="p">:</span> <span class="s1">&#39;tuple[int, int]&#39;</span> <span class="o">=</span> <span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">8</span><span class="p">),</span>
@@ -426,6 +465,7 @@
 <span class="sd">        &#39;mollit elit. Amet id incididunt ipsum sed.&#39;</span>
 
 <span class="sd">    Args:</span>
+<span class="sd">        pool: List of words to be used as random word pool.</span>
 <span class="sd">        count: Number of random paragraphs. To generate random number of paragraphs, supply a</span>
 <span class="sd">            2-element tuple of :obj:`int`, the function will use :func:`random.randint` to choose</span>
 <span class="sd">            a random integer as the number of random paragraphs.</span>
@@ -444,18 +484,7 @@
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">count</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">):</span>
         <span class="n">count</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="o">*</span><span class="n">count</span><span class="p">)</span>  <span class="c1"># nosec B311</span>
-    <span class="k">return</span> <span class="n">sep</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">itertools</span><span class="o">.</span><span class="n">islice</span><span class="p">(</span><span class="n">paragraph</span><span class="p">(</span><span class="n">count</span><span class="p">,</span> <span class="n">comma</span><span class="p">,</span> <span class="n">word_range</span><span class="p">,</span> <span class="n">sentence_range</span><span class="p">),</span> <span class="n">count</span><span class="p">))</span></div>
-
-
-<div class="viewcode-block" id="set_pool"><a class="viewcode-back" href="../lorem.html#lorem.set_pool">[docs]</a><span class="k">def</span> <span class="nf">set_pool</span><span class="p">(</span><span class="n">pool</span><span class="p">:</span> <span class="s1">&#39;Iterable[str]&#39;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s1">&#39;None&#39;</span><span class="p">:</span>
-    <span class="sd">&quot;&quot;&quot;Customise random word pool.</span>
-
-<span class="sd">    Args:</span>
-<span class="sd">        pool: List of words to be used as random word pool.</span>
-
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">global</span> <span class="n">_TEXT</span>  <span class="c1"># pylint: disable=global-statement</span>
-    <span class="n">_TEXT</span> <span class="o">=</span> <span class="n">pool</span>  <span class="c1"># type: ignore[assignment]</span></div>
+    <span class="k">return</span> <span class="n">sep</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">itertools</span><span class="o">.</span><span class="n">islice</span><span class="p">(</span><span class="n">paragraph</span><span class="p">(</span><span class="n">pool</span><span class="p">,</span> <span class="n">count</span><span class="p">,</span> <span class="n">comma</span><span class="p">,</span> <span class="n">word_range</span><span class="p">,</span> <span class="n">sentence_range</span><span class="p">),</span> <span class="n">count</span><span class="p">))</span></div>
 </pre></div>
 
           </div>

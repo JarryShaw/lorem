@@ -51,12 +51,12 @@
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>iterable</strong> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Iterator" title="(in Python v3.11)"><em>Iterator</em></a><em>[</em><em>_T</em><em>]</em>) – </p></li>
+<li><p><strong>iterable</strong> (<em>Iterator</em><em>[</em><em>_T</em><em>]</em>) – </p></li>
 <li><p><strong>stop</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><em>int</em></a>) – </p></li>
 </ul>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.11)"><em>List</em></a>[<em>_T</em>]</p>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.11)">list</a>[_T]</p>
 </dd>
 </dl>
 </dd></dl>
@@ -68,9 +68,12 @@
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>x</strong> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.List" title="(in Python v3.11)"><em>List</em></a><em>[</em><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.11)"><em>Any</em></a><em>]</em>) – </p></li>
-<li><p><strong>random</strong> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Optional" title="(in Python v3.11)"><em>Optional</em></a><em>[</em><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Callable" title="(in Python v3.11)"><em>Callable</em></a><em>[</em><em>[</em><em>]</em><em>, </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><em>float</em></a><em>]</em><em>]</em>) – </p></li>
+<li><p><strong>x</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.11)"><em>list</em></a><em>[</em><em>Any</em><em>]</em>) – </p></li>
+<li><p><strong>random</strong> (<em>Optional</em><em>[</em><em>Callable</em><em>[</em><em>[</em><em>]</em><em>, </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><em>float</em></a><em>]</em><em>]</em>) – </p></li>
 </ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
 </dd>
 </dl>
 </dd></dl>
@@ -98,10 +101,10 @@
 <dd><p>Mock <a class="reference external" href="https://docs.python.org/3/library/random.html#random.choice" title="(in Python v3.11)"><code class="xref py py-func docutils literal notranslate"><span class="pre">random.choice()</span></code></a>, but return the first element.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>seq</strong> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Sequence" title="(in Python v3.11)"><em>Sequence</em></a><em>[</em><em>_T</em><em>]</em>) – </p>
+<dd class="field-odd"><p><strong>seq</strong> (<em>Sequence</em><em>[</em><em>_T</em><em>]</em>) – </p>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><em>_T</em></p>
+<dd class="field-even"><p>_T</p>
 </dd>
 </dl>
 </dd></dl>
@@ -112,24 +115,27 @@
 <dd><p>Mock <a class="reference external" href="https://docs.python.org/3/library/random.html#random.choice" title="(in Python v3.11)"><code class="xref py py-func docutils literal notranslate"><span class="pre">random.choice()</span></code></a>, but return the last element.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>seq</strong> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Sequence" title="(in Python v3.11)"><em>Sequence</em></a><em>[</em><em>_T</em><em>]</em>) – </p>
+<dd class="field-odd"><p><strong>seq</strong> (<em>Sequence</em><em>[</em><em>_T</em><em>]</em>) – </p>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><em>_T</em></p>
+<dd class="field-even"><p>_T</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="test_lorem.pool">
-<span class="sig-prename descclassname"><span class="pre">test_lorem.</span></span><span class="sig-name descname"><span class="pre">pool</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dupe</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/test_lorem.html#pool"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#test_lorem.pool" title="Permalink to this definition">¶</a></dt>
-<dd><p>Mock <a class="reference internal" href="lorem.html#lorem._gen_pool" title="lorem._gen_pool"><code class="xref py py-func docutils literal notranslate"><span class="pre">lorem._gen_pool()</span></code></a>, but return a minimised pool.</p>
+<span class="sig-prename descclassname"><span class="pre">test_lorem.</span></span><span class="sig-name descname"><span class="pre">pool</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">self</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dupe</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/test_lorem.html#pool"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#test_lorem.pool" title="Permalink to this definition">¶</a></dt>
+<dd><p>Mock <code class="xref py py-func docutils literal notranslate"><span class="pre">lorem.LoremGenerator._gen_pool()</span></code>, but return a minimised pool.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>dupe</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><em>int</em></a>) – </p>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>self</strong> (<em>lorem.LoremGenerator</em>) – </p></li>
+<li><p><strong>dupe</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><em>int</em></a>) – </p></li>
+</ul>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Iterator" title="(in Python v3.11)"><em>Iterator</em></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)">str</a>]</p>
+<dd class="field-even"><p>Iterator[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)">str</a>]</p>
 </dd>
 </dl>
 </dd></dl>
@@ -164,81 +170,119 @@
 </dd></dl>
 
 <dl class="py attribute">
-<dt class="sig sig-object py" id="test_lorem.TestLorem.mock_text">
-<span class="sig-name descname"><span class="pre">mock_text</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;unittest.mock._patch</span> <span class="pre">object&gt;</span></em><a class="headerlink" href="#test_lorem.TestLorem.mock_text" title="Permalink to this definition">¶</a></dt>
-<dd><p>Mock <a class="reference internal" href="lorem.html#lorem._TEXT" title="lorem._TEXT"><code class="xref py py-data docutils literal notranslate"><span class="pre">lorem._TEXT</span></code></a> by a minimised pool (<code class="docutils literal notranslate"><span class="pre">['lorem',</span> <span class="pre">'ipsum']</span></code>).</p>
-</dd></dl>
-
-<dl class="py attribute">
 <dt class="sig sig-object py" id="test_lorem.TestLorem.mock_pool">
 <span class="sig-name descname"><span class="pre">mock_pool</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">&lt;unittest.mock._patch</span> <span class="pre">object&gt;</span></em><a class="headerlink" href="#test_lorem.TestLorem.mock_pool" title="Permalink to this definition">¶</a></dt>
-<dd><p>Mock <a class="reference internal" href="lorem.html#lorem._gen_pool" title="lorem._gen_pool"><code class="xref py py-func docutils literal notranslate"><span class="pre">lorem._gen_pool()</span></code></a>.</p>
+<dd><p>Mock <code class="xref py py-func docutils literal notranslate"><span class="pre">lorem._gen_pool()</span></code>.</p>
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="test_lorem.TestLorem.test_set_pool">
-<span class="sig-name descname"><span class="pre">test_set_pool</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/test_lorem.html#TestLorem.test_set_pool"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#test_lorem.TestLorem.test_set_pool" title="Permalink to this definition">¶</a></dt>
-<dd><p>Test <a class="reference internal" href="lorem.html#lorem.set_pool" title="lorem.set_pool"><code class="xref py py-func docutils literal notranslate"><span class="pre">lorem.set_pool()</span></code></a>.</p>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="test_lorem.TestLorem.test_gen_pool">
-<span class="sig-name descname"><span class="pre">test_gen_pool</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/test_lorem.html#TestLorem.test_gen_pool"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#test_lorem.TestLorem.test_gen_pool" title="Permalink to this definition">¶</a></dt>
-<dd><p>Test <a class="reference internal" href="lorem.html#lorem._gen_pool" title="lorem._gen_pool"><code class="xref py py-func docutils literal notranslate"><span class="pre">lorem._gen_pool()</span></code></a>.</p>
+<dt class="sig sig-object py" id="test_lorem.TestLorem.test_lorem_init">
+<span class="sig-name descname"><span class="pre">test_lorem_init</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/test_lorem.html#TestLorem.test_lorem_init"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#test_lorem.TestLorem.test_lorem_init" title="Permalink to this definition">¶</a></dt>
+<dd><p>Test <code class="xref py py-func docutils literal notranslate"><span class="pre">lorem.__init__()</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="test_lorem.TestLorem.test_gen_word">
 <span class="sig-name descname"><span class="pre">test_gen_word</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/test_lorem.html#TestLorem.test_gen_word"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#test_lorem.TestLorem.test_gen_word" title="Permalink to this definition">¶</a></dt>
-<dd><p>Test <a class="reference internal" href="lorem.html#lorem._gen_word" title="lorem._gen_word"><code class="xref py py-func docutils literal notranslate"><span class="pre">lorem._gen_word()</span></code></a>.</p>
+<dd><p>Test <code class="xref py py-func docutils literal notranslate"><span class="pre">lorem.LoremGenerator.gen_word()</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="test_lorem.TestLorem.test_gen_sentence">
 <span class="sig-name descname"><span class="pre">test_gen_sentence</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/test_lorem.html#TestLorem.test_gen_sentence"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#test_lorem.TestLorem.test_gen_sentence" title="Permalink to this definition">¶</a></dt>
-<dd><p>Test <a class="reference internal" href="lorem.html#lorem._gen_sentence" title="lorem._gen_sentence"><code class="xref py py-func docutils literal notranslate"><span class="pre">lorem._gen_sentence()</span></code></a>.</p>
+<dd><p>Test <code class="xref py py-func docutils literal notranslate"><span class="pre">lorem.LoremGenerator.gen_sentence()</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="test_lorem.TestLorem.test_gen_paragraph">
 <span class="sig-name descname"><span class="pre">test_gen_paragraph</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/test_lorem.html#TestLorem.test_gen_paragraph"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#test_lorem.TestLorem.test_gen_paragraph" title="Permalink to this definition">¶</a></dt>
-<dd><p>Test <a class="reference internal" href="lorem.html#lorem._gen_paragraph" title="lorem._gen_paragraph"><code class="xref py py-func docutils literal notranslate"><span class="pre">lorem._gen_paragraph()</span></code></a>.</p>
+<dd><p>Test <code class="xref py py-func docutils literal notranslate"><span class="pre">lorem.LoremGenerator.gen_paragraph()</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="test_lorem.TestLorem.test_word">
 <span class="sig-name descname"><span class="pre">test_word</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/test_lorem.html#TestLorem.test_word"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#test_lorem.TestLorem.test_word" title="Permalink to this definition">¶</a></dt>
 <dd><p>Test <a class="reference internal" href="lorem.html#lorem.word" title="lorem.word"><code class="xref py py-func docutils literal notranslate"><span class="pre">lorem.word()</span></code></a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="test_lorem.TestLorem.test_sentence">
 <span class="sig-name descname"><span class="pre">test_sentence</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/test_lorem.html#TestLorem.test_sentence"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#test_lorem.TestLorem.test_sentence" title="Permalink to this definition">¶</a></dt>
 <dd><p>Test <a class="reference internal" href="lorem.html#lorem.sentence" title="lorem.sentence"><code class="xref py py-func docutils literal notranslate"><span class="pre">lorem.sentence()</span></code></a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="test_lorem.TestLorem.test_paragraph">
 <span class="sig-name descname"><span class="pre">test_paragraph</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/test_lorem.html#TestLorem.test_paragraph"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#test_lorem.TestLorem.test_paragraph" title="Permalink to this definition">¶</a></dt>
 <dd><p>Test <a class="reference internal" href="lorem.html#lorem.paragraph" title="lorem.paragraph"><code class="xref py py-func docutils literal notranslate"><span class="pre">lorem.paragraph()</span></code></a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="test_lorem.TestLorem.test_get_word">
 <span class="sig-name descname"><span class="pre">test_get_word</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/test_lorem.html#TestLorem.test_get_word"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#test_lorem.TestLorem.test_get_word" title="Permalink to this definition">¶</a></dt>
 <dd><p>Test <a class="reference internal" href="lorem.html#lorem.get_word" title="lorem.get_word"><code class="xref py py-func docutils literal notranslate"><span class="pre">lorem.get_word()</span></code></a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="test_lorem.TestLorem.test_get_sentence">
 <span class="sig-name descname"><span class="pre">test_get_sentence</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/test_lorem.html#TestLorem.test_get_sentence"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#test_lorem.TestLorem.test_get_sentence" title="Permalink to this definition">¶</a></dt>
 <dd><p>Test <a class="reference internal" href="lorem.html#lorem.get_sentence" title="lorem.get_sentence"><code class="xref py py-func docutils literal notranslate"><span class="pre">lorem.get_sentence()</span></code></a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="test_lorem.TestLorem.test_get_paragraph">
 <span class="sig-name descname"><span class="pre">test_get_paragraph</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/test_lorem.html#TestLorem.test_get_paragraph"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#test_lorem.TestLorem.test_get_paragraph" title="Permalink to this definition">¶</a></dt>
 <dd><p>Test <a class="reference internal" href="lorem.html#lorem.get_paragraph" title="lorem.get_paragraph"><code class="xref py py-func docutils literal notranslate"><span class="pre">lorem.get_paragraph()</span></code></a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
 </dd></dl>
 
 </dd></dl>
@@ -284,10 +328,8 @@
 <li class="toctree-l3"><a class="reference internal" href="#test_lorem.TestLorem.mock_randint"><code class="docutils literal notranslate"><span class="pre">TestLorem.mock_randint</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#test_lorem.TestLorem.mock_choice_first"><code class="docutils literal notranslate"><span class="pre">TestLorem.mock_choice_first</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#test_lorem.TestLorem.mock_choice_last"><code class="docutils literal notranslate"><span class="pre">TestLorem.mock_choice_last</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#test_lorem.TestLorem.mock_text"><code class="docutils literal notranslate"><span class="pre">TestLorem.mock_text</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#test_lorem.TestLorem.mock_pool"><code class="docutils literal notranslate"><span class="pre">TestLorem.mock_pool</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#test_lorem.TestLorem.test_set_pool"><code class="docutils literal notranslate"><span class="pre">TestLorem.test_set_pool()</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#test_lorem.TestLorem.test_gen_pool"><code class="docutils literal notranslate"><span class="pre">TestLorem.test_gen_pool()</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#test_lorem.TestLorem.test_lorem_init"><code class="docutils literal notranslate"><span class="pre">TestLorem.test_lorem_init()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#test_lorem.TestLorem.test_gen_word"><code class="docutils literal notranslate"><span class="pre">TestLorem.test_gen_word()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#test_lorem.TestLorem.test_gen_sentence"><code class="docutils literal notranslate"><span class="pre">TestLorem.test_gen_sentence()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#test_lorem.TestLorem.test_gen_paragraph"><code class="docutils literal notranslate"><span class="pre">TestLorem.test_gen_paragraph()</span></code></a></li>
