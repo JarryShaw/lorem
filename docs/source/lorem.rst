@@ -1,10 +1,6 @@
 Lorem Ipsum Generator
 =====================
 
----------------
-Module contents
----------------
-
 Get Random Words
 ----------------
 
@@ -23,12 +19,6 @@ Get Random Paragraphs
 .. autofunction:: lorem.paragraph
 .. autofunction:: lorem.get_paragraph
 
-Customise Word Pool
--------------------
-
-.. autofunction:: lorem.set_pool
-
-------------------
 Internal utilities
 ------------------
 
@@ -44,7 +34,6 @@ Internal utilities
       cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
       est laborum.
 
-.. autofunction:: lorem._gen_pool
-.. autofunction:: lorem._gen_word
-.. autofunction:: lorem._gen_sentence
-.. autofunction:: lorem._gen_paragraph
+.. autoclass:: lorem.LoremGenerator
+   :show-inheritance:
+   :members:

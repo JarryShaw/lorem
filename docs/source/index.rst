@@ -7,7 +7,7 @@ Pythonic Lorem Ipsum Generator
 ==============================
 
 .. toctree::
-   :maxdepth: 4
+   :maxdepth: 3
 
    lorem
    test_lorem
@@ -40,13 +40,13 @@ The :mod:`lorem` module provides two different ways for getting random words.
 
    .. code-block:: python
 
-      word(count=1, func=None, args=(), kwargs={}) -> Iterator[str]
+      def word(count=1, func=None, args=(), kwargs={}) -> Iterator[str]: ...
 
 2. :func:`~lorem.get_word` -- return random words
 
    .. code-block:: python
 
-      get_word(count=1, sep=' ', func=None, args=(), kwargs={}) -> str
+      def get_word(count=1, sep=' ', func=None, args=(), kwargs={}) -> str: ...
 
 Get Random Sentences
 --------------------
@@ -57,13 +57,13 @@ The :mod:`lorem` module provides two different ways for getting random sentences
 
    .. code-block:: python
 
-      sentence(count=1, comma=(0, 2), word_range=(4, 8)) -> Iterator[str]
+      def sentence(count=1, comma=(0, 2), word_range=(4, 8)) -> Iterator[str]: ...
 
 2. :func:`~lorem.get_sentence` -- return random sentences
 
    .. code-block:: python
 
-      get_sentence(count=1, sep=' ', comma=(0, 2), word_range=(4, 8)) -> Union[str]
+      def get_sentence(count=1, sep=' ', comma=(0, 2), word_range=(4, 8)) -> Union[str]: ...
 
 Get Random Paragraphs
 ---------------------
@@ -74,25 +74,13 @@ The :mod:`lorem` module provides two different ways for getting random paragraph
 
    .. code-block:: python
 
-      paragraph(count=1, comma=(0, 2), word_range=(4, 8), sentence_range=(5, 10)) -> Iterator[str]
+      def paragraph(count=1, comma=(0, 2), word_range=(4, 8), sentence_range=(5, 10)) -> Iterator[str]: ...
 
 2. :func:`~lorem.get_paragraph` -- return random paragraphs
 
    .. code-block:: python
 
-      get_paragraph(count=1, sep=os.linesep, comma=(0, 2), word_range=(4, 8), sentence_range=(5, 10)) -> Union[str]
-
-Customise Word Pool
--------------------
-
-If wanted, the :mod:`lorem` module also provides an interface to customise the word
-pool as you wish.
-
-1. :func:`~lorem.set_pool` -- customise random word pool
-
-   .. code-block:: python
-
-      set_pool(pool)
+      def get_paragraph(count=1, sep=os.linesep, comma=(0, 2), word_range=(4, 8), sentence_range=(5, 10)) -> Union[str]: ...
 
 Indices and tables
 ==================

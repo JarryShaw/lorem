@@ -71,18 +71,6 @@ The :mod:`lorem` module provides two different ways for getting random paragraph
 
       get_paragraph(count=1, sep=os.linesep, comma=(0, 2), word_range=(4, 8), sentence_range=(5, 10)) -> Union[str]
 
-Customise Word Pool
--------------------
-
-If wanted, the :mod:`lorem` module also provides an interface to customise the word
-pool as you wish.
-
-1. :func:`set_pool` -- customise random word pool
-
-   .. code-block:: python
-
-      set_pool(pool)
-
 """
 import itertools
 import os

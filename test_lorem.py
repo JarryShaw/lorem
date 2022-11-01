@@ -12,7 +12,7 @@ import lorem
 if TYPE_CHECKING:
     from typing import Any, Callable, Iterator, Optional, Sequence
 
-#: Type variable.
+# Type variable.
 _T = TypeVar('_T')
 
 
@@ -49,18 +49,16 @@ def pool(self: 'lorem.LoremGenerator', dupe: 'int' = 1) -> 'Iterator[str]':
 class TestLorem(unittest.TestCase):
     """Unittest case for :mod:`lorem` module."""
 
-    # mock :mod:`random` module functions
-    #: Mock :func:`random.shuffle`
+    # Mock :func:`random.shuffle`
     mock_shuffle = mock.patch('random.shuffle', shuffle)
-    #: Mock :func:`random.randint`
+    # Mock :func:`random.randint`
     mock_randint = mock.patch('random.randint', randint)
-    #: Mock :func:`random.choice` by choosing the first item.
+    # Mock :func:`random.choice` by choosing the first item.
     mock_choice_first = mock.patch('random.choice', choice_first)
-    #: Mock :func:`random.choice` by choosing the last item.
+    # Mock :func:`random.choice` by choosing the last item.
     mock_choice_last = mock.patch('random.choice', choice_last)
 
-    # mock :mod:`lorem` module functions
-    #: Mock :func:`lorem._gen_pool`.
+    # Mock :func:`lorem._gen_pool`.
     mock_pool = mock.patch('lorem.LoremGenerator._gen_pool', pool)
 
     def test_lorem_init(self) -> 'None':
