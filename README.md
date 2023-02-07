@@ -57,8 +57,19 @@ git pull
 
 Usage of the `lorem` module is rather simple. Depending on your needs, the
 `lorem` module provides generation of **word**s, **sentence**s, and
-**paragraph**s. Please refer to the [documentation](https://jarryshaw.github.io/lorem/)
+**paragraph**s:
+
+```python
+import lorem
+
+print(lorem.get_sentence(count=3))
+```
+
+> Eu consectetur ad et, exercitation fugiat occaecat exercitation cillum non ullamco, elit mollit est consectetur. In ex proident esse est aute est mollit, id minim lorem tempor sunt elit. Dolor aliqua non eiusmod officia esse adipiscing.
+
+Please refer to the [documentation](https://jarryshaw.github.io/lorem/)
 for more details.
+
 ## Testing
 
 The `lorem` module utilised `unittest.mock` to *patch* the builtin functions
