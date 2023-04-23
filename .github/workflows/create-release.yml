@@ -45,7 +45,7 @@ jobs:
   pypi_github:
     name: PyPI & GitHub Release # with Python ${{ matrix.python-version }}
     runs-on: ubuntu-latest
-    needs: [ "Build", version_check ]
+    needs: [ version_check ]
     # strategy:
     #   matrix:
     #     python-version:
