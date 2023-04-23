@@ -54,15 +54,7 @@ docs = [
 
 [tool.setuptools]
 zip-safe = true
-
-[tool.setuptools.packages.find]
-include = [
-    "lorem*",
-]
-exclude = [
-    "test*",
-    "docs*",
-]
+py-modules = [ "lorem", "test_lorem" ]
 
 [tool.setuptools.dynamic]
 version = { attr="lorem.__version__" }
