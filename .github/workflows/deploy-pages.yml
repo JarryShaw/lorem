@@ -29,7 +29,7 @@ jobs:
 
           python -m pip install -U pip setuptools wheel
           python -m pip install -r docs/requirements.txt
-          python -m pip install -e .[all]
+          python -m pip install -e .
 
           rm -rf docs/build
           make -C docs html
