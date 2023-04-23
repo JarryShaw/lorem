@@ -87,7 +87,7 @@ __all__ = [
 ]
 
 # version string
-__version__ = '1.2.0'
+__version__ = '1.3.0rc1'
 
 #: The original lorem ipsum text pool.
 _TEXT = ('ad', 'adipiscing', 'aliqua', 'aliquip', 'amet', 'anim', 'aute', 'cillum', 'commodo',
@@ -233,9 +233,9 @@ class LoremGenerator:
         return text
 
 
-def word(pool: 'Iterable[str]' = _TEXT, count: int = 1,  # pylint: disable=dangerous-default-value
-         func: 'Optional[str | Callable[[str], str]]' = None,
-         args: 'tuple[str, ...]' = (), kwargs: 'dict[str, Any]' = {}) -> 'Iterator[str]':
+def word(count: int = 1, func: 'Optional[str | Callable[[str], str]]' = None,
+         args: 'tuple[str, ...]' = (), kwargs: 'dict[str, Any]' = {}, *,
+         pool: 'Iterable[str]' = _TEXT,) -> 'Iterator[str]':  # pylint: disable=dangerous-default-value
     """Generate a list of random words.
 
     .. code-block:: python
@@ -248,12 +248,12 @@ def word(pool: 'Iterable[str]' = _TEXT, count: int = 1,  # pylint: disable=dange
         ['UT', 'AMET', 'EXCEPTEUR']
 
     Args:
-        pool: List of words to be used as random word pool.
         count: Number of non-repeated random words.
         func: Filter function. It can be an attribute name of :obj:`str`, or a customised
             function that takes the original :obj:`str` and returns the modified :obj:`str`.
         args: Additional positional arguments for ``func``.
         kwargs: Additional keyword arguments for ``func``.
+        pool: List of words to be used as random word pool.
 
     Returns:
         Indefinite random words generator.
@@ -265,9 +265,9 @@ def word(pool: 'Iterable[str]' = _TEXT, count: int = 1,  # pylint: disable=dange
                                               kwargs=kwargs) for _ in range(count))
 
 
-def sentence(pool: 'Iterable[str]' = _TEXT, count: 'int' = 1,
-             comma: 'tuple[int, int]' = (0, 2),
-             word_range: 'tuple[int, int]' = (4, 8)) -> 'Iterator[str]':
+def sentence(count: 'int' = 1, comma: 'tuple[int, int]' = (0, 2),
+             word_range: 'tuple[int, int]' = (4, 8), *,
+             pool: 'Iterable[str]' = _TEXT) -> 'Iterator[str]':
     """Generate a list of random sentences.
 
     .. code-block:: python
@@ -276,12 +276,12 @@ def sentence(pool: 'Iterable[str]' = _TEXT, count: 'int' = 1,
         ['Aute irure et commodo sunt do duis dolor.']
 
     Args:
-        pool: List of words to be used as random word pool.
         count: Number of non-repeated random sentences.
         comma: Random range for number of commas. The function will use :func:`random.randint`
             to choose a random integer as the number of commas.
         word_range: Random range for number of words in each sentence. The function will use
             :func:`random.randint` to choose a random integer as the number of words.
+        pool: List of words to be used as random word pool.
 
     Returns:
         Indefinite random sentence generator.
@@ -292,10 +292,10 @@ def sentence(pool: 'Iterable[str]' = _TEXT, count: 'int' = 1,
                                                 word_range=word_range) for _ in range(count))
 
 
-def paragraph(pool: 'Iterable[str]' = _TEXT, count: 'int' = 1,
-              comma: 'tuple[int, int]' = (0, 2),
+def paragraph(count: 'int' = 1, comma: 'tuple[int, int]' = (0, 2),
               word_range: 'tuple[int, int]' = (4, 8),
-              sentence_range: 'tuple[int, int]' = (5, 10)) -> 'Iterator[str]':
+              sentence_range: 'tuple[int, int]' = (5, 10), *,
+              pool: 'Iterable[str]' = _TEXT) -> 'Iterator[str]':
     """Generate a list of random paragraphs.
 
     .. code-block:: python
@@ -310,7 +310,6 @@ def paragraph(pool: 'Iterable[str]' = _TEXT, count: 'int' = 1,
             'aliquip cupidatat anim.']
 
     Args:
-        pool: List of words to be used as random word pool.
         count: Number of non-repeated random paragraphs.
         comma: Random range for number of commas. The function will use :func:`random.randint`
             to choose a random integer as the number of commas.
@@ -318,6 +317,7 @@ def paragraph(pool: 'Iterable[str]' = _TEXT, count: 'int' = 1,
             :func:`random.randint` to choose a random integer as the number of words.
         sentence_range: Random range for number of sentences in each paragraph. The function
             will use :func:`random.randint` to choose a random integer as the number of sentences.
+        pool: List of words to be used as random word pool.
 
     Returns:
         Random paragraph generator.
@@ -332,11 +332,11 @@ def paragraph(pool: 'Iterable[str]' = _TEXT, count: 'int' = 1,
                                                  sentence_range=sentence_range) for _ in range(count))
 
 
-def get_word(pool: 'Iterable[str]' = _TEXT,  # pylint: disable=dangerous-default-value
-             count: 'int | tuple[int, int]' = 1,
+def get_word(count: 'int | tuple[int, int]' = 1,
              sep: 'str' = ' ',
              func: 'Optional[str | Callable[[str], str]]' = None,
-             args: 'tuple[str, ...]' = (), kwargs: 'dict[str, Any]' = {}) -> 'str':
+             args: 'tuple[str, ...]' = (), kwargs: 'dict[str, Any]' = {},
+             pool: 'Iterable[str]' = _TEXT,) -> 'str':  # pylint: disable=dangerous-default-value
     """Return random words.
 
     .. code-block:: python
@@ -349,7 +349,6 @@ def get_word(pool: 'Iterable[str]' = _TEXT,  # pylint: disable=dangerous-default
         'NISI TEMPOR CILLUM'
 
     Args:
-        pool: List of words to be used as random word pool.
         count: Number of random words. To generate random number of words, supply a 2-element
             tuple of :obj:`int`, the function will use :func:`random.randint` to choose a
             random integer as the number of random words.
@@ -358,6 +357,7 @@ def get_word(pool: 'Iterable[str]' = _TEXT,  # pylint: disable=dangerous-default
             function that takes the original :obj:`str` and returns the modified :obj:`str`.
         args: Additional positional arguments for ``func``.
         kwargs: Additional keyword arguments for ``func``.
+        pool: List of words to be used as random word pool.
 
     Returns:
         Random words.
@@ -365,14 +365,14 @@ def get_word(pool: 'Iterable[str]' = _TEXT,  # pylint: disable=dangerous-default
     """
     if isinstance(count, tuple):
         count = random.randint(*count)  # nosec B311
-    return sep.join(itertools.islice(word(pool, count, func, args, kwargs), count))
+    return sep.join(itertools.islice(word(count, func, args, kwargs, pool=pool), count))
 
 
-def get_sentence(pool: 'Iterable[str]' = _TEXT,
-                 count: 'int | tuple[int, int]' = 1,
+def get_sentence(count: 'int | tuple[int, int]' = 1,
                  sep: 'str' = ' ',
                  comma: 'tuple[int, int]' = (0, 2),
-                 word_range: 'tuple[int, int]' = (4, 8)) -> 'str':
+                 word_range: 'tuple[int, int]' = (4, 8), *,
+                 pool: 'Iterable[str]' = _TEXT) -> 'str':
     """Return random sentences.
 
     .. code-block:: python
@@ -381,7 +381,6 @@ def get_sentence(pool: 'Iterable[str]' = _TEXT,
         'Nostrud laboris lorem minim sit culpa, aliqua nostrud in amet, sint pariatur eiusmod esse.'
 
     Args:
-        pool: List of words to be used as random word pool.
         count: Number of random sentences. To generate random number of sentences, supply a
             2-element tuple of :obj:`int`, the function will use :func:`random.randint` to
             choose a random integer as the number of random sentences.
@@ -390,6 +389,7 @@ def get_sentence(pool: 'Iterable[str]' = _TEXT,
             to choose a random integer as the number of commas.
         word_range: Random range for number of words in each sentence. The function will use
             :func:`random.randint` to choose a random integer as the number of words.
+        pool: List of words to be used as random word pool.
 
     Returns:
         Random sentences.
@@ -397,15 +397,15 @@ def get_sentence(pool: 'Iterable[str]' = _TEXT,
     """
     if isinstance(count, tuple):
         count = random.randint(*count)  # nosec B311
-    return sep.join(itertools.islice(sentence(pool, count, comma, word_range), count))
+    return sep.join(itertools.islice(sentence(count, comma, word_range, pool=pool), count))
 
 
-def get_paragraph(pool: 'Iterable[str]' = _TEXT,
-                  count: 'int | tuple[int, int]' = 1,
+def get_paragraph(count: 'int | tuple[int, int]' = 1,
                   sep: 'str' = os.linesep,
                   comma: 'tuple[int, int]' = (0, 2),
                   word_range: 'tuple[int, int]' = (4, 8),
-                  sentence_range: 'tuple[int, int]' = (5, 10)) -> 'str':
+                  sentence_range: 'tuple[int, int]' = (5, 10), *,
+                  pool: 'Iterable[str]' = _TEXT) -> 'str':
     r"""Return random paragraphs.
 
     .. code-block:: python
@@ -421,7 +421,6 @@ def get_paragraph(pool: 'Iterable[str]' = _TEXT,
         'mollit elit. Amet id incididunt ipsum sed.'
 
     Args:
-        pool: List of words to be used as random word pool.
         count: Number of random paragraphs. To generate random number of paragraphs, supply a
             2-element tuple of :obj:`int`, the function will use :func:`random.randint` to choose
             a random integer as the number of random paragraphs.
@@ -433,6 +432,7 @@ def get_paragraph(pool: 'Iterable[str]' = _TEXT,
             :func:`random.randint` to choose a random integer as the number of words.
         sentence_range: Random range for number of sentences in each paragraph. The function will use
             :func:`random.randint` to choose a random integer as the number of sentences.
+        pool: List of words to be used as random word pool.
 
     Returns:
         Random paragraphs.
@@ -440,4 +440,4 @@ def get_paragraph(pool: 'Iterable[str]' = _TEXT,
     """
     if isinstance(count, tuple):
         count = random.randint(*count)  # nosec B311
-    return sep.join(itertools.islice(paragraph(pool, count, comma, word_range, sentence_range), count))
+    return sep.join(itertools.islice(paragraph(count, comma, word_range, sentence_range, pool=pool), count))
