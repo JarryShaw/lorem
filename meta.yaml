@@ -1,0 +1,46 @@
+{% set name = "lorem" %}
+#{% set version = "1.0.0b9" %}
+
+package:
+  name: {{ name }}
+  version: "{{ environ['LOREM_VERSION'] }}"
+
+#source:
+#  url: "https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz"
+#  sha256: 6789d9aa44564091a4fdeaf65c694303c1b5a16474568842aa9ca9d931aac448
+
+source:
+  git_url: https://github.com/JarryShaw/lorem.git
+  git_rev: "v{{ environ['LOREM_VERSION'] }}"
+  git_depth: 1 # (Defaults to -1/not shallow)
+
+build:
+  number: 1
+  script: "{{ PYTHON }} -m pip install . -vv"
+
+requirements:
+  build:
+    - git
+  host:
+    - pip
+    - python
+  run:
+    - python
+
+#test:
+#  imports:
+#    - LOREM
+
+about:
+  home: https://jarryshaw.github.io/lorem
+  license: BSD 3-Clause License
+  license_family: BSD
+  license_file:
+    - LICENSE
+  summary: "Lorem ipsum generator."
+  doc_url: https://jarryshaw.github.io/lorem
+  dev_url: https://github.com/jarryshaw/lorem
+
+extra:
+  recipe-maintainers:
+    - jarryshaw

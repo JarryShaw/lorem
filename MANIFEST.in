@@ -1,10 +1,13 @@
-global-include *.py
-global-exclude *.py[cod]$
+global-exclude .DS_Store
 
+global-include *.rst
+global-include *.py
+
+prune .eggs
+prune .github
 prune .venv
-prune __pycache__
+prune docs
+prune temp
 
 include README.md
 include LICENSE
-
-# exclude test.py

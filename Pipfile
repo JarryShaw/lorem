@@ -12,10 +12,19 @@ pylint = "*"
 ipython = "*"
 coverage = "*"
 codecov = "*"
-esbonio = "*"
 sphinx = "*"
-rstcheck = "*"
+sphinx-autodoc-typehints = "*"
+furo = "*"
+sphinxext-opengraph = "*"
+sphinx-copybutton = "*"
+rstcheck = {extras = ["sphinx","toml"],version = "*"}
+esbonio = "*"
+vermin = "*"
+types-docutils = "*"
+types-setuptools = "*"
 tox = "*"
+build = "*"
+twine = "*"
 
 [packages]
 

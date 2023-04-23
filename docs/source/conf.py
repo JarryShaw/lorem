@@ -4,6 +4,10 @@
 # list see the documentation:
 # https://www.sphinx-doc.org/en/master/usage/configuration.html
 
+import datetime
+
+import lorem
+
 # -- Path setup --------------------------------------------------------------
 
 # If extensions (or modules to document with autodoc) are in another directory,
@@ -14,8 +18,6 @@
 # import sys
 # sys.path.insert(0, os.path.abspath('.'))
 
-import datetime
-
 # -- Project information -----------------------------------------------------
 
 project = 'lorem'
@@ -23,7 +25,7 @@ copyright = f'2020-{datetime.datetime.today().year}, Jarry Shaw'  # pylint: disa
 author = 'Jarry Shaw'
 
 # The full version, including alpha/beta/rc tags
-release = '1.2.0'
+release = lorem.__version__
 
 
 # -- General configuration ---------------------------------------------------

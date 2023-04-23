@@ -1,3 +1,68 @@
 [build-system]
-requires = ["setuptools", "wheel"]
-build-backend = "setuptools.build_meta:__legacy__"
+requires = [
+    "setuptools>=61.0.0",
+]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "python-lorem"
+dynamic = [ "version", "readme" ]
+authors = [
+    { name="Jarry Shaw", email="jarryshaw@icloud.com" },
+]
+maintainers = [
+    { name="Jarry Shaw" },
+]
+license = { text="BSD 3-Clause License" }
+requires-python = ">=3.5"
+description = "Lorem ipsum generator."
+keywords = [ "lorem", "loremipsum" ]
+classifiers = [
+    'Development Status :: 5 - Production/Stable',
+    'Intended Audience :: Developers',
+    'License :: OSI Approved :: BSD License',
+    'Natural Language :: English',
+    'Operating System :: OS Independent',
+    'Programming Language :: Python',
+    'Programming Language :: Python :: 3.5',
+    'Programming Language :: Python :: 3.6',
+    'Programming Language :: Python :: 3.7',
+    'Programming Language :: Python :: 3.8',
+    'Programming Language :: Python :: 3 :: Only',
+    'Topic :: Software Development',
+    'Topic :: Utilities',
+    'Typing :: Typed',
+]
+dependencies = [
+    "typing-extensions; python_version < '3.8'",
+]
+
+[project.urls]
+homepage = "https://jarryshaw.github.io/lorem/"
+documentation = "https://jarryshaw.github.io/lorem/"
+repository = "https://github.com/JarryShaw/lorem"
+changelog = "https://github.com/JarryShaw/lorem/releases"
+
+[project.optional-dependencies]
+docs = [
+    "Sphinx>=6.1.3",
+    "sphinx-autodoc-typehints", "sphinx-opengraph", "sphinx-copybutton",
+    "furo",
+]
+
+# setuptools specific
+
+[tool.setuptools]
+zip-safe = true
+
+[tool.setuptools.packages.find]
+include = [
+    "lorem*",
+]
+exclude = [
+    "test*",
+    "docs*",
+]
+
+[tool.setuptools.dynamic]
+version = { attr="lorem.__version__" }

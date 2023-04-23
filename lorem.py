@@ -86,6 +86,9 @@ __all__ = [
     'get_word', 'get_sentence', 'get_paragraph',
 ]
 
+# version string
+__version__ = '1.2.0'
+
 #: The original lorem ipsum text pool.
 _TEXT = ('ad', 'adipiscing', 'aliqua', 'aliquip', 'amet', 'anim', 'aute', 'cillum', 'commodo',
          'consectetur', 'consequat', 'culpa', 'cupidatat', 'deserunt', 'do', 'dolor', 'dolore',

@@ -72,99 +72,106 @@ The `lorem` module provides two different ways for getting random paragraphs.
    ```
 
 """
-# version string
-__version__ = '1.2.0'
+import sys
+from typing import TYPE_CHECKING
 
-# setup attributes
-attrs = dict(
-    name='python-lorem',
-    version=__version__,
-    description='Lorem ipsum generator.',
-    long_description=__doc__,
-    author='Jarry Shaw',
-    author_email='jarryshaw@icloud.com',
-    maintainer='Jarry Shaw',
-    maintainer_email='jarryshaw@icloud.com',
-    url='https://github.com/JarryShaw/lorem',
-    download_url='https://github.com/JarryShaw/lorem/archive/v%s.tar.gz' % __version__,
-    # packages
-    py_modules=['lorem', 'test_lorem'],
-    # scripts
-    # ext_modules
-    classifiers=[
-        'Development Status :: 5 - Production/Stable',
-        'Intended Audience :: Developers',
-        'License :: OSI Approved :: BSD License',
-        'Natural Language :: English',
-        'Operating System :: OS Independent',
-        'Programming Language :: Python',
-        'Programming Language :: Python :: 3.5',
-        'Programming Language :: Python :: 3.6',
-        'Programming Language :: Python :: 3.7',
-        'Programming Language :: Python :: 3.8',
-        'Programming Language :: Python :: 3 :: Only',
-        'Topic :: Software Development',
-        'Topic :: Utilities',
-        'Typing :: Typed',
-    ],
-    # distclass
-    # script_name
-    # script_args
-    # options
-    license='BSD License',
-    keywords=[
-        'lorem',
-        'loremipsum',
-    ],
-    platforms=[
-        'any'
-    ],
-    # cmdclass
-    # data_files
-    # package_dir
-    obsoletes=[
-        'lorem',
-        'loremipsum',
-    ],
-    # provides
-    # requires
-    # command_packages
-    # command_options
-    package_data={
-        '': [
-            'LICENSE',
-            'README.md',
-        ],
-    },
-    # include_package_data
-    # libraries
-    # headers
-    # ext_package
-    # include_dirs
-    # password
-    # fullname
-    # long_description_content_type
-    # python_requires
-    # zip_safe
-)
+if TYPE_CHECKING:
+    from typing import Any
+
+if sys.version_info[0] <= 2:
+    raise OSError("python-lorem does not support Python 2!")
 
 try:
     from setuptools import setup
+    from setuptools.command.build_py import build_py
+    from setuptools.command.develop import develop
+    from setuptools.command.install import install
+    from setuptools.command.sdist import sdist
+except:
+    raise ImportError("setuptools is required to install python-lorem!")
 
-    attrs.update(dict(
-        include_package_data=True,  # type: ignore[dict-item]
-        # libraries
-        # headers
-        # ext_package
-        # include_dirs
-        # password
-        # fullname
-        long_description_content_type='text/markdown',
-        python_requires='>=3.5',
-        zip_safe=True,  # type: ignore[dict-item]
-    ))
-except ImportError:
-    from distutils.core import setup
 
-# set-up script for pip distribution
-setup(**attrs)
+def refactor(path: 'str') -> 'None':
+    """Refactor code."""
+    import subprocess  # nosec: B404
+
+    if sys.version_info < (3, 6):
+        try:
+            subprocess.check_call(  # nosec
+                [sys.executable, '-m', 'f2format', '--no-archive', path]
+            )
+        except subprocess.CalledProcessError as error:
+            print('Failed to perform assignment expression backport compiling.'
+                  'Please consider manually install `bpc-f2format` and try again.', file=sys.stderr)
+            sys.exit(error.returncode)
+
+    if sys.version_info < (3, 8):
+        try:
+            subprocess.check_call(  # nosec
+                [sys.executable, '-m', 'walrus', '--no-archive', path]
+            )
+        except subprocess.CalledProcessError as error:
+            print('Failed to perform assignment expression backport compiling.'
+                  'Please consider manually install `bpc-walrus` and try again.', file=sys.stderr)
+            sys.exit(error.returncode)
+
+        try:
+            subprocess.check_call(  # nosec
+                [sys.executable, '-m', 'poseur', '--no-archive', path]
+            )
+        except subprocess.CalledProcessError as error:
+            print('Failed to perform assignment expression backport compiling.'
+                  'Please consider manually install `bpc-poseur` and try again.', file=sys.stderr)
+            sys.exit(error.returncode)
+
+
+class lorem_sdist(sdist):
+    """Modified sdist to run PyBPC conversion."""
+
+    def make_release_tree(self, base_dir: 'str', *args: 'Any', **kwargs: 'Any') -> 'None':
+        super(lorem_sdist, self).make_release_tree(base_dir, *args, **kwargs)
+
+        # PyBPC compatibility enforcement
+        #refactor(os.path.join(base_dir, 'lorem'))
+
+
+class lorem_build_py(build_py):
+    """Modified build_py to run PyBPC conversion."""
+
+    def build_package_data(self) -> 'None':
+        super(lorem_build_py, self).build_package_data()
+
+        # PyBPC compatibility enforcement
+        #refactor(os.path.join(self.build_lib, 'lorem'))
+
+
+class lorem_develop(develop):
+    """Modified develop to run PyBPC conversion."""
+
+    def run(self) -> 'None':  # type: ignore[override]
+        super(lorem_develop, self).run()
+
+        # PyBPC compatibility enforcement
+        #refactor(os.path.join(self.install_lib, 'lorem'))
+
+
+class lorem_install(install):
+    """Modified install to run PyBPC conversion."""
+
+    def run(self) -> 'None':
+        super(lorem_install, self).run()
+
+        # PyBPC compatibility enforcement
+        #refactor(os.path.join(self.install_lib, 'lorem'))  # type: ignore[arg-type]
+
+
+setup(
+    cmdclass={
+        'sdist': lorem_sdist,
+        'build_py': lorem_build_py,
+        'develop': lorem_develop,
+        'install': lorem_install,
+    },
+    long_description=__doc__,
+    long_description_content_type='text/markdown',
+)
