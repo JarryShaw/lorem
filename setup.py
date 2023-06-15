@@ -72,6 +72,8 @@ The `lorem` module provides two different ways for getting random paragraphs.
    ```
 
 """
+import logging
+#import os
 import sys
 from typing import TYPE_CHECKING
 
@@ -90,6 +92,19 @@ try:
 except:
     raise ImportError("setuptools is required to install python-lorem!")
 
+try:
+    from wheel.bdist_wheel import bdist_wheel
+except ImportError:
+    bdist_wheel = None
+
+# get logger
+logger = logging.getLogger('lorem.setup')
+formatter = logging.Formatter(fmt='[%(levelname)s] %(asctime)s - %(message)s',
+                              datefmt='%m/%d/%Y %I:%M:%S %p')
+handler = logging.StreamHandler(sys.stderr)
+handler.setFormatter(formatter)
+logger.addHandler(handler)
+
 
 def refactor(path: 'str') -> 'None':
     """Refactor code."""
@@ -101,8 +116,8 @@ def refactor(path: 'str') -> 'None':
                 [sys.executable, '-m', 'f2format', '--no-archive', path]
             )
         except subprocess.CalledProcessError as error:
-            print('Failed to perform assignment expression backport compiling.'
-                  'Please consider manually install `bpc-f2format` and try again.', file=sys.stderr)
+            logger.error('Failed to perform assignment expression backport compiling. '
+                         'Please consider manually install `bpc-f2format` and try again.')
             sys.exit(error.returncode)
 
     if sys.version_info < (3, 8):
@@ -111,8 +126,8 @@ def refactor(path: 'str') -> 'None':
                 [sys.executable, '-m', 'walrus', '--no-archive', path]
             )
         except subprocess.CalledProcessError as error:
-            print('Failed to perform assignment expression backport compiling.'
-                  'Please consider manually install `bpc-walrus` and try again.', file=sys.stderr)
+            logger.error('Failed to perform assignment expression backport compiling. '
+                         'Please consider manually install `bpc-walrus` and try again.')
             sys.exit(error.returncode)
 
         try:
@@ -120,8 +135,8 @@ def refactor(path: 'str') -> 'None':
                 [sys.executable, '-m', 'poseur', '--no-archive', path]
             )
         except subprocess.CalledProcessError as error:
-            print('Failed to perform assignment expression backport compiling.'
-                  'Please consider manually install `bpc-poseur` and try again.', file=sys.stderr)
+            logger.error('Failed to perform assignment expression backport compiling. '
+                         'Please consider manually install `bpc-poseur` and try again.')
             sys.exit(error.returncode)
 
 
@@ -130,6 +145,7 @@ class lorem_sdist(sdist):
 
     def make_release_tree(self, base_dir: 'str', *args: 'Any', **kwargs: 'Any') -> 'None':
         super(lorem_sdist, self).make_release_tree(base_dir, *args, **kwargs)
+        logger.info('running sdist')
 
         # PyBPC compatibility enforcement
         #refactor(os.path.join(base_dir, 'lorem'))
@@ -140,6 +156,7 @@ class lorem_build_py(build_py):
 
     def build_package_data(self) -> 'None':
         super(lorem_build_py, self).build_package_data()
+        logger.info('running build_py')
 
         # PyBPC compatibility enforcement
         #refactor(os.path.join(self.build_lib, 'lorem'))
@@ -150,6 +167,7 @@ class lorem_develop(develop):
 
     def run(self) -> 'None':  # type: ignore[override]
         super(lorem_develop, self).run()
+        logger.info('running develop')
 
         # PyBPC compatibility enforcement
         #refactor(os.path.join(self.install_lib, 'lorem'))
@@ -160,10 +178,24 @@ class lorem_install(install):
 
     def run(self) -> 'None':
         super(lorem_install, self).run()
+        logger.info('running install')
 
         # PyBPC compatibility enforcement
         #refactor(os.path.join(self.install_lib, 'lorem'))  # type: ignore[arg-type]
 
+
+if bdist_wheel is not None:
+    class lorem_bdist_wheel(bdist_wheel):
+        """Modified bdist_wheel to run PyBPC conversion."""
+
+        def run(self) -> 'None':
+            super(lorem_bdist_wheel, self).run()
+            logger.info('running bdist_wheel')
+
+            # PyBPC compatibility enforcement
+            #refactor(os.path.join(self.dist_dir, 'lorem'))
+else:
+    lorem_bdist_wheel = None  # type: ignore[misc,assignment]
 
 setup(
     cmdclass={
@@ -171,6 +203,7 @@ setup(
         'build_py': lorem_build_py,
         'develop': lorem_develop,
         'install': lorem_install,
+        'bdist_wheel': lorem_bdist_wheel,
     },
     long_description=__doc__,
     long_description_content_type='text/markdown',

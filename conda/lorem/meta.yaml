@@ -1,35 +1,37 @@
 {% set name = "lorem" %}
-#{% set version = "1.0.0b9" %}
+{% set version = environ['LOREM_VERSION'] %}
+{% set build_number = environ['LOREM_BUILD'] %}
 
 package:
-  name: {{ name }}
-  version: "{{ environ['LOREM_VERSION'] }}"
-
-#source:
-#  url: "https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz"
-#  sha256: 6789d9aa44564091a4fdeaf65c694303c1b5a16474568842aa9ca9d931aac448
+  name: "{{ name|lower }}"
+  version: "{{ version }}"
 
 source:
-  git_url: https://github.com/JarryShaw/lorem.git
-  git_rev: "v{{ environ['LOREM_VERSION'] }}"
-  git_depth: 1 # (Defaults to -1/not shallow)
+  path: ../..
+  #git_url: https://github.com/JarryShaw/lorem.git
+  #git_rev: "conda-{{ version }}+{{ build_number }}"
+  #git_depth: 1 # (Defaults to -1/not shallow)
 
 build:
-  number: 1
+  number: {{ build_number }}
   script: "{{ PYTHON }} -m pip install . -vv"
 
 requirements:
   build:
     - git
-  host:
-    - pip
     - python
+    - pip
+    - setuptools>=61.0.0
+  host:
+    - python
+    - pip
+    - setuptools>=61.0.0
   run:
     - python
 
-#test:
-#  imports:
-#    - LOREM
+test:
+ imports:
+   - lorem
 
 about:
   home: https://jarryshaw.github.io/lorem
