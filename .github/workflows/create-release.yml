@@ -237,7 +237,7 @@ jobs:
   conda:
     name: Conda deployment of package for platform ${{ matrix.os }} with Python ${{ matrix.python-version }}
     runs-on: ${{ matrix.os }}
-    needs: [ tag, github, version_check ]
+    needs: [ github, version_check ]
     if: ${{ startsWith(github.ref_name, 'v') || needs.version_check.outputs.LOREM_TAG_EXISTS == 'false' }}
     strategy:
       matrix:
