@@ -36,16 +36,16 @@
 <dl class="py function">
 <dt class="sig sig-object py" id="test_lorem.islice">
 <span class="sig-prename descclassname"><span class="pre">test_lorem.</span></span><span class="sig-name descname"><span class="pre">islice</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">iterable</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">stop</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/test_lorem.html#islice"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#test_lorem.islice" title="Link to this definition">¶</a></dt>
-<dd><p>Wrapper function for <a class="reference external" href="https://docs.python.org/3/library/itertools.html#itertools.islice" title="(in Python v3.11)"><code class="xref py py-func docutils literal notranslate"><span class="pre">itertools.islice()</span></code></a>.</p>
+<dd><p>Wrapper function for <a class="reference external" href="https://docs.python.org/3/library/itertools.html#itertools.islice" title="(in Python v3.12)"><code class="xref py py-func docutils literal notranslate"><span class="pre">itertools.islice()</span></code></a>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>iterable</strong> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Iterator" title="(in Python v3.11)"><em>Iterator</em></a><em>[</em><em>_T</em><em>]</em>) – </p></li>
-<li><p><strong>stop</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><em>int</em></a>) – </p></li>
+<li><p><strong>iterable</strong> (<em>Iterator</em><em>[</em><em>_T</em><em>]</em>) – </p></li>
+<li><p><strong>stop</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><em>int</em></a>) – </p></li>
 </ul>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.11)">list</a>[<em>_T</em>]</p>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.12)">list</a>[_T]</p>
 </dd>
 </dl>
 </dd></dl>
@@ -53,12 +53,12 @@
 <dl class="py function">
 <dt class="sig sig-object py" id="test_lorem.shuffle">
 <span class="sig-prename descclassname"><span class="pre">test_lorem.</span></span><span class="sig-name descname"><span class="pre">shuffle</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">random</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/test_lorem.html#shuffle"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#test_lorem.shuffle" title="Link to this definition">¶</a></dt>
-<dd><p>Mock <a class="reference external" href="https://docs.python.org/3/library/random.html#random.shuffle" title="(in Python v3.11)"><code class="xref py py-func docutils literal notranslate"><span class="pre">random.shuffle()</span></code></a>, but actually do nothing.</p>
+<dd><p>Mock <a class="reference external" href="https://docs.python.org/3/library/random.html#random.shuffle" title="(in Python v3.12)"><code class="xref py py-func docutils literal notranslate"><span class="pre">random.shuffle()</span></code></a>, but actually do nothing.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>x</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.11)"><em>list</em></a><em>[</em><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.11)"><em>Any</em></a><em>]</em>) – </p></li>
-<li><p><strong>random</strong> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Callable" title="(in Python v3.11)"><em>Callable</em></a><em>[</em><em>[</em><em>]</em><em>, </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><em>float</em></a><em>] </em><em>| </em><em>None</em>) – </p></li>
+<li><p><strong>x</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.12)"><em>list</em></a><em>[</em><em>Any</em><em>]</em>) – </p></li>
+<li><p><strong>random</strong> (<em>Optional</em><em>[</em><em>Callable</em><em>[</em><em>[</em><em>]</em><em>, </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><em>float</em></a><em>]</em><em>]</em>) – </p></li>
 </ul>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
@@ -70,16 +70,16 @@
 <dl class="py function">
 <dt class="sig sig-object py" id="test_lorem.randint">
 <span class="sig-prename descclassname"><span class="pre">test_lorem.</span></span><span class="sig-name descname"><span class="pre">randint</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">a</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/test_lorem.html#randint"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#test_lorem.randint" title="Link to this definition">¶</a></dt>
-<dd><p>Mock <a class="reference external" href="https://docs.python.org/3/library/random.html#random.randint" title="(in Python v3.11)"><code class="xref py py-func docutils literal notranslate"><span class="pre">random.randint()</span></code></a>, but return the lower boundary.</p>
+<dd><p>Mock <a class="reference external" href="https://docs.python.org/3/library/random.html#random.randint" title="(in Python v3.12)"><code class="xref py py-func docutils literal notranslate"><span class="pre">random.randint()</span></code></a>, but return the lower boundary.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>a</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><em>int</em></a>) – </p></li>
-<li><p><strong>b</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><em>int</em></a>) – </p></li>
+<li><p><strong>a</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><em>int</em></a>) – </p></li>
+<li><p><strong>b</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><em>int</em></a>) – </p></li>
 </ul>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)">int</a></p>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)">int</a></p>
 </dd>
 </dl>
 </dd></dl>
@@ -87,13 +87,13 @@
 <dl class="py function">
 <dt class="sig sig-object py" id="test_lorem.choice_first">
 <span class="sig-prename descclassname"><span class="pre">test_lorem.</span></span><span class="sig-name descname"><span class="pre">choice_first</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">seq</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/test_lorem.html#choice_first"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#test_lorem.choice_first" title="Link to this definition">¶</a></dt>
-<dd><p>Mock <a class="reference external" href="https://docs.python.org/3/library/random.html#random.choice" title="(in Python v3.11)"><code class="xref py py-func docutils literal notranslate"><span class="pre">random.choice()</span></code></a>, but return the first element.</p>
+<dd><p>Mock <a class="reference external" href="https://docs.python.org/3/library/random.html#random.choice" title="(in Python v3.12)"><code class="xref py py-func docutils literal notranslate"><span class="pre">random.choice()</span></code></a>, but return the first element.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>seq</strong> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Sequence" title="(in Python v3.11)"><em>Sequence</em></a><em>[</em><em>_T</em><em>]</em>) – </p>
+<dd class="field-odd"><p><strong>seq</strong> (<em>Sequence</em><em>[</em><em>_T</em><em>]</em>) – </p>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><em>_T</em></p>
+<dd class="field-even"><p>_T</p>
 </dd>
 </dl>
 </dd></dl>
@@ -101,13 +101,13 @@
 <dl class="py function">
 <dt class="sig sig-object py" id="test_lorem.choice_last">
 <span class="sig-prename descclassname"><span class="pre">test_lorem.</span></span><span class="sig-name descname"><span class="pre">choice_last</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">seq</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/test_lorem.html#choice_last"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#test_lorem.choice_last" title="Link to this definition">¶</a></dt>
-<dd><p>Mock <a class="reference external" href="https://docs.python.org/3/library/random.html#random.choice" title="(in Python v3.11)"><code class="xref py py-func docutils literal notranslate"><span class="pre">random.choice()</span></code></a>, but return the last element.</p>
+<dd><p>Mock <a class="reference external" href="https://docs.python.org/3/library/random.html#random.choice" title="(in Python v3.12)"><code class="xref py py-func docutils literal notranslate"><span class="pre">random.choice()</span></code></a>, but return the last element.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>seq</strong> (<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Sequence" title="(in Python v3.11)"><em>Sequence</em></a><em>[</em><em>_T</em><em>]</em>) – </p>
+<dd class="field-odd"><p><strong>seq</strong> (<em>Sequence</em><em>[</em><em>_T</em><em>]</em>) – </p>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><em>_T</em></p>
+<dd class="field-even"><p>_T</p>
 </dd>
 </dl>
 </dd></dl>
@@ -119,12 +119,12 @@
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>self</strong> (<a class="reference internal" href="lorem.html#lorem.LoremGenerator" title="lorem.LoremGenerator"><em>LoremGenerator</em></a>) – </p></li>
-<li><p><strong>dupe</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.11)"><em>int</em></a>) – </p></li>
+<li><p><strong>self</strong> (<a class="reference internal" href="lorem.html#lorem.LoremGenerator" title="lorem.LoremGenerator"><em>lorem.LoremGenerator</em></a>) – </p></li>
+<li><p><strong>dupe</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><em>int</em></a>) – </p></li>
 </ul>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Iterator" title="(in Python v3.11)"><em>Iterator</em></a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)">str</a>]</p>
+<dd class="field-even"><p>Iterator[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)">str</a>]</p>
 </dd>
 </dl>
 </dd></dl>
