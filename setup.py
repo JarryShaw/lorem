@@ -207,4 +207,7 @@ setup(
     },
     long_description=__doc__,
     long_description_content_type='text/markdown',
+    package_data = {
+        'lorem': ['py.typed'],
+    },
 )
