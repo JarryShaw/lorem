@@ -72,6 +72,7 @@ The :mod:`lorem` module provides two different ways for getting random paragraph
       get_paragraph(count=1, sep=os.linesep, comma=(0, 2), word_range=(4, 8), sentence_range=(5, 10)) -> Union[str]
 
 """
+
 import itertools
 import os
 import random
@@ -81,25 +82,85 @@ if TYPE_CHECKING:
     from typing import Any, Callable, Iterable, Iterator, Optional
 
 __all__ = [
-    'LoremGenerator',
-    'word', 'sentence', 'paragraph',
-    'get_word', 'get_sentence', 'get_paragraph',
+    "LoremGenerator",
+    "word",
+    "sentence",
+    "paragraph",
+    "get_word",
+    "get_sentence",
+    "get_paragraph",
 ]
 
-# version string
-__version__ = '1.3.0.post1'
 
 #: The original lorem ipsum text pool.
-_TEXT = ('ad', 'adipiscing', 'aliqua', 'aliquip', 'amet', 'anim', 'aute', 'cillum', 'commodo',
-         'consectetur', 'consequat', 'culpa', 'cupidatat', 'deserunt', 'do', 'dolor', 'dolore',
-         'duis', 'ea', 'eiusmod', 'elit', 'enim', 'esse', 'est', 'et', 'eu', 'ex', 'excepteur',
-         'exercitation', 'fugiat', 'id', 'in', 'incididunt', 'ipsum', 'irure', 'labore', 'laboris',
-         'laborum', 'lorem', 'magna', 'minim', 'mollit', 'nisi', 'non', 'nostrud', 'nulla',
-         'occaecat', 'officia', 'pariatur', 'proident', 'qui', 'quis', 'reprehenderit', 'sed',
-         'sint', 'sit', 'sunt', 'tempor', 'ullamco', 'ut', 'velit', 'veniam', 'voluptate')
+_TEXT = (
+    "ad",
+    "adipiscing",
+    "aliqua",
+    "aliquip",
+    "amet",
+    "anim",
+    "aute",
+    "cillum",
+    "commodo",
+    "consectetur",
+    "consequat",
+    "culpa",
+    "cupidatat",
+    "deserunt",
+    "do",
+    "dolor",
+    "dolore",
+    "duis",
+    "ea",
+    "eiusmod",
+    "elit",
+    "enim",
+    "esse",
+    "est",
+    "et",
+    "eu",
+    "ex",
+    "excepteur",
+    "exercitation",
+    "fugiat",
+    "id",
+    "in",
+    "incididunt",
+    "ipsum",
+    "irure",
+    "labore",
+    "laboris",
+    "laborum",
+    "lorem",
+    "magna",
+    "minim",
+    "mollit",
+    "nisi",
+    "non",
+    "nostrud",
+    "nulla",
+    "occaecat",
+    "officia",
+    "pariatur",
+    "proident",
+    "qui",
+    "quis",
+    "reprehenderit",
+    "sed",
+    "sint",
+    "sit",
+    "sunt",
+    "tempor",
+    "ullamco",
+    "ut",
+    "velit",
+    "veniam",
+    "voluptate",
+)
 
 
-def _random_cycle(iterable: 'Iterable[Any]') -> 'Iterator[Any]':
+def _random_cycle(iterable: "Iterable[Any]") -> "Iterator[Any]":
     """Randomly cycle the given iterable.
 
     Args:
@@ -131,15 +192,15 @@ class LoremGenerator:
     """
 
     @property
-    def pool(self) -> 'Iterator[str]':
+    def pool(self) -> "Iterator[str]":
         """Return the current random word pool."""
         return self._pool
 
-    def __init__(self, pool: 'Iterable[str]' = _TEXT, dupe: 'int' = 1) -> 'None':
+    def __init__(self, pool: "Iterable[str]" = _TEXT, dupe: "int" = 1) -> "None":
         self._text = pool
         self._pool = self._gen_pool(dupe)
 
-    def _gen_pool(self, dupe: 'int' = 1) -> 'Iterator[str]':
+    def _gen_pool(self, dupe: "int" = 1) -> "Iterator[str]":
         """Generate word pool.
 
         Args:
@@ -159,9 +220,12 @@ class LoremGenerator:
                 yield text
             random.shuffle(pool)
 
-    def gen_word(self, # pylint: disable=dangerous-default-value
-                 func: 'Optional[str | Callable[[str], str]]' = None,
-                 args: 'tuple[str, ...]' = (), kwargs: 'dict[str, Any]' = {}) -> 'str':
+    def gen_word(
+        self,  # pylint: disable=dangerous-default-value
+        func: "Optional[str | Callable[[str], str]]" = None,
+        args: "tuple[str, ...]" = (),
+        kwargs: "dict[str, Any]" = {},
+    ) -> "str":
         """Generate random word.
 
         Args:
@@ -182,8 +246,9 @@ class LoremGenerator:
                 text = func(text, *args, **kwargs)
         return text
 
-    def gen_sentence(self, comma: 'tuple[int, int]',
-                     word_range: 'tuple[int, int]') -> 'str':
+    def gen_sentence(
+        self, comma: "tuple[int, int]", word_range: "tuple[int, int]"
+    ) -> "str":
         """Generate random sentence.
 
         Args:
@@ -196,23 +261,26 @@ class LoremGenerator:
             Random sentence.
 
         """
-        text = self.gen_word(func='capitalize')
+        text = self.gen_word(func="capitalize")
         for _ in range(random.randint(*word_range) - 1):  # nosec B311
-            text += ' ' + self.gen_word()
+            text += " " + self.gen_word()
 
         for _ in range(random.randint(*comma)):  # nosec B311
             include_comma = random.choice([True, False])  # nosec B311
             if include_comma:
-                text += ','
+                text += ","
                 for _ in range(random.randint(*word_range)):  # nosec B311
-                    text += ' ' + self.gen_word()
+                    text += " " + self.gen_word()
                 continue
             break
-        return text + '.'
+        return text + "."
 
-    def gen_paragraph(self, comma: 'tuple[int, int]',
-                      word_range: 'tuple[int, int]',
-                      sentence_range: 'tuple[int, int]') -> 'str':
+    def gen_paragraph(
+        self,
+        comma: "tuple[int, int]",
+        word_range: "tuple[int, int]",
+        sentence_range: "tuple[int, int]",
+    ) -> "str":
         """Generate random paragraph.
 
         Args:
@@ -229,13 +297,18 @@ class LoremGenerator:
         """
         text = self.gen_sentence(comma=comma, word_range=word_range)
         for _ in range(random.randint(*sentence_range) - 1):  # nosec B311
-            text += ' ' + self.gen_sentence(comma=comma, word_range=word_range)
+            text += " " + self.gen_sentence(comma=comma, word_range=word_range)
         return text
 
 
-def word(count: int = 1, func: 'Optional[str | Callable[[str], str]]' = None,
-         args: 'tuple[str, ...]' = (), kwargs: 'dict[str, Any]' = {}, *,
-         pool: 'Iterable[str]' = _TEXT,) -> 'Iterator[str]':  # pylint: disable=dangerous-default-value
+def word(
+    count: int = 1,
+    func: "Optional[str | Callable[[str], str]]" = None,
+    args: "tuple[str, ...]" = (),
+    kwargs: "dict[str, Any]" = {},
+    *,
+    pool: "Iterable[str]" = _TEXT,
+) -> "Iterator[str]":  # pylint: disable=dangerous-default-value
     """Generate a list of random words.
 
     .. code-block:: python
@@ -260,14 +333,18 @@ def word(count: int = 1, func: 'Optional[str | Callable[[str], str]]' = None,
 
     """
     lorem = LoremGenerator(pool=pool, dupe=count)
-    yield from itertools.cycle(lorem.gen_word(func=func,
-                                              args=args,
-                                              kwargs=kwargs) for _ in range(count))
+    yield from itertools.cycle(
+        lorem.gen_word(func=func, args=args, kwargs=kwargs) for _ in range(count)
+    )
 
 
-def sentence(count: 'int' = 1, comma: 'tuple[int, int]' = (0, 2),
-             word_range: 'tuple[int, int]' = (4, 8), *,
-             pool: 'Iterable[str]' = _TEXT) -> 'Iterator[str]':
+def sentence(
+    count: "int" = 1,
+    comma: "tuple[int, int]" = (0, 2),
+    word_range: "tuple[int, int]" = (4, 8),
+    *,
+    pool: "Iterable[str]" = _TEXT,
+) -> "Iterator[str]":
     """Generate a list of random sentences.
 
     .. code-block:: python
@@ -288,14 +365,19 @@ def sentence(count: 'int' = 1, comma: 'tuple[int, int]' = (0, 2),
 
     """
     lorem = LoremGenerator(pool=pool, dupe=count)
-    yield from _random_cycle(lorem.gen_sentence(comma=comma,
-                                                word_range=word_range) for _ in range(count))
+    yield from _random_cycle(
+        lorem.gen_sentence(comma=comma, word_range=word_range) for _ in range(count)
+    )
 
 
-def paragraph(count: 'int' = 1, comma: 'tuple[int, int]' = (0, 2),
-              word_range: 'tuple[int, int]' = (4, 8),
-              sentence_range: 'tuple[int, int]' = (5, 10), *,
-              pool: 'Iterable[str]' = _TEXT) -> 'Iterator[str]':
+def paragraph(
+    count: "int" = 1,
+    comma: "tuple[int, int]" = (0, 2),
+    word_range: "tuple[int, int]" = (4, 8),
+    sentence_range: "tuple[int, int]" = (5, 10),
+    *,
+    pool: "Iterable[str]" = _TEXT,
+) -> "Iterator[str]":
     """Generate a list of random paragraphs.
 
     .. code-block:: python
@@ -327,16 +409,22 @@ def paragraph(count: 'int' = 1, comma: 'tuple[int, int]' = (0, 2),
         pool=pool,
         dupe=count * random.randint(*word_range) * random.randint(*sentence_range),  # nosec B311
     )
-    yield from _random_cycle(lorem.gen_paragraph(comma=comma,
-                                                 word_range=word_range,
-                                                 sentence_range=sentence_range) for _ in range(count))
+    yield from _random_cycle(
+        lorem.gen_paragraph(
+            comma=comma, word_range=word_range, sentence_range=sentence_range
+        )
+        for _ in range(count)
+    )
 
 
-def get_word(count: 'int | tuple[int, int]' = 1,
-             sep: 'str' = ' ',
-             func: 'Optional[str | Callable[[str], str]]' = None,
-             args: 'tuple[str, ...]' = (), kwargs: 'dict[str, Any]' = {},
-             pool: 'Iterable[str]' = _TEXT,) -> 'str':  # pylint: disable=dangerous-default-value
+def get_word(
+    count: "int | tuple[int, int]" = 1,
+    sep: "str" = " ",
+    func: "Optional[str | Callable[[str], str]]" = None,
+    args: "tuple[str, ...]" = (),
+    kwargs: "dict[str, Any]" = {},
+    pool: "Iterable[str]" = _TEXT,
+) -> "str":  # pylint: disable=dangerous-default-value
     """Return random words.
 
     .. code-block:: python
@@ -368,11 +456,14 @@ def get_word(count: 'int | tuple[int, int]' = 1,
     return sep.join(itertools.islice(word(count, func, args, kwargs, pool=pool), count))
 
 
-def get_sentence(count: 'int | tuple[int, int]' = 1,
-                 sep: 'str' = ' ',
-                 comma: 'tuple[int, int]' = (0, 2),
-                 word_range: 'tuple[int, int]' = (4, 8), *,
-                 pool: 'Iterable[str]' = _TEXT) -> 'str':
+def get_sentence(
+    count: "int | tuple[int, int]" = 1,
+    sep: "str" = " ",
+    comma: "tuple[int, int]" = (0, 2),
+    word_range: "tuple[int, int]" = (4, 8),
+    *,
+    pool: "Iterable[str]" = _TEXT,
+) -> "str":
     """Return random sentences.
 
     .. code-block:: python
@@ -397,15 +488,20 @@ def get_sentence(count: 'int | tuple[int, int]' = 1,
     """
     if isinstance(count, tuple):
         count = random.randint(*count)  # nosec B311
-    return sep.join(itertools.islice(sentence(count, comma, word_range, pool=pool), count))
+    return sep.join(
+        itertools.islice(sentence(count, comma, word_range, pool=pool), count)
+    )
 
 
-def get_paragraph(count: 'int | tuple[int, int]' = 1,
-                  sep: 'str' = os.linesep,
-                  comma: 'tuple[int, int]' = (0, 2),
-                  word_range: 'tuple[int, int]' = (4, 8),
-                  sentence_range: 'tuple[int, int]' = (5, 10), *,
-                  pool: 'Iterable[str]' = _TEXT) -> 'str':
+def get_paragraph(
+    count: "int | tuple[int, int]" = 1,
+    sep: "str" = os.linesep,
+    comma: "tuple[int, int]" = (0, 2),
+    word_range: "tuple[int, int]" = (4, 8),
+    sentence_range: "tuple[int, int]" = (5, 10),
+    *,
+    pool: "Iterable[str]" = _TEXT,
+) -> "str":
     r"""Return random paragraphs.
 
     .. code-block:: python
@@ -440,4 +536,8 @@ def get_paragraph(count: 'int | tuple[int, int]' = 1,
     """
     if isinstance(count, tuple):
         count = random.randint(*count)  # nosec B311
-    return sep.join(itertools.islice(paragraph(count, comma, word_range, sentence_range, pool=pool), count))
+    return sep.join(
+        itertools.islice(
+            paragraph(count, comma, word_range, sentence_range, pool=pool), count
+        )
+    )
