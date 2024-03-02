@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+# cspell: disable
 """lorem ipsum generator
 
 In publishing and graphic design, lorem ipsum is a placeholder text commonly
@@ -170,7 +171,7 @@ def _random_cycle(iterable: "Iterable[Any]") -> "Iterator[Any]":
         Randomly cycled iterable.
 
     """
-    pool = []  # type: list
+    pool: "list[Any]" = []
     for item in iterable:
         yield item
         pool.append(item)
@@ -210,7 +211,7 @@ class LoremGenerator:
             An infinite loop word pool.
 
         """
-        pool = []  # type: list[str]
+        pool: "list[str]" = []
         for _ in range(dupe):
             pool.extend(self._text)
         random.shuffle(pool)
@@ -221,10 +222,10 @@ class LoremGenerator:
             random.shuffle(pool)
 
     def gen_word(
-        self,  # pylint: disable=dangerous-default-value
+        self,
         func: "Optional[str | Callable[[str], str]]" = None,
-        args: "tuple[str, ...]" = (),
-        kwargs: "dict[str, Any]" = {},
+        args: "Optional[tuple[str, ...]]" = None,
+        kwargs: "Optional[dict[str, Any]]" = None,
     ) -> "str":
         """Generate random word.
 
@@ -238,6 +239,10 @@ class LoremGenerator:
             Random word.
 
         """
+        if args is None:
+            args = ()
+        if kwargs is None:
+            kwargs = {}
         text = next(self.pool)
         if func is not None:
             if isinstance(func, str):
@@ -304,11 +309,11 @@ class LoremGenerator:
 def word(
     count: int = 1,
     func: "Optional[str | Callable[[str], str]]" = None,
-    args: "tuple[str, ...]" = (),
-    kwargs: "dict[str, Any]" = {},
+    args: "Optional[tuple[str, ...]]" = None,
+    kwargs: "Optional[dict[str, Any]]" = None,
     *,
     pool: "Iterable[str]" = _TEXT,
-) -> "Iterator[str]":  # pylint: disable=dangerous-default-value
+) -> "Iterator[str]":
     """Generate a list of random words.
 
     .. code-block:: python
@@ -332,6 +337,10 @@ def word(
         Indefinite random words generator.
 
     """
+    if args is None:
+        args = ()
+    if kwargs is None:
+        kwargs = {}
     lorem = LoremGenerator(pool=pool, dupe=count)
     yield from itertools.cycle(
         lorem.gen_word(func=func, args=args, kwargs=kwargs) for _ in range(count)
@@ -421,8 +430,8 @@ def get_word(
     count: "int | tuple[int, int]" = 1,
     sep: "str" = " ",
     func: "Optional[str | Callable[[str], str]]" = None,
-    args: "tuple[str, ...]" = (),
-    kwargs: "dict[str, Any]" = {},
+    args: "Optional[tuple[str, ...]]" = None,
+    kwargs: "Optional[dict[str, Any]]" = None,
     pool: "Iterable[str]" = _TEXT,
 ) -> "str":  # pylint: disable=dangerous-default-value
     """Return random words.
@@ -451,6 +460,10 @@ def get_word(
         Random words.
 
     """
+    if args is None:
+        args = ()
+    if kwargs is None:
+        kwargs = {}
     if isinstance(count, tuple):
         count = random.randint(*count)  # nosec B311
     return sep.join(itertools.islice(word(count, func, args, kwargs, pool=pool), count))
