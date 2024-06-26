@@ -19,7 +19,7 @@ jobs:
         python-version: ['3.8', '3.9', '3.10', '3.11', '3.12', 'pypy-3.8', 'pypy-3.9', 'pypy-3.10']
         experimental: [false]
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - name: Set up Python ${{ matrix.python-version }} on ${{ matrix.os }}
         uses: actions/setup-python@v4
@@ -42,13 +42,13 @@ jobs:
     needs: [ test ]
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
       - uses: actions/setup-python@v4
         with:
-          python-version: '3.11'
+          python-version: '3.12'
 
       - name: Install and Setup
         run: |
@@ -83,7 +83,7 @@ jobs:
     if: ${{ startsWith(github.ref_name, 'v') || needs.version_check.outputs.LOREM_TAG_EXISTS == 'false' }}
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           # ref: v${{ needs.version_check.outputs.LOREM_VERSION }}
           fetch-depth: 0
@@ -120,9 +120,9 @@ jobs:
     if: ${{ startsWith(github.ref_name, 'v') || needs.version_check.outputs.LOREM_TAG_EXISTS == 'false' }}
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
-          token: ${{ secrets.LOREM }}
+          # token: ${{ secrets.LOREM }}
           # ref: v${{ needs.version_check.outputs.LOREM_VERSION }}
           fetch-depth: 0
 
@@ -182,7 +182,7 @@ jobs:
           - "pypy3.10"
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           ref: v${{ needs.version_check.outputs.LOREM_VERSION }}
           fetch-depth: 0
@@ -208,7 +208,7 @@ jobs:
           python util/wheel_rename.py dist/*.whl
 
       - name: No Source Distribution for Python ${{ matrix.python-version }}
-        if: ${{ matrix.python-version != '3.11' }}
+        if: ${{ matrix.python-version != '3.12' }}
         run: |
           rm dist/*.tar.gz
 
@@ -252,7 +252,7 @@ jobs:
           - "3.11"
           - "3.12"
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           ref: conda-${{ needs.version_check.outputs.LOREM_VERSION }}+0
           fetch-depth: 0
@@ -346,7 +346,7 @@ jobs:
     needs: [ test ]
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
