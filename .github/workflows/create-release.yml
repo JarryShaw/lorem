@@ -276,7 +276,7 @@ jobs:
           python -m pip install -e .
 
       - name: Conda environment creation and activation
-        uses: conda-incubator/setup-miniconda@v2
+        uses: conda-incubator/setup-miniconda@v3
         env:
           LOREM_VERSION: ${{ needs.version_check.outputs.LOREM_VERSION }}
           LOREM_BUILD: "0"
