@@ -181,6 +181,7 @@ jobs:
           - "pypy3.9"
           - "pypy3.10"
     permissions:
+      contents: write
       id-token: write  # IMPORTANT: this permission is mandatory for trusted publishing
     steps:
       - name: Checkout code
