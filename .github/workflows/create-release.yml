@@ -122,7 +122,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
         with:
-          # token: ${{ secrets.LOREM }}
+          token: ${{ secrets.LOREM }}
           # ref: v${{ needs.version_check.outputs.LOREM_VERSION }}
           fetch-depth: 0
 
