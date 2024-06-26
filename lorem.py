@@ -87,7 +87,7 @@ __all__ = [
 ]
 
 # version string
-__version__ = '1.3.0.post1'
+__version__ = '1.3.0.post2'
 
 #: The original lorem ipsum text pool.
 _TEXT = ('ad', 'adipiscing', 'aliqua', 'aliquip', 'amet', 'anim', 'aute', 'cillum', 'commodo',
