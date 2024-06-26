@@ -85,17 +85,13 @@ if sys.version_info[0] <= 2:
 
 try:
     from setuptools import setup
+    from setuptools.command.bdist_wheel import bdist_wheel
     from setuptools.command.build_py import build_py
     from setuptools.command.develop import develop
     from setuptools.command.install import install
     from setuptools.command.sdist import sdist
-except:
-    raise ImportError("setuptools is required to install python-lorem!")
-
-try:
-    from wheel.bdist_wheel import bdist_wheel
 except ImportError:
-    bdist_wheel = None
+    raise ImportError("setuptools is required to install python-lorem!")
 
 # get logger
 logger = logging.getLogger('lorem.setup')
@@ -165,7 +161,7 @@ class lorem_build_py(build_py):
 class lorem_develop(develop):
     """Modified develop to run PyBPC conversion."""
 
-    def run(self) -> 'None':  # type: ignore[override]
+    def run(self) -> 'None':
         super(lorem_develop, self).run()
         logger.info('running develop')
 
@@ -184,18 +180,15 @@ class lorem_install(install):
         #refactor(os.path.join(self.install_lib, 'lorem'))  # type: ignore[arg-type]
 
 
-if bdist_wheel is not None:
-    class lorem_bdist_wheel(bdist_wheel):
-        """Modified bdist_wheel to run PyBPC conversion."""
+class lorem_bdist_wheel(bdist_wheel):
+    """Modified bdist_wheel to run PyBPC conversion."""
 
-        def run(self) -> 'None':
-            super(lorem_bdist_wheel, self).run()
-            logger.info('running bdist_wheel')
+    def run(self) -> 'None':
+        super(lorem_bdist_wheel, self).run()
+        logger.info('running bdist_wheel')
 
-            # PyBPC compatibility enforcement
-            #refactor(os.path.join(self.dist_dir, 'lorem'))
-else:
-    lorem_bdist_wheel = None  # type: ignore[misc,assignment]
+        # PyBPC compatibility enforcement
+        #refactor(os.path.join(self.dist_dir, 'lorem'))
 
 setup(
     cmdclass={
